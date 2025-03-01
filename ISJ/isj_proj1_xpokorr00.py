@@ -21,13 +21,9 @@ def only_consonants(input: chr) -> bool:
     >>> only_consonants('vlk!')
     False
     """
-
-    pat = re.compile(r'''
-                            ^             # from the begining of the string 
-                            ...   # there are only small ASCII letters till the end
-                            ...    # and they match non-vowels characters
-                            $             # to the end of the string 
-                     ''', re.VERBOSE)
+    # negative lookahed to exclude non consonants and the second part is 
+    # only allowing lowercase letters from alphabet and end of the string
+    pat = re.compile(r'^(?!.*[aeiou])[a-z]+$', re.VERBOSE) 
     return bool(pat.search(input))
 
 
@@ -42,14 +38,12 @@ def filter_not_markup_plusplus(expr_string: str) -> str:
 
     # a name that is either preceded by [Pp]rof./[Dd]oc. and followed by Ph.D.
     # or other name with potential titles
-    pat = re.compile(r'''
-                      ...  # it is either the non-captured form
-                                       # preceded and followed by ++
-                      |                # or
-                      ...         # it is the captured expression
-                      ''', re.X)
-    return [g1 for g1 in pat.findall(expr_string) if g1]
+    
+    # Captures all expressions before the semicolon (non greedy). Also looks for any match where there are "++", 
+    # but a condition is added that if ++ is on the other side, the expression evaluates as false
+    pat = re.compile(r'(?<!\+\+)[^;]+(?=\s*[^+])[^;]*\+\+(?!\+\+)(?=;)|([^;]+)(?=;)', re.X)
 
+    return [g1 for g1 in pat.findall(expr_string) if g1]
 
 if __name__ == "__main__":
     import doctest

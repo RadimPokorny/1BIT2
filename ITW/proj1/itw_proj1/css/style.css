@@ -1,0 +1,154 @@
+/*
+ * Login: xpokorr00
+ *
+ * Doplnte sve reseni.
+ *
+ * Nezapomente pridat strucne hromadne komentare pro pravidla jednotlivych sekci
+ * a pro netrivialni useky kodu.
+ *
+ * Snazte se dodat aspon castecne reseni, i snaha se hodnoti.
+ */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #fffef0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+section, header{
+    max-width: 1200px;
+    min-width: 768;
+}
+
+section{
+    padding: 5rem;
+    margin-top: 10rem;
+    background: rgb(255, 254, 240);
+    background: radial-gradient(circle, rgba(255, 254, 240, 1) 36%, rgba(234, 217, 200, 1) 72%, rgba(138, 111, 84, 1) 100%);
+    box-shadow: 0 0 25px black;
+}
+
+header{
+    background-color: black;
+
+}
+
+h1,h2,h3,h4,h5{
+    font-family: "IM Fell DW Pica", serif;
+    
+}
+
+h1{
+    font-size: 2rem;
+}
+
+video{ max-width: 650px;}
+
+h2{
+    font-size: 1.8rem;
+}
+
+h3{
+    font-size: 1.6rem;
+}
+
+a, i, span, button, p{
+    font-family:'Spectral';
+    font-size: 16px;
+}
+
+a, i, nav ul li{
+    font-size: 1.2rem;
+} 
+
+#products img{
+    height: 350px;
+    object-fit: cover;
+}
+
+#products .section-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#products .section-content .section-item{
+    min-width: 220px; 
+    margin: 10px;
+}
+
+#services img{
+    width: 40%;
+}
+
+#services img:hover{
+    width: calc(40% + 10px);
+    transition: 0.5s;
+}
+
+#services .section-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#services .section-content .section-item:nth-child(even){
+    text-align: right !important;
+}
+
+#manny{
+    position: absolute;
+    height: 400px;
+    width: 120px;
+}
+
+#manny img{
+    height: 80%;
+}
+
+#bernard{
+    position:absolute;
+    z-index: 10;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fffef0;
+    border: 1px  solid darkblue;
+    bottom: 0;
+}
+
+footer .section-content a:nth-child(2){
+    color: darkred !important;
+}
+
+footer{
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 72%, rgba(138, 111, 84, 0) 100%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer *{
+    color:#fffef0 !important;
+}
+
+footer img{
+    height: 1.2rem;
+}
+
+footer span:nth-child(1){
+    font-size: 3rem;
+}
