@@ -1,0 +1,219 @@
+*{
+    font-family: Arial, Helvetica;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #3c1f0a;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 200px 0 200px;
+}
+
+header ul{
+    list-style: none;
+}
+
+header ul li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+header ul li:hover::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/menu_bullet.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(90%);
+    z-index: 10;
+}
+
+.header-text{
+    margin-top: 20px;;
+}
+
+header h1{
+    color: #d5a17c;
+    font-style: italic;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    font-family: Arial,Helvetica;
+}
+
+.content{
+    border-top: 2px dotted #3c1f0a;
+    padding-top: 20px;
+}
+
+.itw{
+    font-style: italic;
+    font-weight: bold;
+        font-size: 36px;
+}
+
+header ul{
+    display: flex;
+    margin-top: 50px;
+}
+
+header ul *{
+    margin: 5px;
+}
+
+.o-predmetu{
+    background-image: linear-gradient(white, rgb(175, 173, 173));
+    padding: 40px 200px 40px 200px
+}
+
+#opredmetu{
+    color:#b15e23;
+}
+
+#prednasky h1{
+    color:#b15e23; 
+}
+
+#prednasky{
+    padding: 40px 200px 40px 200px
+}
+
+#prednasky a{
+    color:#3c1f0a;
+    text-decoration: none;
+}
+
+
+#prednasky h2{
+    margin-bottom: 5px;
+}
+
+#vysledky h1{
+    color:#b15e23
+}
+
+#vysledky{
+    padding: 40px 200px 40px 200px
+}
+
+.theader{
+    background-color: #d5a17c;
+    color: gray;
+    font-weight: bold;
+    text-align: center;
+}
+.trow td{
+    text-align: left !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px double black !important;
+}
+
+
+table{
+    border: 3px solid black;
+    
+}
+#cviceni{
+    padding: 40px 200px 40px 200px
+}
+#cviceni div{
+    margin-top: 40px;
+}
+#cviceni h1{
+    color:#b15e23;
+    margin-bottom: 20px;
+}
+
+#cviceni a, h2{
+    text-decoration: none;
+    color:#3c1f0a;
+    margin-bottom: 20px;
+}
+
+#cviceni div span{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+}
+
+#kontakt{
+    background-color: #3c1f0a;
+    padding: 40px 200px 40px 200px;
+    text-align: left;
+}
+
+#kontakt h1{
+    color: white;
+    margin-bottom: 10px;
+}
+
+#kontakt span{
+    color: white;
+    
+}
+
+#kontakt a{
+
+    color:#d5a17c;
+    text-decoration: none;
+}
+
+#kontakt ul {
+    list-style: none;
+    padding: 0;
+    max-width: 400px; /* Přizpůsob délce obsahu */
+}
+
+#kontakt li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+#kontakt span {
+    color: white;
+    font-weight: bold;
+    text-align: left;
+}
+
+#kontakt a {
+    color: #d5a17c;
+    text-decoration: none;
+    text-align: right;
+}
+
+
+#souvisejici{
+    background-color: #3c1f0a;
+    padding: 40px 200px 40px 200px
+}
+
+#souvisejici h1{
+    color: white;
+    margin-bottom: 10px;
+}
+
+#souvisejici li{
+    list-style: none;
+}
+
+#souvisejici li a{
+    color:#d5a17c;
+    text-decoration: none;
+}
+
+#souvisejici img{
+    margin-right: 10px;
+}

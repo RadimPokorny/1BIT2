@@ -21,12 +21,67 @@
 
 ; Zde doplnte vase reseni
 
-(
-    assert(
-    ite(or
-        (<= D 0)(<= E 0) false true
-    )
+(declare-fun x () Int)
+(declare-fun y () Int)
+(declare-fun z () Int)
+
+;  dek. fx
+(define-fun x_f ((A Int) (B Int) (C Int)) Int 
+  (- (* A B) (* C 5))
 )
+
+; dek. fy
+(define-fun y_f ((B Int) (C Int) (D Int) (x Int) (E Int)) Int (
+  ite (< (+ x E) (* D 2)) (+ x (* B 3)) (* x (* C 2))
+))
+
+; dek. fz
+(define-fun z_f ((A Int) (B Int) (C Int) (D Int) (x Int) (y Int)) Int (
+  ite (<= (- y 5) C) (- (* x A) (* y B)) 
+      (ite (> (+ x 2) D) (* (+ x A) (+ y B)) (+ (* x B) (* y A)))
+))
+
+
+; D <= 0 nebo E <= 0 - false
+(assert (
+  not (
+    or (<= D 0) (<= E 0)
+  )
+))
+
+; in. x, y, z
+(assert (= x (x_f A B C)))
+(assert (= y (y_f B C D x E)))
+(assert (= z (z_f A B C D x y)))
+
+
+; z > D + E (Originální podmínka): z <= D + E
+(assert (
+  
+    > z (+ D E)
+  
+))
+
+; Pro každé d, e, y2, z2 platí, že zároveň d + e < D + E, d > 0, e >0, y2(dek.), z2 > (d+e), z2(dek.)
+(assert (
+  not (
+    exists ((d Int) (e Int) (y2 Int) (z2 Int)) (
+      and
+      (< (+ d e) (+ D E))
+      (> d 0)
+      (> e 0)
+      (= y2 (y_f B C d x e))
+      (> z2 (+ e d))
+      (= z2 (z_f A B C d x y2))
+    )
+  )
+))
+
+
+
+
+
+
 
 ; bonus:
 

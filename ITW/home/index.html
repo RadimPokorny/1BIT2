@@ -2,32 +2,38 @@
 <html lang="cs">
 <head>
 <title>xpokorr00 stránka</title>
-
+<link rel="stylesheet" href="css/style.css">
 <style class="">
     th, td {
   padding: 15px;
-  text&mdash;align: left;
-  border: 1px solid black;
-  border&mdash;collapse: collapse;
+  text-align: center;
+  border-bottom: 2px solid black;
+  border-right: 2px dotted black;
+  border-left: 2px dotted black;
+  border-top: 2px dotted black;
+  border-collapse: collapse;
 }
 </style>
 
 </head>
 
 <body>
-
-    <h1 class=""><a href="https://www.fit.vut.cz/study/course/ITW/.cs" class="">ITW</a> tvorba webových stránek</h1>
-
-        <ul class="">
-            <li class=""><a href="#" class="">Index</a></li>
-            <li class=""><a href="#opredmetu">O předmětu</a></li>
-            <li class=""><a href="#prednasky">Přednášky</a></li>
-            <li class=""><a href="#vysledky">Výsledky</a></li>
-            <li class=""><a href="#cviceni">Cvičení</a></li>
-            <li class=""><a href="#kontakt">Kontakt</a></li>
-            <li class=""><a href="#souvisejici">Související</a></li>
-        </ul>
-        <div class="">
+    <header>
+        <div class="header-text">
+        <a href="https://www.fit.vut.cz/study/course/ITW/.cs" class="itw">ITW</a>
+        <h1 class="">tvorba webových stránek</h1>
+        </div>
+            <ul class="">
+                <li class=""><a href="#" class="">Index</a></li>
+                <li class=""><a href="#opredmetu">O předmětu</a></li>
+                <li class=""><a href="#prednasky">Přednášky</a></li>
+                <li class=""><a href="#vysledky">Výsledky</a></li>
+                <li class=""><a href="#cviceni">Cvičení</a></li>
+                <li class=""><a href="#kontakt">Kontakt</a></li>
+                <li class=""><a href="#souvisejici">Související</a></li>
+            </ul>
+    </header>
+        <div class="o-predmetu">
             <h1 id="opredmetu" class="">O předmětu ITW &mdash; tworba webových stránek</h1>
             <span class=""><b class="">Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.</span>
             <p class="">Phasellus eget ante tortor. Ante ipsum primis in faucibus</p>
@@ -35,42 +41,52 @@
         <div id="prednasky" class="">
         <h1 class="">Přednášky</h1>
         <div id="prednaska1" class="">
+            <img src="img/icon1.gif" alt="" class="">
             <h2 ><a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p01/index.html" class="">Internet a služba WWW, principy, adresování, umístění dokumentů</a></h2>
+            <div class="content">
             <span>
-                    <img src="img/icon1.gif" alt="" class="">
+
                     
                     Tato přednáška je o HTML
             </span>
+        </div>
 
         </div>
 
         <div id="prednaska2" class="">
+            <img src="img/icon2.gif" alt="" class="">
             <h2><a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p02/index.html" class="">Úvod do jazyka HTML &mdash; základní prvky</a></h2>
+            <div class="content">
             <span>
-                <img src="img/icon2.gif" alt="" class="">
                 
                 Tato přednáška je o CSS
             </span>
+        </div>
         
         </div>
 
         <div id="prednaska3" class="">
+            <img src="img/icon3.gif" alt="" class="">
             <h2> <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html" class="">Jazyk HTML, pokročilé prostředky prezentace</a></h2>
+            <div class="content">
             <span>
-                <img src="img/icon3.gif" alt="" class="">
+               
                 
                 Tato přednáška je o JS
             </span>
+        </div>
         
         </div>
 
         <div id="prednaska4" class="">
+            <img src="img/icon4.gif" alt="" class="">
             <h2> <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html" class="">Vizuální nástroje pro tvorbu stránek</a></h2>
+            <div class="content">
             <span>
-                <img src="img/icon4.gif" alt="" class="">
                 
                 Tato přednáška je o JQuery
             </span>
+        </div>
         
         </div>
         </div>
@@ -79,16 +95,16 @@
             <h1 class="">Přehled výsledků</h1>
             <table class="">
                 <tbody>
-                    <tr class="">
+                    <tr class="theader">
                         <td class="" rowspan="3">Jméno</td>
                         <td class="" colspan="6">Body</td>
                     </tr>
-                    <tr class="">
+                    <tr class="theader">
                          <td class="" colspan="2">2010</td>
                         <td class="" colspan="2">2011</td>
                         <td class="" colspan="2">2012</td>
                     </tr>
-                    <tr class="">
+                    <tr class="theader">
                         <td class="">Půlsem.</td>
                         <td class="">Zk.</td>
                         <td class="">Půlsem.</td>
@@ -96,7 +112,7 @@
                         <td class="">Zk.</td>
                         <td class="">Půlsem.</td>
                     </tr>
-                    <tr class="">
+                    <tr class="trow">
                         <td class="">Jan Novák</td>
                         <td class="">18</td>
                         <td class="">72</td>
@@ -105,7 +121,7 @@
                         <td class="">10</td>
                         <td class="">&mdash;</td>
                     </tr>
-                    <tr class="">
+                    <tr class="trow">
                         <td class="">Zuzana Černá</td>
                         <td class="">10</td>
                         <td class="">50</td>
@@ -122,66 +138,73 @@
 
             <div class="">
                 <h2> <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c1" class="">Cvičení 1 &mdash; DNS a HTTP</a></h2>
+                <div class="content-bottom">
                 <span>
                     <img src="img/icon1.gif" alt="" class="">
                     
                     Cvičení ohledně adresace
                 </span>
+            </div>
             
             </div>
             
             <div class="">
                 <h2><a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c2" class="">Cvičení 2 &mdash; Jazyk HTML</a></h2>
+                <div class="content-bottom">
                 <span>
                     <img src="img/icon2.gif" alt="" class="">
                     
                     Cvičení ohledně html
                 </span>
+            </div>
             
             </div>
             
             <div class="">
                 <h2><a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c3" class="">Cvičení 3 &mdash; Styl textu</a></h2>
+                <div class="content-bottom">
                 <span>
                     <img src="img/icon3.gif" alt="" class="">
                     
                     Cvičení o CSS
                 </span>
+            </div>
             
             </div>
             
             <div class="">
                 <h2><a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c4" class="">Cvičení 4 &mdash; CSS rozložení stránky</a></h2>
+                <div class="content-bottom">
                 <span>
                     <img src="img/icon4.gif" alt="" class="">
                     
                     Cvičení o JS
                 </span>
-            
+            </div>
             </div>
 
 
         </div>
 
-        <div id="kontakt" class="">
-            <h1 class="">Kontaktujte nás</h1>
-            <dl class="
-            ">
-        
-            <dt class="">Garant: <dd><a href="mailto:itw&mdash;garant@fit.vutbr.cz" class="">itw&mdash;garant@fit.vutbr.cz</a></dd></dt>
-            <dt class="">Přednášející: <dd><a href="mailto:itw&mdash;prednasejici@fit.vutbr.cz" class="">itw&mdash;prednasejici@fit.vutbr.cz</a></dd></dt>
-            <dt class="">Cvičící: <dd><a href="mailto:itw&mdash;cvicici@fit.vutbr.cz" class="">itw&mdash;cvicici@fit.vutbr.cz</a></dd></dt>
-        </dl>
+        <div id="kontakt">
+            <h1>Kontaktujte nás</h1>
+            <ul>
+                <li><span>Garant:</span> <a href="mailto:itw&mdash;garant@fit.vutbr.cz">itw-garant@fit.vutbr.cz</a></li>
+                <li><span>Přednášející:</span> <a href="mailto:itw&mdash;prednasejici@fit.vutbr.cz">itw-prednasejici@fit.vutbr.cz</a></li>
+                <li><span>Cvičící:</span> <a href="mailto:itw&mdash;cvicici@fit.vutbr.cz">itw-cvicici@fit.vutbr.cz</a></li>
+            </ul>
         </div>
+        
+        
 
         <div id="souvisejici" class="">
             <h1 class="">Související předměty</h1>
             <ul class="
             ">
-            <li class=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs" class="">Informační systémy</a></li>
-            <li class=""><a href="https://www.fit.vut.cz/study/course/PIS/.cs" class="">Pokročilé informační systémy</a></li>
-            <li class=""><a href="https://www.fit.vut.cz/study/course/AIS/.cs" class="">Analýza informačních systémů</a></li>
-            <li class=""><a href="https://www.fit.vut.cz/study/course/ISJ/.cs" class="">Skriptovací jazyky</a></li>
+            <li class=""><img src="img/footer_list_bullet.gif" alt="" class=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs" class="">Informační systémy</a></li>
+            <li class=""><img src="img/footer_list_bullet.gif" alt="" class=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs" class=""></a><a href="https://www.fit.vut.cz/study/course/PIS/.cs" class="">Pokročilé informační systémy</a></li>
+            <li class=""><img src="img/footer_list_bullet.gif" alt="" class=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs" class=""></a><a href="https://www.fit.vut.cz/study/course/AIS/.cs" class="">Analýza informačních systémů</a></li>
+            <li class=""><img src="img/footer_list_bullet.gif" alt="" class=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs" class=""></a><a href="https://www.fit.vut.cz/study/course/ISJ/.cs" class="">Skriptovací jazyky</a></li>
         </ul>
         </div>
 
