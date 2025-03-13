@@ -11,7 +11,7 @@ bool f(int A, int B, int C, int D, int E) {
   
     x = A * B - C * 5;
   
-    if (x + E < D + D) {
+    if (x + E < D + D) {    
       y = x + 3 * B;
     } else {
       y = x * C * 2;
@@ -33,8 +33,7 @@ bool f(int A, int B, int C, int D, int E) {
 }
 
 int main(){
+  printf(f(5,3,4,5,2) == true ? "True":"False");
 
-    printf(f(5,3,4,5,2) == true ? "True":"False");
-
-    return 0;
+  return 0;
 }
