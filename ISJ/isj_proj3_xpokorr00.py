@@ -16,17 +16,15 @@ def halves_of_even_double_of_odd(numbers: list[int]) -> list[int]:
     >>> halves_of_even_double_of_odd([3])
     [6]
     """
-    even_list = []
-    odd_list = []
-
+    output = []
+    index_even = 0
     for index in range(len(numbers)):
         if numbers[index] % 2 == 0:
-            even_list.append(numbers[index] // 2)
+            output.insert(index_even,numbers[index] // 2 )
+            index_even += 1
         else:
-            odd_list.append(numbers[index] * 2)
-
-
-    return even_list + odd_list
+            output.append(numbers[index] * 2)
+    return output
 
 
 
@@ -55,22 +53,12 @@ def multichoice_scoring(answers: list[int],
     3.5
     """
     score = 0
-
     for index in range(len(answers)):
-        answer = 0
-        if answers[index] == None:
-            answer = -1
-        else:
-            answer = answers[index]
-
-        current_tuple = scoring[index]
-
-        if answer == current_tuple[0]:
-            score += current_tuple[1]
-        elif answer != -1:
-            score += current_tuple[2]
+        if answers[index] == scoring[index][0]:
+            score += scoring[index][1]
+        elif answers[index] != None:
+            score += scoring[index][2]
     return score
-
 
 if __name__ == "__main__":
     import doctest
