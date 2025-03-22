@@ -1,0 +1,98 @@
+Vysoké učení technické v Brně
+Fakulta informačních technologií
+
+Typografie a publikování -- Sazba dokumentů a matematických výrazů
+
+
+2025                             Jméno Příjmení (login)
+
+%%%%%%%%%%%%%%%%% \newpage %%%%%%%%%%%%%%%%
+
+Úvod
+
+V této úloze vysázíme titulní stranu a ukázku matematického textu,
+v němž se vyskytují například
+rovnice ([7]) na straně [1], Věta [1] nebo Definice [2].
+Pro vytvoření těchto odkazů používáme kombinace příkazů
+\label, \ref, \eqref a \pageref.
+Před odkazy patří nezlomitelná mezera.
+Text zvýrazníme pomocí příkazu \emph, strojopisné písmo pomocí \texttt.
+Pro LaTeXové příkazy (s obráceným lomítkem) použijeme \verb.
+
+Titulní strana je vysázena prostředím titlepage a nadpis je v optickém středu
+s využitím zlatého řezu, který byl probrán na přednášce.
+Na titulní straně jsou tři různé velikosti písma a mezi dvojicemi řádků textu
+je řádkování se zadanou  velikostí 0,5 em a 0,6 em[...POZNÁMKA POD ČAROU...].
+
+
+Matematický text
+
+Symboly číselných množin sázíme makrem \mathbb,
+kaligrafická písmena  makrem \mathcal.
+Pozor na tvar i sklon řeckých písmen: srovnejte \rho a \varrho.
+Konstrukce ${}$ nebo \mbox{} zabrání zalomení výrazu.
+
+Pro definice a věty slouží prostředí definovaná příkazem \newtheorem z balíku amsthm.
+Tato prostředí obracejí význam \emph:
+uvnitř textu sázeného kurzívou se zvýrazňuje písmem v základním řezu.
+Důkazy se někdy ukončují značkou \qed.
+
+Pseudometrický prostor
+Pro zarovnání rovností a nerovnosti pod sebe použijte vhodné prostředí.
+
+Definice [1].
+V pseudometrickém prostoru [...] značí [...] množinu bodů,
+[...] je zobrazení zvané pseudometrika, které pro každé body [...]
+splňuje následující podmínky:
+[...]
+
+Metrika
+Funkční hodnota pseudometriky [...] se nazývá vzdálenost.
+Vzdálenost každých dvou bodů je nezáporná.
+
+Věta [1].
+Pro každé dva body [...] pseudometrického prostoru [...] platí [...].
+Důkaz: Nechť [...]. Využitím [...]. Odtud plyne [...].
+
+Speciálním případem pseudometrických prostorů jsou prostory metrické,
+v nichž dva různé body mají vždy kladnou vzdálenost.
+
+Definice [2].
+Nechť [...] pseudometrický prostor, v němž platí [...] kdykoliv [...].
+Potom M se nazývá metrický prostor
+a [...] je jeho metrika.
+
+
+Rovnice
+
+Velikost závorek a svislých čar je potřeba přizpůsobit jejich obsahu.
+K tomu jsou určeny modifikátory \left a \right.
+
+[...]
+
+Zde vidíme, jak se vysází proměnná určující limitu v běžném textu: [...].
+Podobně je to i s dalšími symboly jako [...] či [...].
+S vynucením méně úsporné sazby příkazem \limits budou vzorce vysázeny v podobě [...].
+Složitější matematické formule sázíme mimo plynulý text pomocí prostředí displaymath.
+
+[...]
+[...]
+[...]
+
+Nezapomeňte rovnice, na které se odkazujete, označit vhodným jménem pomocí \label.
+
+
+Matice
+
+Pro sázení matic se používá prostředí array a závorky s výškou nastavenou pomocí
+\left, \right.
+
+[...]
+
+Prostředí \verb|array| lze úspěšně využít i jinde,
+například na pravé straně následující definiční rovnosti.
+
+[...]
+
+Jestliže sázíme jen levou složenou závorku, pak za párovým \right
+místo závorky píšeme tečku.

@@ -1,0 +1,160 @@
+\documentclass[a4paper,11pt,twocolumn]{article}
+% Font
+\usepackage{lmodern}
+% 186 mm × 260 mm, center
+\usepackage[width=186mm, height=260mm, centering]{geometry}
+% Kódování fontu T1
+\usepackage[T1]{fontenc}
+% UTF8
+\usepackage[utf8]{inputenc}
+\usepackage[czech,shorthands=off]{babel}
+\usepackage{csquotes} 
+\usepackage{microtype}
+\usepackage{booktabs, graphicx, setspace}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+
+\newtheorem{theorem}{Věta}
+\newtheorem{definition}{Definice}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        {\Huge\textsc{Vysoké učení technické v Brně}\\}
+        \vspace{0.5em}
+        {\huge \textsc{Fakulta informačních technologií}\\}
+        \vfill
+        \vspace{-5cm}
+        {\huge Typografie a publikování – 2. projekt\\}
+        \vspace{0.6em}
+        {\huge Sazba dokumentů a matematických výrazů}
+        \vfill
+        \Large{2025} \hfill \Large{Radim Pokorný (xpokorr00)}
+    \end{center}
+\end{titlepage}
+
+\section*{Úvod}
+
+V této úloze vysázíme titulní stranu a ukázku matematického textu,
+v němž se vyskytují například
+rovnice~\eqref{equation:7} na straně~\pageref{page:1}, Věta~\ref{statement:1} nebo Definice~\ref{def:2}.
+Pro vytvoření těchto odkazů používáme kombinace příkazů
+\verb|\label|, \verb|\ref|, \verb|\eqref| a \verb|\pageref|.
+Před odkazy patří nezlomitelná mezera.
+Text zvýrazníme pomocí příkazu \verb|\emph|, strojopisné písmo pomocí \verb|\texttt|.
+Pro \LaTeX{}ové příkazy (s obráceným lomítkem) použijeme \verb|\verb|.
+
+Titulní strana je vysázena prostředím titlepage a~nadpis je v optickém středu
+s využitím zlatého řezu, který byl probrán na přednášce.
+Na titulní straně jsou tři různé velikosti písma a mezi dvojicemi řádků textu
+je řádkování se zadanou  velikostí 0,5 em a 0,6 em\footnote{Použijte správnou velikost mezery mezi číslem a jednotkou}.
+
+
+\section{Matematický text}
+
+Symboly číselných množin sázíme makrem \verb|\mathbb|,
+kaligrafická písmena  makrem \verb|\mathcal|.
+Pozor na tvar i sklon řeckých písmen: srovnejte \verb|\rho| a \verb|\varrho|.
+Konstrukce \verb|${}$| nebo \verb|\mbox{}| zabrání zalomení výrazu.
+
+Pro definice a věty slouží prostředí definovaná příkazem \verb|\newtheorem| z balíku amsthm.
+Tato prostředí obracejí význam \verb|\emph|:
+uvnitř textu sázeného kurzívou se zvýrazňuje písmem v základním řezu.
+Důkazy se někdy ukončují značkou \verb|\qed|.
+
+\subsection{Pseudometrický prostor}
+Pro zarovnání rovností a nerovnosti pod sebe použijte vhodné prostředí.
+
+\begin{definition}
+V \textnormal{pseudometrickém prostoru \(\mathcal{M} = (M, \varrho)\)} značí M množinu bodů,
+$\varrho : M \times M \rightarrow \mathbb{R}$ je zobrazení zvané \textnormal{pseudometrika}, které pro každé body $x,y,z \in M$
+splňuje následující podmínky:
+\begin{align}
+    \varrho(x, x) \;&=\; 0 \label{equation:1}\\
+    \varrho(x, y) \;&=\; \varrho(y, x) \label{equation:2}\\
+    \varrho(x, y) + \varrho(y, z) \;&\geq\; \varrho(x, z) \label{equation:3}
+\end{align}
+\end{definition}
+
+\subsection{Metrika}
+Funkční hodnota pseudometriky $\varrho$ se nazývá \emph{vzdálenost}.
+Vzdálenost každých dvou bodů je nezáporná.
+
+\begin{theorem}
+Pro každé dva body $x, \,y \,\in\, M$ pseudometrického prostoru \textnormal{($M, \varrho$)} platí $\varrho(x,y) \geq 0$.\label{statement:1}\end{theorem}
+
+Důkaz: \:Nechť $x, y \,\in\, M$ \:a\: označme $d \;=\; \varrho(x,y)$. Využitím~\eqref{equation:2} máme $2d \:=\: \varrho(x,y) \;+\; \varrho(y,x) $, z nerovnosti~\eqref{equation:3} vyplívá $2d \geq \varrho(x,x)$ a z rovnosti~\eqref{equation:1} dostaneme $2d \geq \varrho(x,x) = 0$. Odtud plyne $d \geq 0$.\qed
+
+Speciálním případem pseudometrických prostorů jsou prostory metrické,
+v nichž dva různé body mají vždy kladnou vzdálenost.
+
+\begin{definition}
+Nechť \(\mathcal{M} = (M, \varrho)\) je pseudometrický prostor, v němž platí $\varrho(x,y) > 0$ kdykoliv $x \neq y$.
+Potom \(\mathcal{M}\) se nazývá \textnormal{metrický prostor}
+a $\varrho$ je jeho \textnormal{metrika.}\label{def:2}
+\end{definition}
+
+
+\section{Rovnice}
+
+Velikost závorek a svislých čar je potřeba přizpůsobit jejich obsahu.
+K tomu jsou určeny modifikátory \verb|\left| a \verb|\right|.
+\begin{equation}
+\lim_{p \to 0} \left(\frac{1}{n}\sum_{i=1}^{n}x_i^p\right)^{\frac{1}{p}} = \left(\prod_{i=1}^{n} x_i\right)^{\frac{1}{n}}
+\end{equation}
+
+Zde vidíme, jak se vysází proměnná určující limitu v běžném textu: $\lim_{m \to \infty}f(m)$.
+Podobně je to i s dalšími symboly jako $\bigcup_{N \in \mathcal{M}}N$ či $\sum_{i=1}^mx^2_i$.
+S vynucením méně úsporné sazby příkazem \verb|\limits| budou vzorce vysázeny v podobě $\lim\limits_{m \to \infty} f(m)$ a $\sum\limits_{i=1}^{m}x^2_i$.
+Složitější matematické formule sázíme mimo plynulý text pomocí prostředí \texttt{displaymath}.
+\begin{align}
+    \lim\limits_{n \to \infty}\left(1 + \frac{x}{n}\right)^n \quad&=\quad \sum\limits_{n=0}^{\infty}\frac{x^n}{n!}\\
+    \sum\limits_{\emptyset\neq{}X\subseteq{}P}(-1)^{\left|{}X{}\right| - 1}\left|\bigcap{}X\right| \quad&=\quad \left|\bigcup{}P\right|\\
+    -\int_{a}^{b} f(x) \, dx \quad&=\quad \int_{b}^{a}f(y)\empty\,dy \label{equation:7}
+\end{align}
+Nezapomeňte rovnice, na které se odkazujete, označit vhodným jménem pomocí \verb|\label|.
+
+
+\section{Matice}
+
+Pro sázení matic se používá prostředí array a závorky s výškou nastavenou pomocí
+\verb|\left|, \verb|\right|.
+\[
+D = \left| 
+\begin{array}{cccc}
+a_{11} & a_{12} & \dots  & a_{1n} \\
+a_{21} & a_{22} & \dots  & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \dots  & a_{mn} \\
+\end{array} 
+\right|
+=
+\left| 
+\begin{array}{cc}
+    x & y \\
+    t & w \\
+    \end{array} 
+\right|
+= xw - yt
+\]
+
+Prostředí \verb|array| lze úspěšně využít i jinde,
+například na pravé straně následující definiční rovnosti.
+\[
+    B_n = 
+    \left\{
+        \begin{array}{l l}
+            1 & \text{pro}\; n = 0 \\[0.5em]
+            \sum\limits_{k=0}^{n-1} \binom{n}{k} B_k & \text{pro}\; n \geq 1
+        \end{array}
+    \right.
+\]
+    Jestliže sázíme jen levou složenou závorku, pak za párovým \verb|\right|
+    místo závorky píšeme tečku.
+
+    \label{page:1}
+\end{document}

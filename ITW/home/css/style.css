@@ -1,14 +1,30 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 *{
     font-family: Arial, Helvetica;
     margin: 0;
     padding: 0;
 }
 
-header{
+.header-bg{
     background-color: #3c1f0a;
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
     display: flex;
     flex-direction: column;
-    padding: 40px 200px 0 200px;
+    width: 960px;
 }
 
 header ul{
@@ -71,21 +87,79 @@ header ul *{
     margin: 5px;
 }
 
+.right-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    height: auto;
+    background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 47%, rgba(226,226,226,1) 66%, rgb(226, 226, 226) 100%);
+}
+
+.rl-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 960px;
+    
+    
+}
+
 .o-predmetu{
-    background-image: linear-gradient(white, rgb(175, 173, 173));
-    padding: 40px 200px 40px 200px
+    width: 960px;
+    height: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.content-bottom{
+    margin-top: 20px !important;
+}
+
+.content-bottom img{
+    margin: 10px;
+    margin-left: 0px !important;
+}
+
+.predmet-bg{
+    background-image: linear-gradient(white, rgb(207, 207, 207));
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #opredmetu{
     color:#b15e23;
 }
 
+.col{
+    background-color: white;
+    position: relative;
+    width: auto;
+    min-height: 800px !important;
+    display: flex;
+    justify-content: center;
+        flex-direction: column;
+}
+
 #prednasky h1{
     color:#b15e23; 
 }
 
-#prednasky{
-    padding: 40px 200px 40px 200px
+.prednasky-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.prednasky-content #prednaska1, #prednaska2, #prednaska3, #prednaska4{
+    width: 300px;
+    margin: 20px;
+    margin-left: 0 !important;
 }
 
 #prednasky a{
@@ -103,7 +177,6 @@ header ul *{
 }
 
 #vysledky{
-    padding: 40px 200px 40px 200px
 }
 
 .theader{
@@ -125,11 +198,19 @@ table{
     border: 3px solid black;
     
 }
+
+#vysledky h1{
+    margin-bottom: 10px;
+}
 #cviceni{
-    padding: 40px 200px 40px 200px
+    padding: 20px;
+    padding-left: 30px !important;
+    width: 300px !important;
+    position: relative;
 }
 #cviceni div{
     margin-top: 40px;
+    border-bottom:  2px dotted #3c1f0a;
 }
 #cviceni h1{
     color:#b15e23;
@@ -149,8 +230,7 @@ table{
 }
 
 #kontakt{
-    background-color: #3c1f0a;
-    padding: 40px 200px 40px 200px;
+    padding: 40px 50px 40px 0;
     text-align: left;
 }
 
@@ -196,8 +276,7 @@ table{
 
 
 #souvisejici{
-    background-color: #3c1f0a;
-    padding: 40px 200px 40px 200px
+    padding: 40px 50px 40px 50px
 }
 
 #souvisejici h1{
@@ -216,4 +295,22 @@ table{
 
 #souvisejici img{
     margin-right: 10px;
+}
+
+footer{
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    background-color: #3c1f0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 960px;
+    height: auto !important;
 }
