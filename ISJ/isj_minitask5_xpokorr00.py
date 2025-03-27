@@ -11,6 +11,20 @@ def setup(ns):
     ns['varr'] = [[] for i in range(ns['n'])]
 
 def store(ns, key, value):
+    if ns['actually_stored'] >= (2/3) * ns['n']:
+        ns['n'] *= 2
+        karr2 = [[] for _ in range(ns['n'])]
+        varr2 = [[] for _ in range(ns['n'])]
+
+        for old_keys, old_values in zip(ns['karr'], ns['varr']):
+            for key_y, val_y in zip(old_keys, old_values):
+                i = hash(key_y) % ns['n']
+                karr2[i].append(key_y)
+                varr2[i].append(val_y)
+
+        ns['karr'] = karr2
+        ns['varr'] = varr2
+    
     i = hash(key) % ns['n']
     ns['karr'][i].append(key)
     ns['varr'][i].append(value)

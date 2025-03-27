@@ -50,19 +50,19 @@ def words_with_same_number(words: list[str],
 
     # dictionary comprehension associating every possible letter with the
     # corresponding digit (representing as string)
-    char2digit_as_str = {} # your code 
+    char2digit_as_str = {ch: str(dg) for dg, chars in digit2chars.items() for ch in chars}
 
     numb2words = defaultdict(list)
     for w in words:
-        # append the word to the list associated to the string of digits, 
-        # using the char2digit_as_str mapping
-        pass # your code
+        numb = int(''.join(char2digit_as_str[ch] for ch in w if ch in char2digit_as_str))
+        numb2words[numb].append(w)
+        pass     
 
 
     # return a new dictionary, formed by the keys of numb2words, transformed
     # from string of digits to integer, if there are more words in the 
     # associated list 
-    return {} # your code
+    return {k: alist for k, alist in numb2words.items() if len(alist) >= 2}
 
 
 
