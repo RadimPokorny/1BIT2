@@ -1,21 +1,35 @@
 #!/bin/bash
 
-# Výchozí adresář pro záznamy zavaděče
 BOOT_ENTRIES_DIR="/boot/loader/entries"
 
-# Zpracování argumentů
+# Global arguments processing
 while getopts "b:" opt; do
   case $opt in
     b) BOOT_ENTRIES_DIR="$OPTARG" ;;
-    *) echo "Neznámá volba: -$OPTARG"; exit 1 ;;
+    *) echo "Unknown option: -$OPTARG" >&2; exit 1 ;;
   esac
 done
 shift $((OPTIND - 1))
 
-COMMAND="$1"
-shift
+# Helper functions
+get_entry_field() {
+  local entry="$1"
+  local field="$2"
+  grep -E "^$field" "$entry" | tail -n1 | cut -d' ' -f2-
+}
 
-# Funkce pro výpis záznamů
+get_default_entry() {
+  find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec grep -l '^vutfit_default y' {} + | head -n1
+}
+
+validate_boot_dir() {
+  if [ ! -d "$BOOT_ENTRIES_DIR" ]; then
+    echo "Error: Directory $BOOT_ENTRIES_DIR does not exist." >&2
+    exit 1
+  fi
+}
+
+# list command
 list_entries() {
   local sort_by_file=false
   local sort_by_key=false
@@ -28,135 +42,266 @@ list_entries() {
       s) sort_by_key=true ;;
       k) kernel_regex="$OPTARG" ;;
       t) title_regex="$OPTARG" ;;
-      *) echo "Neznámá volba: -$OPTARG"; exit 1 ;;
+      *) echo "Unknown option: -$OPTARG" >&2; exit 1 ;;
     esac
   done
-
   shift $((OPTIND - 1))
 
-  if [ ! -d "$BOOT_ENTRIES_DIR" ]; then
-    echo "Chyba: Adresář $BOOT_ENTRIES_DIR neexistuje." >&2
-    exit 1
-  fi
+  validate_boot_dir
 
-  entries=()
-
-  for entry in "$BOOT_ENTRIES_DIR"/*.conf; do
+  local entries=()
+  while IFS= read -r -d '' entry; do
     [ -f "$entry" ] || continue
 
-    title=$(grep -E '^title' "$entry" | tail -n1 | cut -d' ' -f2-)
-    version=$(grep -E '^version' "$entry" | tail -n1 | cut -d' ' -f2-)
-    kernel=$(grep -E '^linux' "$entry" | tail -n1 | cut -d' ' -f2-)
-    sort_key=$(grep -E '^sort-key' "$entry" | tail -n1 | cut -d' ' -f2-)
+    local title=$(get_entry_field "$entry" "title")
+    local version=$(get_entry_field "$entry" "version")
+    local kernel=$(get_entry_field "$entry" "linux")
+    local sort_key=$(get_entry_field "$entry" "sort-key")
 
-    # Filtrace podle kernelu a title
+    if [[ -z "$title" || -z "$version" || -z "$kernel" ]]; then
+      continue
+    fi
+
+    local match=true
+    
     if [[ -n "$kernel_regex" && ! "$kernel" =~ $kernel_regex ]]; then
-      continue
+      match=false
     fi
+    
     if [[ -n "$title_regex" && ! "$title" =~ $title_regex ]]; then
-      continue
+      match=false
     fi
 
-    entries+=("$entry|$title|$version|$kernel|$sort_key")
-  done
+    if $match; then
+      # Use filename as fallback sort key if sort-key is empty
+      local effective_sort_key="${sort_key:-$(basename "$entry")}"
+      entries+=("$(basename "$entry")|$title|$version|$kernel|$effective_sort_key")
+    fi
+  done < <(find "$BOOT_ENTRIES_DIR" -maxdepth 1 -type f -name '*.conf' -print0)
 
-  # Řazení
+  # Determine sorting method
+  local sort_field=2  # Default sort by title (field 2)
   if $sort_by_key; then
-    IFS=$'\n' entries=($(printf "%s\n" "${entries[@]}" | sort -t'|' -k5,5 -k1,1))
+    sort_field=5      # Sort by sort-key (field 5)
   elif $sort_by_file; then
-    IFS=$'\n' entries=($(printf "%s\n" "${entries[@]}" | sort))
+    sort_field=1      # Sort by filename (field 1)
   fi
 
-  # Výpis
-  for entry in "${entries[@]}"; do
-    IFS='|' read -r file title version kernel _ <<< "$entry"
+  # Sort entries
+  IFS=$'\n' sorted_entries=($(printf "%s\n" "${entries[@]}" | sort -t'|' -k${sort_field},${sort_field} -k1,1))
+
+  # Output results
+  for entry in "${sorted_entries[@]}"; do
+    IFS='|' read -r _ title version kernel _ <<< "$entry"
     echo "$title ($version, $kernel)"
   done
 }
 
-# Funkce pro generování unikátního názvu
-get_unique_filename() {
-  local base="$1"
-  local counter=1
-  while [ -e "$BOOT_ENTRIES_DIR/${base}.${counter}.conf" ]; do
-    ((counter++))
+# remove command
+remove_entries() {
+  local title_regex="$1"
+  validate_boot_dir
+
+  if [[ -z "$title_regex" ]]; then
+    echo "Error: Title regex must be specified." >&2
+    exit 1
+  fi
+
+  find "$BOOT_ENTRIES_DIR" -maxdepth 1 -type f -name '*.conf' -print0 | while IFS= read -r -d '' entry; do
+    title=$(get_entry_field "$entry" "title")
+    if [[ "$title" =~ $title_regex ]]; then
+      rm -f "$entry" && echo "Removed: $entry"
+    fi
   done
-  echo "$BOOT_ENTRIES_DIR/${base}.${counter}.conf"
 }
 
-# Funkce pro duplikaci záznamů s úpravou příkazového řádku
+# duplicate command
 duplicate_entry() {
   local add_params=()
   local remove_params=()
   local new_title=""
+  local new_kernel=""
+  local new_initrd=""
+  local destination=""
   local make_default=false
 
-  while getopts "a:r:t:d:m" opt; do
-    case $opt in
-      a) add_params+=("$OPTARG") ;;
-      r) remove_params+=("$OPTARG") ;;
-      t) new_title="$OPTARG" ;;
-      d) destination="$OPTARG" ;;
-      m) make_default=true ;;
-      *) echo "Neznámá volba: -$OPTARG"; exit 1 ;;
-    esac
+  # Process all arguments in order
+  local process_options=true
+  local entry_path=""
+  local ordered_ops=()
+
+  while [[ $# -gt 0 ]]; do
+    if $process_options && [[ "$1" =~ ^- ]]; then
+      case "$1" in
+        -a) ordered_ops+=("a" "$2"); shift 2 ;;
+        -r) ordered_ops+=("r" "$2"); shift 2 ;;
+        -t) new_title="$2"; shift 2 ;;
+        -k) new_kernel="$2"; shift 2 ;;
+        -i) new_initrd="$2"; shift 2 ;;
+        -d) destination="$2"; shift 2 ;;
+        --make-default) make_default=true; shift ;;
+        --) process_options=false; shift ;;
+        -*) echo "Unknown option: $1" >&2; exit 1 ;;
+      esac
+    else
+      entry_path="$1"
+      shift
+    fi
   done
 
-  shift $((OPTIND - 1))
+  # If no entry path specified, use default
+  if [[ -z "$entry_path" ]]; then
+    entry_path=$(get_default_entry)
+    if [[ -z "$entry_path" ]]; then
+      echo "Error: No default entry found and no entry specified." >&2
+      exit 1
+    fi
+  fi
 
-  local entry="$1"
+  # If not absolute path, prepend BOOT_ENTRIES_DIR
+  if [[ "$entry_path" != /* ]]; then
+    entry_path="$BOOT_ENTRIES_DIR/$entry_path"
+  fi
 
-  if [ ! -f "$BOOT_ENTRIES_DIR/$entry" ]; then
-    echo "Chyba: Záznam $entry neexistuje." >&2
+  validate_boot_dir
+
+  if [[ ! -f "$entry_path" ]]; then
+    echo "Error: Source file '$entry_path' does not exist." >&2
     exit 1
   fi
 
+  # Generate new entry filename
   local new_entry
-  if [ -n "$destination" ]; then
+  if [[ -n "$destination" ]]; then
     new_entry="$destination"
+    [[ "${new_entry##*.}" != "conf" ]] && new_entry="${new_entry}.conf"
   else
-    new_entry=$(get_unique_filename "${entry%.conf}")
+    local base_name=$(basename "$entry_path" .conf)
+    local counter=1
+    new_entry="$BOOT_ENTRIES_DIR/${base_name}-copy-${counter}.conf"
+
+    while [[ -e "$new_entry" ]]; do
+      ((counter++))
+      new_entry="$BOOT_ENTRIES_DIR/${base_name}-copy-${counter}.conf"
+    done
   fi
 
-  cp "$BOOT_ENTRIES_DIR/$entry" "$new_entry"
+  # Read and modify content
+  local content=$(cat "$entry_path")
 
-  # Nastavení vutfit_default
+  # Update fields if specified
+  if [[ -n "$new_title" ]]; then
+    content=$(sed "/^title /s/.*/title $new_title/" <<< "$content")
+  fi
+  if [[ -n "$new_kernel" ]]; then
+    content=$(sed "/^linux /s|.*|linux $new_kernel|" <<< "$content")
+  fi
+  if [[ -n "$new_initrd" ]]; then
+    content=$(sed "/^initrd /s|.*|initrd $new_initrd|" <<< "$content")
+  fi
+
+  # Process options line
+  local cmdline=$(grep -E '^options' <<< "$content" | tail -n1 | cut -d' ' -f2-)
+
+  # Process operations in the order they were given
+  for ((i=0; i<${#ordered_ops[@]}; i+=2)); do
+    op="${ordered_ops[i]}"
+    param_group="${ordered_ops[i+1]}"
+
+    if [[ "$op" == "a" ]]; then
+      # Add parameters
+      while read -r param; do
+        param_name="${param%%=*}"
+        # First remove any existing instance
+        cmdline=$(echo "$cmdline" | xargs -n1 | grep -vE "^${param_name}(=|$)" | xargs)
+        # Then add the new one
+        cmdline="${cmdline} ${param}"
+      done < <(echo "$param_group" | xargs -n1)
+    elif [[ "$op" == "r" ]]; then
+      # Remove parameters
+      while read -r param; do
+        param_name="${param%%=*}"
+        cmdline=$(echo "$cmdline" | xargs -n1 | grep -vE "^${param_name}(=|$)" | xargs)
+      done < <(echo "$param_group" | xargs -n1)
+    fi
+  done
+
+  # Clean up spaces
+  cmdline=$(echo "$cmdline" | sed -E 's/ +/ /g;s/^ //;s/ $//')
+
+  # Update content with modified cmdline
+  content=$(sed "/^options /s/.*/options $cmdline/" <<< "$content")
+
+  # Handle default setting
+  content=$(sed '/^vutfit_default/d' <<< "$content")
   if $make_default; then
-    sed -i "s/^vutfit_default.*/vutfit_default n/" "$BOOT_ENTRIES_DIR"/*.conf
-    echo "vutfit_default y" >> "$new_entry"
+    # Clear defaults from all other files
+    find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec sed -i '/^vutfit_default/d' {} +
+    find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec sh -c 'echo "vutfit_default n" >> "$1"' sh {} \;
+    content+=$'\n'"vutfit_default y"
   else
-    echo "vutfit_default n" >> "$new_entry"
+    content+=$'\n'"vutfit_default n"
   fi
 
-  # Úprava příkazového řádku
-  local cmdline=$(grep -E '^options' "$new_entry" | tail -n1 | cut -d' ' -f2-)
-
-  for param in "${remove_params[@]}"; do
-    if [[ "$param" == *=* ]]; then
-      cmdline=$(echo "$cmdline" | sed -E "s/\b${param}\b//g")
-    else
-      cmdline=$(echo "$cmdline" | sed -E "s/\b${param}(=[^ ]*)?\b//g")
-    fi
-  done
-
-  for param in "${add_params[@]}"; do
-    if [[ ! "$cmdline" =~ \b${param%%=*}\b ]]; then
-      cmdline+=" $param"
-    fi
-  done
-
-  sed -i "s/^options.*/options $cmdline/" "$new_entry"
-
-  # Úprava názvu
-  if [ -n "$new_title" ]; then
-    sed -i "s/^title.*/title $new_title/" "$new_entry"
-  fi
-
-  echo "Záznam byl duplikován: $new_entry"
+  # Write the new file
+  echo "$content" > "$new_entry"
+  echo "Created: $new_entry"
 }
+
+# show-default command
+show_default_entry() {
+  local show_file_only=false
+
+  while getopts "f" opt; do
+    case $opt in
+      f) show_file_only=true ;;
+      *) echo "Unknown option: -$OPTARG" >&2; exit 1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  validate_boot_dir
+
+  local default_entry=$(get_default_entry)
+  if [[ -z "$default_entry" ]]; then
+    echo "No default entry found." >&2
+    exit 1
+  fi
+
+  if $show_file_only; then
+    echo "$default_entry"
+  else
+    cat "$default_entry"
+  fi
+}
+
+# make-default command
+make_default_entry() {
+  local entry_path="$1"
+  validate_boot_dir
+
+  if [[ ! -f "$entry_path" ]]; then
+    echo "Error: File $entry_path does not exist." >&2
+    exit 1
+  fi
+
+  # Clear existing defaults
+  find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec sed -i 's/^vutfit_default .*/vutfit_default n/' {} +
+  
+  # Set new default
+  sed -i '/^vutfit_default/d' "$entry_path"
+  echo "vutfit_default y" >> "$entry_path"
+}
+
+# Main command processing
+COMMAND="$1"
+shift
 
 case "$COMMAND" in
   list) list_entries "$@" ;;
+  remove) remove_entries "$@" ;;
   duplicate) duplicate_entry "$@" ;;
-  *) echo "Neznámý příkaz: $COMMAND"; exit 1 ;;
+  show-default) show_default_entry "$@" ;;
+  make-default) make_default_entry "$@" ;;
+  *) echo "Unknown command: $COMMAND" >&2; exit 1 ;;
 esac
