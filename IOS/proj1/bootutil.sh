@@ -36,14 +36,15 @@ list_entries() {
     local title_filter=""
     local filter_kernel=false
     local filter_title=false
+    local no_filters=true  # Flag to track if no filters are applied
 
     # Process options
     while getopts "fsk:t:" opt; do
         case $opt in
-            f) sort_by_file=true ;;
-            s) sort_by_key=true ;;
-            k) kernel_filter="$OPTARG"; filter_kernel=true ;;
-            t) title_filter="$OPTARG"; filter_title=true ;;
+            f) sort_by_file=true; no_filters=false ;;
+            s) sort_by_key=true; no_filters=false ;;
+            k) kernel_filter="$OPTARG"; filter_kernel=true; no_filters=false ;;
+            t) title_filter="$OPTARG"; filter_title=true; no_filters=false ;;
             *) echo "Unknown option: -$OPTARG" >&2; exit 1 ;;
         esac
     done
@@ -51,8 +52,38 @@ list_entries() {
 
     validate_boot_dir
 
+    # If no filters or sorting options are provided, just print all entries simply
+    if $no_filters; then
+        local found_any=false
+        for file in "$BOOT_ENTRIES_DIR"/*.conf; do
+            [ -f "$file" ] || continue
+
+            local title="" version="" linux=""
+            
+            while IFS= read -r line; do
+                key="${line%% *}"
+                value="${line#* }"
+                case "$key" in
+                    title) title="$value";;
+                    version) version="$value";;
+                    linux) linux="$value";;
+                esac
+            done < "$file"
+
+            # Skip entries with missing required fields
+            if [[ -n "$title" && -n "$version" && -n "$linux" ]]; then
+                echo "$title ($version, $linux)"
+                found_any=true
+            fi
+        done
+        $found_any || true  # Ensure exit status 0 even when no entries found
+        return 0
+    fi
+
+    # Original processing with filters and sorting
     local with_sortkey=()
     local without_sortkey=()
+    local found_any=false
 
     for file in "$BOOT_ENTRIES_DIR"/*.conf; do
         [ -f "$file" ] || continue
@@ -78,16 +109,21 @@ list_entries() {
         local match=true
 
         # Apply kernel filter if specified
-        if $filter_kernel && ! echo "$linux" | grep -qE "$kernel_filter"; then
-            match=false
+        if $filter_kernel; then
+            if ! echo "$linux" | grep -qE "$kernel_filter"; then
+                match=false
+            fi
         fi
 
         # Apply title filter if specified
-        if $filter_title && ! echo "$title" | grep -qE "$title_filter"; then
-            match=false
+        if $filter_title; then
+            if ! echo "$title" | grep -qE "$title_filter"; then
+                match=false
+            fi
         fi
 
         if $match; then
+            found_any=true
             local filename=$(basename "$file")
             local entry_display="$title ($version, $linux)"
             
@@ -98,6 +134,11 @@ list_entries() {
             fi
         fi
     done
+
+    # If no matches found, return empty output with status 0
+    if ! $found_any; then
+        return 0
+    fi
 
     # Handle sorting based on options
     if $sort_by_file; then
@@ -136,30 +177,16 @@ remove_entries() {
         exit 1
     fi
 
-    # Find all matching entries
-    local entries_to_remove=()
+    # Remove entries silently
     for entry in "$BOOT_ENTRIES_DIR"/*.conf; do
         [ -f "$entry" ] || continue
         title=$(get_entry_field "$entry" "title")
         [[ -n "$title" ]] || continue
         
         if echo "$title" | grep -Eq "$title_regex"; then
-            entries_to_remove+=("$entry")
+            rm -f "$entry"
         fi
     done
-
-    if [[ ${#entries_to_remove[@]} -eq 0 ]]; then
-        echo "No entries found matching title pattern: $title_regex" >&2
-        exit 1
-    fi
-
-    # Remove entries silently (tests check the actual state via list)
-    for entry in "${entries_to_remove[@]}"; do
-        rm -f "$entry"
-    done
-    
-    # Return success without output (tests verify via subsequent list)
-    return 0
 }
 
 duplicate_entry() {
@@ -258,10 +285,10 @@ duplicate_entry() {
       # Add parameters
       while read -r param; do
         param_name="${param%%=*}"
-        # First remove any existing instance
-        cmdline=$(echo "$cmdline" | xargs -n1 | grep -vE "^${param_name}(=|$)" | xargs)
-        # Then add the new one
-        cmdline="${cmdline} ${param}"
+        # First check if parameter already exists
+        if ! echo "$cmdline" | xargs -n1 | grep -qE "^${param_name}(=|$)"; then
+          cmdline="${cmdline} ${param}"
+        fi
       done < <(echo "$param_group" | xargs -n1)
     elif [[ "$op" == "r" ]]; then
       # Remove parameters
