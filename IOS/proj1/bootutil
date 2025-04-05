@@ -18,10 +18,12 @@ get_entry_field() {
   grep -E "^$field" "$entry" | tail -n1 | cut -d' ' -f2-
 }
 
+# Find the default entry with the filter where is 'y' the key of the param
 get_default_entry() {
   find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec grep -l '^vutfit_default y' {} + | head -n1
 }
 
+# Validate the direction if exists
 validate_boot_dir() {
   if [ ! -d "$BOOT_ENTRIES_DIR" ]; then
     echo "Error: Directory $BOOT_ENTRIES_DIR does not exist." >&2
@@ -30,31 +32,41 @@ validate_boot_dir() {
 }
 
 list_entries() {
-    local sort_by_file=false
-    local sort_by_key=false
+    local sort_by_file=0
+    local sort_by_key=0
     local kernel_filter=""
     local title_filter=""
-    local filter_kernel=false
-    local filter_title=false
-    local no_filters=true  # Flag to track if no filters are applied
+    local filter_kernel=0
+    local filter_title=0
 
-    # Process options
-    while getopts "fsk:t:" opt; do
-        case $opt in
-            f) sort_by_file=true; no_filters=false ;;
-            s) sort_by_key=true; no_filters=false ;;
-            k) kernel_filter="$OPTARG"; filter_kernel=true; no_filters=false ;;
-            t) title_filter="$OPTARG"; filter_title=true; no_filters=false ;;
-            *) echo "Unknown option: -$OPTARG" >&2; exit 1 ;;
+    # Get flags from specific filters
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -f) sort_by_file=1; shift ;;
+            -s) sort_by_key=1; shift ;;
+            -k) 
+                [[ $# -ge 2 ]] || { echo "Error: -k requires an argument" >&2; exit 1; }
+                kernel_filter="$2"
+                filter_kernel=1
+                shift 2
+                ;;
+            -t)
+                [[ $# -ge 2 ]] || { echo "Error: -t requires an argument" >&2; exit 1; }
+                title_filter="$2"
+                filter_title=1
+                shift 2
+                ;;
+            --) shift; break ;;  # Nothing found
+            -*) echo "Unknown option: $1" >&2; exit 1 ;;
+            *) break ;;  # There is no option
         esac
     done
-    shift $((OPTIND - 1))
 
     validate_boot_dir
 
-    # If no filters or sorting options are provided, just print all entries simply
-    if $no_filters; then
-        local found_any=false
+    # If nothing then print everything
+    if (( sort_by_file == 0 && sort_by_key == 0 && filter_kernel == 0 && filter_title == 0 )); then
+        local found_any=0
         for file in "$BOOT_ENTRIES_DIR"/*.conf; do
             [ -f "$file" ] || continue
 
@@ -70,25 +82,24 @@ list_entries() {
                 esac
             done < "$file"
 
-            # Skip entries with missing required fields
             if [[ -n "$title" && -n "$version" && -n "$linux" ]]; then
                 echo "$title ($version, $linux)"
-                found_any=true
+                found_any=1
             fi
         done
-        $found_any || true  # Ensure exit status 0 even when no entries found
+        (( found_any )) || true
         return 0
     fi
 
-    # Original processing with filters and sorting
-    local with_sortkey=()
-    local without_sortkey=()
-    local found_any=false
+    # Filtering and sorting
+    local entries=()
+    local found_any=0
 
     for file in "$BOOT_ENTRIES_DIR"/*.conf; do
         [ -f "$file" ] || continue
 
         local title="" version="" linux="" sort_key=""
+        local filename=$(basename "$file")
         
         while IFS= read -r line; do
             key="${line%% *}"
@@ -101,73 +112,49 @@ list_entries() {
             esac
         done < "$file"
 
-        # Skip entries with missing required fields
-        if [[ -z "$title" || -z "$version" || -z "$linux" ]]; then
-            continue
-        fi
+        [[ -n "$title" && -n "$version" && -n "$linux" ]] || continue
 
-        local match=true
+        local match=1
 
-        # Apply kernel filter if specified
-        if $filter_kernel; then
-            if ! echo "$linux" | grep -qE "$kernel_filter"; then
-                match=false
+        # Apply kernel filter
+        if (( filter_kernel == 1 )); then
+            if ! [[ "$linux" =~ $kernel_filter ]]; then
+                match=0
             fi
         fi
 
-        # Apply title filter if specified
-        if $filter_title; then
-            if ! echo "$title" | grep -qE "$title_filter"; then
-                match=false
+        # Apply title filter
+        if (( filter_title == 1 )); then
+            if ! [[ "$title" =~ $title_filter ]]; then
+                match=0
             fi
         fi
 
-        if $match; then
-            found_any=true
-            local filename=$(basename "$file")
+        # If match then sort by specific flag
+        if (( match == 1 )); then
+            found_any=1
             local entry_display="$title ($version, $linux)"
+            local sort_field=""
             
-            if [[ -n "$sort_key" ]]; then
-                with_sortkey+=("$sort_key|$filename|$entry_display")
+            if (( sort_by_key == 1 )) && [[ -n "$sort_key" ]]; then
+                sort_field="$sort_key"
+            elif (( sort_by_file == 1 )); then
+                sort_field="$filename"
             else
-                without_sortkey+=("$filename|$entry_display")
+                sort_field="$title"
             fi
+
+            entries+=("$sort_field|$filename|$entry_display")
         fi
     done
 
-    # If no matches found, return empty output with status 0
-    if ! $found_any; then
-        return 0
-    fi
+    (( found_any == 0 )) && return 0
 
-    # Handle sorting based on options
-    if $sort_by_file; then
-        # Sort by filename
-        { 
-            printf '%s\n' "${with_sortkey[@]}" | sort -t'|' -k2,2 
-            printf '%s\n' "${without_sortkey[@]}" | sort -t'|' -k1,1 
-        } | while IFS='|' read -r _ _ entry; do
-            echo "$entry"
-        done
-    elif $sort_by_key; then
-        # Sort by sort-key
-        { 
-            printf '%s\n' "${with_sortkey[@]}" | sort -t'|' -k1,1 -k2,2 
-            printf '%s\n' "${without_sortkey[@]}" | sort -t'|' -k1,1 
-        } | while IFS='|' read -r _ _ entry; do
-            echo "$entry"
-        done
-    else
-        # Default sort (by title)
-        {
-            # Sort entries with sort-key by title (field 3)
-            printf '%s\n' "${with_sortkey[@]}" | awk -F'|' '{print $3 "|" $1 "|" $2 "|" $3}' | sort -t'|' -k1,1 | cut -d'|' -f4
-            # Sort entries without sort-key by title (field 2)
-            printf '%s\n' "${without_sortkey[@]}" | awk -F'|' '{print $2 "|" $1}' | sort -t'|' -k1,1 | cut -d'|' -f2
-        }
-    fi
+    # Print sorted entries
+    printf '%s\n' "${entries[@]}" | sort -t'|' -k1,1 -k2,2 | cut -d'|' -f3-
 }
 
+# Remove specific entries
 remove_entries() {
     local title_regex="$1"
     validate_boot_dir
@@ -198,7 +185,7 @@ duplicate_entry() {
   local destination=""
   local make_default=false
 
-  # Process all arguments in order
+  # Process all arguments ordered
   local process_options=true
   local entry_path=""
   local ordered_ops=()
@@ -212,8 +199,8 @@ duplicate_entry() {
         -k) new_kernel="$2"; shift 2 ;;
         -i) new_initrd="$2"; shift 2 ;;
         -d) destination="$2"; shift 2 ;;
-        --make-default) make_default=true; shift ;;
-        --) process_options=false; shift ;;
+        --make-default) make_default=true; shift ;; #This flag makes the entry the default one
+        --) process_options=false; shift ;; # Skip if there is nothing to process
         -*) echo "Unknown option: $1" >&2; exit 1 ;;
       esac
     else
@@ -259,7 +246,7 @@ duplicate_entry() {
     done
   fi
 
-  # Read and modify content
+  # Read and update content
   local content=$(cat "$entry_path")
 
   # Update fields if specified
@@ -273,10 +260,10 @@ duplicate_entry() {
     content=$(sed "/^initrd /s|.*|initrd $new_initrd|" <<< "$content")
   fi
 
-  # Process options line
+  # Process options
   local cmdline=$(grep -E '^options' <<< "$content" | tail -n1 | cut -d' ' -f2-)
 
-  # Process operations in the order they were given
+  # What is the next step of the operation? -> order the operations
   for ((i=0; i<${#ordered_ops[@]}; i+=2)); do
     op="${ordered_ops[i]}"
     param_group="${ordered_ops[i+1]}"
@@ -285,13 +272,13 @@ duplicate_entry() {
       # Add parameters
       while read -r param; do
         param_name="${param%%=*}"
-        # First check if parameter already exists
+        # First check the existence
         if ! echo "$cmdline" | xargs -n1 | grep -qE "^${param_name}(=|$)"; then
           cmdline="${cmdline} ${param}"
         fi
       done < <(echo "$param_group" | xargs -n1)
     elif [[ "$op" == "r" ]]; then
-      # Remove parameters
+      # Remove params
       while read -r param; do
         param_name="${param%%=*}"
         cmdline=$(echo "$cmdline" | xargs -n1 | grep -vE "^${param_name}(=|$)" | xargs)
@@ -299,10 +286,10 @@ duplicate_entry() {
     fi
   done
 
-  # Clean up spaces
+  # Erase spaces
   cmdline=$(echo "$cmdline" | sed -E 's/ +/ /g;s/^ //;s/ $//')
 
-  # Update content with modified cmdline
+  # Update content using CMDline
   content=$(sed "/^options /s/.*/options $cmdline/" <<< "$content")
 
   # Handle default setting
@@ -316,7 +303,7 @@ duplicate_entry() {
     content+=$'\n'"vutfit_default n"
   fi
 
-  # Write the new file
+  # Create a new file
   echo "$content" > "$new_entry"
   echo "Created: $new_entry"
 }
@@ -356,15 +343,15 @@ make_default_entry() {
     exit 1
   fi
 
-  # Clear existing defaults
+  # Clear existing defaults in specific files with that
   find "$BOOT_ENTRIES_DIR" -name '*.conf' -exec sed -i 's/^vutfit_default .*/vutfit_default n/' {} +
   
-  # Set new default
+  # New default
   sed -i '/^vutfit_default/d' "$entry_path"
   echo "vutfit_default y" >> "$entry_path"
 }
 
-# Main command processing
+# Main command proces
 COMMAND="$1"
 shift
 
