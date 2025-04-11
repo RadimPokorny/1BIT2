@@ -1,27 +1,103 @@
-:root{
-    --font: "sans-serif";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --font: "Poppins", sans-serif;
     --white: #ececec;
     --white-weak: #c0c0c0;
     --black: #1b1b1b;
     --line: #353535;
-    --primary:rgb(168, 85, 247);
-    --secondary:rgb(126, 34, 212);
+    --primary: rgb(168, 85, 247);
+    --secondary: rgb(126, 34, 212);
+
+    /* Typography scale */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px - základní velikost */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 3.75rem;
+    /* 60px */
+    --text-7xl: 4.5rem;
+    /* 72px */
 }
 
-*{
+html {
+    font-size: 16px;
+    /* Nastavení základní velikosti pro REM jednotky */
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--white-weak);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+button {
+    cursor: pointer;
+}
+
+* {
     margin: 0;
     padding: 0;
     font-family: var(--font);
 }
 
-body{
-    background-color: var(--black);
+body {
+    background-color: transparent;
+    font-size: var(--text-base);
+    /* Základní velikost textu */
+    line-height: 1.5;
+    /* Dobrý standard pro čitelnost */
 }
 
-nav{
+.refs p i,
+.pricing p i,
+.contact p i {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.bg-page {
     position: absolute;
+    z-index: -1;
+    width: 100%;
+    min-height: 400vh;
+    height: auto !important;
+    background: linear-gradient(var(--black), var(--line), var(--black),
+            var(--line));
+}
+
+nav {
+    position: relative;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -30,7 +106,7 @@ nav{
     border-bottom: 1px solid var(--line);
 }
 
-nav .profile-group{
+nav .profile-group {
     position: relative;
     display: flex;
     justify-content: center;
@@ -38,46 +114,598 @@ nav .profile-group{
     gap: 10px;
 }
 
-.profile-group{
+.profile-group {
     margin-left: 20px;
 }
 
-nav .profile-group p{
+nav .profile-group p {
     color: var(--white);
+    font-size: var(--text-base);
 }
 
-nav .profile-group i{
+nav .profile-group i {
     color: var(--primary);
-    font-size: 24px;
+    font-size: var(--text-2xl);
+    /* 24px */
 }
 
-nav .link-group a{
+nav .link-group a {
     text-decoration: none;
     color: var(--white-weak);
-    font-size: 14px;
+    font-size: var(--text-sm);
+    /* 14px */
     padding: 10px 15px;
 }
 
-nav .link-group a:hover{
+nav .link-group a:hover {
     border-bottom: 2px solid var(--primary);
-
 }
 
-nav .link-group p{
+nav .link-group p {
     text-decoration: none;
     color: var(--white);
-    font-size: 20px;
+    font-size: var(--text-xl);
+    /* 20px */
     padding: 10px 15px;
 }
 
-nav span{
+nav span {
     margin-right: 20px;
 }
 
-nav span a{
-    background: linear-gradient(90deg,var(--primary), var(--secondary));
+nav span a {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     border-radius: 5px;
     padding: 5px 10px 5px 10px !important;
     color: var(--white);
     text-decoration: none;
+    font-size: var(--text-sm);
+    /* 14px */
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content h2 {
+    font-size: var(--text-5xl);
+    /* 48px */
+    color: var(--white);
+}
+
+.content h1 {
+    margin-top: -20px;
+    font-size: var(--text-7xl);
+    /* 72px (původně 78px) */
+    color: var(--white);
+}
+
+.content h1 span {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.content p {
+    color: var(--white-weak);
+    font-size: var(--text-2xl);
+    /* 24px */
+    max-width: 500px;
+    text-align: center;
+}
+
+.content .button-group {
+    margin: 30px;
+}
+
+.content .button-group a {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: var(--text-lg);
+    /* 18px */
+}
+
+.content .button-group a:first-child {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--white)
+}
+
+.content .button-group a:first-child:hover {
+    filter: brightness(75%);
+}
+
+.content .button-group a:last-child {
+    background-color: var(--white);
+    outline: 1px solid var(--primary);
+    outline-offset: -1px;
+    color: var(--primary);
+}
+
+.content .button-group a:last-child:hover {
+    filter: brightness(75%);
+}
+
+/* References section */
+.refs {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.refs h1 {
+    color: var(--white);
+    font-size: var(--text-6xl);
+    /* 60px (původně 64px) */
+}
+
+.refs .sub {
+    color: var(--white);
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: var(--text-xl);
+    /* 20px */
+    margin-top: 10px;
+}
+
+.refs .container {
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.refs .container .block {
+    width: 300px;
+        max-width: 100%;
+    height: auto !important;
+    background-color: rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.refs .container .block * {
+    font-size: var(--text-base) !important;
+    /* 16px */
+}
+
+.block img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.refs .container .block .desc {
+    color: var(--white);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.block h5 {
+    color: var(--white);
+    font-size: var(--text-2xl);
+    /* 24px */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.refs .container .block p:last-child {
+    color: var(--white-weak);
+    opacity: 0.6;
+    text-align: center;
+}
+
+/* Pricing section */
+.pricing {
+    height: auto !important;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 200px;
+}
+
+.pricing h1 {
+    color: var(--white);
+    font-size: var(--text-6xl);
+    /* 60px (původně 64px) */
+}
+
+.pricing .sub {
+    color: var(--white);
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: var(--text-xl);
+    /* 20px */
+    margin-top: 10px;
+}
+
+.pricing .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.pricing .container .block {
+    width: 300px;
+    max-width: 100%;
+    height: auto !important;
+    background-color: rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between !important;
+}
+
+.pricing .container .block p {
+    color: var(--white);
+    font-size: var(--text-xl);
+    /* 20px */
+    text-align: left;
+    margin-top: 10px;
+}
+
+.pricing .container .block p i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.pricing .container .block p:first-child {
+    color: var(--white);
+    font-weight: bold;
+    text-align: center;
+    font-size: var(--text-4xl);
+    /* 36px */
+}
+
+.pricing .container .block p:nth-child(2) {
+    color: var(--white) !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    font-size: var(--text-5xl) !important;
+    /* 48px (původně 52px) */
+}
+
+.pricing .container .block p:nth-child(2) span {
+    color: var(--line) !important;
+    font-weight: normal !important;
+    font-size: var(--text-2xl) !important;
+    /* 24px */
+    text-align: center !important;
+}
+
+.pricing .container .block button {
+    color: var(--line);
+    font-size: var(--text-xl);
+    /* 20px */
+    background-color: var(--white);
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.pricing .container .block button:hover {
+    color: var(--primary);
+    font-size: var(--text-xl);
+    /* 20px */
+    background: var(--white);
+    border-radius: 10px;
+    outline: 1px solid var(--secondary);
+    outline-offset: -1px;
+    box-shadow: 0 0 25px var(--primary);
+}
+
+.pricing .container .block:nth-child(2) button {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--white);
+}
+
+.pricing .container .block:nth-child(2) button:hover {
+    background: var(--white);
+    color: var(--primary);
+    outline: 1px solid var(--secondary);
+    outline-offset: -1px;
+    box-shadow: 0 0 25px var(--primary);
+}
+
+/* Contact section */
+.contact {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto !important;
+    background-color: transparent;
+}
+
+.contact h1 {
+    color: var(--white);
+    font-size: var(--text-6xl);
+    /* 60px (původně 64px) */
+}
+
+.contact .sub {
+    color: var(--white);
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: var(--text-xl);
+    /* 20px */
+    margin-top: 10px;
+}
+
+.contact .center {
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Form styles */   
+form {
+    background: rgb(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--white);
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: var(--text-base);
+    /* 16px */
+}
+
+.full-width {
+    grid-column: span 2;
+    margin-top: 5px;
+}
+
+input,
+textarea,
+.form-group button {
+    padding: 0.5rem;
+    font-size: var(--text-base);
+    /* 16px */
+    border-radius: 10px;
+    outline: 1px solid var(--line);
+    outline-offset: -1px;
+    border: none;
+    color: var(--white);
+    background: rgb(0, 0, 0, 0.1)
+}
+
+input,
+textarea {
+    text-indent: 5px;
+}
+
+.form-group button {
+    align-self: center;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: var(--white);
+    color: var(--black);
+    font-size: var(--text-lg);
+    /* 18px */
+}
+
+.form-group button:hover {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--white);
+}
+
+/* Footer section */
+.footer {
+    width: 100%;
+    background-color: var(--black);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contact,
+.footer-about {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-about{
+    margin-left: 20px;
+}
+
+.footer-contact .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.footer-contact .contact-item p{
+    color: var(--white);
+}
+
+.footer-contact .contact-item p a{
+    color: var(--white);
+}
+
+.footer-contact i {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #9c9c9c;
+}
+
+.footer-contact a {
+    color: #4f83f1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-about h4 {
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.footer-about p {
+    color: #c0c0c0;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.social-links a {
+    display: inline-flex;
+    background-color: var(--line);
+    color: white;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 20px !important;
+    height: 20px !important;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background-color: var(--primary);
+}
+
+.social-links i {
+    font-size: var(--text-base);
+}
+
+/*Copyright small black*/
+
+.cp{
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    border-top: 1px solid var(--line);
+}
+
+.cp p{
+    color: var(--white);
+}
+
+@media only screen and (max-width: 1220px) {
+    .pricing .container {
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .refs .container {
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 569px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        /* jen 1 sloupec */
+    }
+
+    .full-width {
+        grid-column: span 1;
+        /* aby i ty full-width byly v 1 sloupci */
+    }
+
+    /* Responsivní typografie pro mobilní zařízení */
+    :root {
+        --text-5xl: 2.5rem;
+        /* 40px */
+        --text-6xl: 3rem;
+        /* 48px */
+        --text-7xl: 3.5rem;
+        /* 56px */
+    }
+
+    .content h2 {
+        font-size: var(--text-4xl);
+        /* 36px */
+    }
+
+    .content h1 {
+        font-size: var(--text-6xl);
+        /* 48px */
+    }
+
+    .content p {
+        font-size: var(--text-xl);
+        /* 20px */
+    }
+
+    .contact{
+        margin-top: 100px;
+    }
+
+    .refs h1,
+    .pricing h1,
+    .contact h1 {
+        font-size: var(--text-5xl);
+        /* 40px */
+    }
+}
+
+@media (max-width: 424px) {
+    .block{
+        padding: 0 !important;
+        background-color: rgb(0,0,0,0) !important;
+        margin-top: 50px !important;
+    }
 }

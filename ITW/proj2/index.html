@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+    <div class="bg-page">
     <nav class="navbar">
         <div class="profile-group">
             <i class="fa-solid fa-circle-user"></i>
@@ -20,9 +21,153 @@
             <a href="projects.html">Projects</a>
             <a href="contact.html">Contact</a>
         </div>
-            <span >
-                <a href="">Kontakt</a>
-            </span>
+        <span >
+            <a href="">Kontakt</a>
+        </span>
     </nav>
+    <section class="content">
+        <h2 class="">Give your website</h1>
+        <h1 class="">a New <span class="">Life</span></h2>
+        <p class="">If you're ready for a total upgrade of your social presence, contact me below</p>
+        <div class="button-group">
+            <a>My works</a>
+            <a>Contact me</a>
+        </div>
+    </section>
+    <section class="refs">
+        <h1 class="">Reviews on us</h1>
+        <p class="sub"><i class="fa-solid fa-circle"></i> Thank you for your reviews!</p>
+        <div class="container">
+            <div class="block">
+                <img src="img/IMG_5696.PNG" alt=""/>
+                <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
+                <h5 class="">Felix Akairobara</h5>
+                <p class="">A very nice watchdog</p>
+            </div>
+            <div class="block">
+                <img src="img/IMG_5696.PNG" alt="" />
+                <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
+                <h5 class="">Felix Akairobara</h5>
+                <p class="">A very nice watchdog</p>
+            </div>
+            <div class="block">
+                <img src="img/IMG_5696.PNG" alt="" />
+                <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
+                <h5 class="">Felix Akairobara</h5>
+                <p class="">A very nice watchdog</p>
+            </div>
+        </div>
+    </section>
+    <section class="pricing">
+        <h1 class="">Pricing</h1>
+        <p class="sub"><i class="fa-solid fa-circle"></i> Choose the option that suits you the best!</p>
+        <div class="container">
+            <div class="block">
+                <p class="">Basic</p>
+                <p class="">$9<span class="">/mo</span></p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Keyword optimization</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Automated meta tags</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> SEO monitoring</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Monthly reports</p>
+                <button class="">Try a free trial</button>
+            </div>
+            <div class="block">
+                <p class="">Premium</p>
+                <p class="">$49<span class="">/mo</span></p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Keyword optimization</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Automated meta tags</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> SEO monitoring</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Monthly reports</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Content suggestions</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Link optimization</p>
+                <button class="">Buy now</button>
+            </div>
+            <div class="block">
+                <p class="">Enterprise</p>
+                <p class="">$299<span class="">/mo</span></p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Keyword optimization</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Automated meta tags</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> SEO monitoring</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Monthly reports</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Content suggestions</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Link optimization</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> Multi-user access</p>
+                <p class=""><i class="fa-solid fa-circle-check"></i> API integration</p>
+                <button class="">Get started</button>
+            </div>
+        </div>
+    </section>
+    <section class="contact">
+        <h1 class="">Contact me</h1>
+        <p class="sub"><i class="fa-solid fa-circle"></i> Let's get together. The more details, the better.</p>
+        <div class="center">
+            <form action="backend/mail_sender.php" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" name="first-name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" name="last-name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="company-name">Company name</label>
+                        <input type="text" id="company-name" name="company-name" />
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">How can I help?</label>
+                        <textarea id="message" name="message" rows="5"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="submit">Send message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p>Božetěchova 2/1</p>
+                        <p><strong>Brno, Czech republic</strong></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <p><strong>+420 270 151</strong></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p><a href="mailto:xpokorr00@fit.vutbr.cz">xpokorr00@fit.vutbr.cz</a></p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="footer-about">
+                <h4>About me</h4>
+                <p>This page was created to fulfill the assignment of the ITW course project at the BUT Information Technology College.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cp"><p id="copyright"></p></section>
+    </div>
+    <script src="frontend/index.js"></script>
 </body>
 </html>
