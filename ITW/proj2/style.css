@@ -34,8 +34,37 @@
     /* 72px */
 }
 
+#follower,
+#second-follower {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+#follower {
+    width: 20px;
+    height: 20px;
+    background: var(--black);
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+#second-follower {
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border-radius: 50%;
+    z-index: 9999;
+    opacity: 0.5;
+    /* může být trochu průhledné pro efekt */
+}
+
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
     /* Nastavení základní velikosti pro REM jednotky */
 }
 
@@ -63,6 +92,11 @@ button {
     cursor: pointer;
 }
 
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -77,11 +111,58 @@ body {
     /* Dobrý standard pro čitelnost */
 }
 
+/*Go up button*/
+#up-btn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: var(--primary);
+    /* Set a background color */
+    color: var(--white);
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 15px;
+    /* Some padding */
+    border-radius: 100%;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+#up-btn i{
+    font-size: var(--text-3xl);
+}
+
+#up-btn:hover {
+    background-color: var(--secondary);
+    /* Add a dark-grey background on hover */
+}
+
 .refs p i,
 .pricing p i,
 .contact p i {
     color: var(--primary);
     margin-right: 5px;
+}
+
+.show-mobile{
+    display: none;
 }
 
 .bg-page {
@@ -90,12 +171,13 @@ body {
     width: 100%;
     min-height: 400vh;
     height: auto !important;
-    background: linear-gradient(var(--black), var(--line), var(--black),
-            var(--line));
+    background: linear-gradient(var(--black), var(--line), var(--black), var(--line));
 }
 
 nav {
-    position: relative;
+    position: sticky;
+    z-index: 10;
+    top: 0;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -104,6 +186,16 @@ nav {
     height: 50px;
     background-color: var(--black);
     border-bottom: 1px solid var(--line);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: var(--text-2xl);
+    margin-right: 20px;
 }
 
 nav .profile-group {
@@ -118,7 +210,7 @@ nav .profile-group {
     margin-left: 20px;
 }
 
-nav .profile-group p {
+nav .profile-group a {
     color: var(--white);
     font-size: var(--text-base);
 }
@@ -126,14 +218,12 @@ nav .profile-group p {
 nav .profile-group i {
     color: var(--primary);
     font-size: var(--text-2xl);
-    /* 24px */
 }
 
 nav .link-group a {
     text-decoration: none;
     color: var(--white-weak);
     font-size: var(--text-sm);
-    /* 14px */
     padding: 10px 15px;
 }
 
@@ -145,7 +235,6 @@ nav .link-group p {
     text-decoration: none;
     color: var(--white);
     font-size: var(--text-xl);
-    /* 20px */
     padding: 10px 15px;
 }
 
@@ -160,7 +249,6 @@ nav span a {
     color: var(--white);
     text-decoration: none;
     font-size: var(--text-sm);
-    /* 14px */
 }
 
 .content {
@@ -171,18 +259,21 @@ nav span a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background:
+            linear-gradient(var(--secondary), rgba(0, 0, 0, 0.5)),
+            url('img/bg/vut-fit.jpg');
+    background-size: cover;
+    border-bottom: 2px solid var(--primary);
 }
 
 .content h2 {
     font-size: var(--text-5xl);
-    /* 48px */
     color: var(--white);
 }
 
 .content h1 {
     margin-top: -20px;
     font-size: var(--text-7xl);
-    /* 72px (původně 78px) */
     color: var(--white);
 }
 
@@ -190,18 +281,25 @@ nav span a {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: white;
+        text-shadow:
+            6px 6px var(--primary),
+            15px 15px var(--secondary);
 }
 
 .content p {
     color: var(--white-weak);
     font-size: var(--text-2xl);
-    /* 24px */
     max-width: 500px;
     text-align: center;
 }
 
 .content .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 30px;
 }
 
@@ -210,7 +308,6 @@ nav span a {
     margin: 10px;
     border-radius: 10px;
     font-size: var(--text-lg);
-    /* 18px */
 }
 
 .content .button-group a:first-child {
@@ -224,9 +321,7 @@ nav span a {
 
 .content .button-group a:last-child {
     background-color: var(--white);
-    outline: 1px solid var(--primary);
-    outline-offset: -1px;
-    color: var(--primary);
+    color: var(--black);
 }
 
 .content .button-group a:last-child:hover {
@@ -246,9 +341,21 @@ nav span a {
 }
 
 .refs h1 {
-    color: var(--white);
+    margin-top: 100px;
     font-size: var(--text-6xl);
-    /* 60px (původně 64px) */
+    background: linear-gradient(219deg,
+        var(--white) 19%,
+        transparent 19%, transparent 20%,
+        var(--primary) 20%, var(--primary) 39%,
+        transparent 39%, transparent 40%,
+        var(--white-weak) 40%, var(--white) 59%,
+        transparent 59%, transparent 60%,
+        var(--primary) 60%, var(--primary) 79%,
+        transparent 79%, transparent 80%,
+        var(--white-weak) 80%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .refs .sub {
@@ -257,7 +364,6 @@ nav span a {
     padding: 10px;
     border-radius: 10px;
     font-size: var(--text-xl);
-    /* 20px */
     margin-top: 10px;
 }
 
@@ -281,7 +387,6 @@ nav span a {
 
 .refs .container .block * {
     font-size: var(--text-base) !important;
-    /* 16px */
 }
 
 .block img {
@@ -325,7 +430,7 @@ nav span a {
 .pricing h1 {
     color: var(--white);
     font-size: var(--text-6xl);
-    /* 60px (původně 64px) */
+    text-shadow: 10px 10px var(--black);
 }
 
 .pricing .sub {
@@ -334,7 +439,6 @@ nav span a {
     padding: 10px;
     border-radius: 10px;
     font-size: var(--text-xl);
-    /* 20px */
     margin-top: 10px;
 }
 
@@ -344,6 +448,7 @@ nav span a {
     justify-content: center;
     align-items: flex-start;
     margin-top: 30px;
+    gap: 20px;
 }
 
 .pricing .container .block {
@@ -363,7 +468,6 @@ nav span a {
 .pricing .container .block p {
     color: var(--white);
     font-size: var(--text-xl);
-    /* 20px */
     text-align: left;
     margin-top: 10px;
 }
@@ -378,7 +482,6 @@ nav span a {
     font-weight: bold;
     text-align: center;
     font-size: var(--text-4xl);
-    /* 36px */
 }
 
 .pricing .container .block p:nth-child(2) {
@@ -386,21 +489,18 @@ nav span a {
     font-weight: bold !important;
     text-align: center !important;
     font-size: var(--text-5xl) !important;
-    /* 48px (původně 52px) */
 }
 
 .pricing .container .block p:nth-child(2) span {
     color: var(--line) !important;
     font-weight: normal !important;
     font-size: var(--text-2xl) !important;
-    /* 24px */
     text-align: center !important;
 }
 
 .pricing .container .block button {
     color: var(--line);
     font-size: var(--text-xl);
-    /* 20px */
     background-color: var(--white);
     border-radius: 10px;
     border: none;
@@ -412,7 +512,6 @@ nav span a {
 .pricing .container .block button:hover {
     color: var(--primary);
     font-size: var(--text-xl);
-    /* 20px */
     background: var(--white);
     border-radius: 10px;
     outline: 1px solid var(--secondary);
@@ -433,6 +532,139 @@ nav span a {
     box-shadow: 0 0 25px var(--primary);
 }
 
+/* Projects section*/
+
+.projects {
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto !important;
+    background-color: transparent;
+}
+
+.projects .container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.projects .title-box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects h1{
+    position: absolute;
+}
+
+.projects h1:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--primary);
+    font-size: var(--text-6xl);
+}
+
+.projects h1:nth-child(2) {
+    color: var(--primary);
+    animation: animate 4s ease-in-out infinite;
+    font-size: var(--text-6xl);
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        clip-path: polygon(0% 45%,
+            16% 44%,
+            33% 50%,
+            54% 60%,
+            70% 61%,
+            84% 59%,
+            100% 52%,
+            100% 100%,
+            0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 60%,
+            15% 65%,
+            34% 66%,
+            51% 62%,
+            67% 50%,
+            84% 45%,
+            100% 46%,
+            100% 100%,
+            0% 100%);
+    }
+}
+
+.projects .sub {
+    color: var(--white);
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: var(--text-xl);
+    margin-top: 75px;
+}
+
+.projects p i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.projects .block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 300px;
+    background-color: rgb(0,0,0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    height: auto !important;
+}
+
+.projects .block .title{
+    font-size: var(--text-xl);
+    font-weight: bold;
+    color: var(--white);
+    margin-top: 25px;
+}
+
+.projects .block .sub {
+    font-size: var(--text-normal);
+    color: var(--white-weak);
+    background-color: rgb(0,0,0,0);
+    margin-top: 10px;
+    text-align: center;
+}
+
+.projects .block button{
+    padding: 5px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: var(--text-normal);
+    border: none;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--white);
+}
+
+.projects .block button:hover {
+    background: var(--white);
+    color: var(--primary);
+    outline: 1px solid var(--primary);
+    outline-offset: -1px;
+    box-shadow: 0 0 25px var(--primary);
+}
+
 /* Contact section */
 .contact {
     position: relative;
@@ -446,9 +678,11 @@ nav span a {
 }
 
 .contact h1 {
-    color: var(--white);
+    color: transparent;
     font-size: var(--text-6xl);
     /* 60px (původně 64px) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--white);
 }
 
 .contact .sub {
@@ -638,14 +872,26 @@ textarea {
     border-top: 1px solid var(--line);
 }
 
-.cp p{
+.cp h1{
     color: var(--white);
+    font-size: var(--text-normal);
 }
 
 @media only screen and (max-width: 1220px) {
+    .block{
+        margin-top: 50px !important;
+    }
+    
     .pricing .container {
         flex-direction: column !important;
+        gap: 0px;
     }
+
+    .projects .container {
+        flex-direction: column !important;
+        gap: 0px;
+    }
+
 }
 
 @media only screen and (max-width: 1150px) {
@@ -655,39 +901,31 @@ textarea {
 }
 
 @media (max-width: 569px) {
+    /*One column*/
     .form-grid {
         grid-template-columns: 1fr;
-        /* jen 1 sloupec */
     }
 
     .full-width {
         grid-column: span 1;
-        /* aby i ty full-width byly v 1 sloupci */
     }
 
-    /* Responsivní typografie pro mobilní zařízení */
     :root {
         --text-5xl: 2.5rem;
-        /* 40px */
         --text-6xl: 3rem;
-        /* 48px */
         --text-7xl: 3.5rem;
-        /* 56px */
     }
 
     .content h2 {
         font-size: var(--text-4xl);
-        /* 36px */
     }
 
     .content h1 {
         font-size: var(--text-6xl);
-        /* 48px */
     }
 
     .content p {
         font-size: var(--text-xl);
-        /* 20px */
     }
 
     .contact{
@@ -698,14 +936,71 @@ textarea {
     .pricing h1,
     .contact h1 {
         font-size: var(--text-5xl);
-        /* 40px */
     }
 }
 
+/*Responsivity logic for navbar*/
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .link-group {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: var(--black);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        display: none;
+        border-bottom: 1px solid var(--line);
+        z-index: 100;
+    }
+
+    .link-group.active {
+        display: flex;
+    }
+
+    .link-group a {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .link-group a:hover {
+        border-bottom: none;
+        background-color: rgba(168, 85, 247, 0.1);
+    }
+
+    nav span {
+        display: none;
+    }
+
+    .show-mobile{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/*Disable background color pricing (better design)*/
 @media (max-width: 424px) {
-    .block{
+    .pricing .container .block{
         padding: 0 !important;
         background-color: rgb(0,0,0,0) !important;
-        margin-top: 50px !important;
+    }
+
+    .projects h1{
+    }
+
+    .content .button-group{
+        flex-direction: column;
+    }
+
+    .content h2{
+        text-align: center;
     }
 }

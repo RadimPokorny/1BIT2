@@ -5,60 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <title>Radim Pokorný</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div id="second-follower"></div>
+    <div id="follower"></div>
+    <button onclick="topFunction()" id="up-btn" title="Get back to the top"><i class="fa-solid fa-up-long"></i></button>
     <div class="bg-page">
     <nav class="navbar">
         <div class="profile-group">
             <i class="fa-solid fa-circle-user"></i>
-            <p class="">xpokorr00</p>
+            <a href="https://www.stud.fit.vutbr.cz/~xpokorr00/proj2/" class="">xpokorr00</a>
         </div>
-        <div class="link-group">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="link-group" id="link-group">
+            <a href="#home">Home</a>
+            <a href="#references">Refs</a>
+            <a href="#projects">Projects</a>
+            <a href="#pricing">Pricing</a>
+            <a class="show-mobile" href="#contact">Contact</a>
         </div>
-        <span >
-            <a href="">Kontakt</a>
+        <span>
+            <a href="#contact">Kontakt</a>
         </span>
     </nav>
-    <section class="content">
-        <h2 class="">Give your website</h1>
-        <h1 class="">a New <span class="">Life</span></h2>
+    <section id="home" class="content">
+        <h2 class="">Give your website</h2>
+        <h1 class="">a New <span class="">Life</span></h1>
         <p class="">If you're ready for a total upgrade of your social presence, contact me below</p>
         <div class="button-group">
-            <a>My works</a>
-            <a>Contact me</a>
+            <a href="#projects">My works</a>
+            <a href="#contact">Contact me</a>
         </div>
     </section>
-    <section class="refs">
+    <section id="references" class="refs">
         <h1 class="">Reviews on us</h1>
-        <p class="sub"><i class="fa-solid fa-circle"></i> Thank you for your reviews!</p>
+        <p class="sub"><i class="fa-solid fa-circle"></i>Thank you for your reviews!</p>
         <div class="container">
             <div class="block">
-                <img src="img/IMG_5696.PNG" alt=""/>
+                <img src="img/IMG_5696.PNG" alt="customer">
                 <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
                 <h5 class="">Felix Akairobara</h5>
                 <p class="">A very nice watchdog</p>
             </div>
             <div class="block">
-                <img src="img/IMG_5696.PNG" alt="" />
+                <img src="img/IMG_5696.PNG" alt="customer" >
                 <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
                 <h5 class="">Felix Akairobara</h5>
                 <p class="">A very nice watchdog</p>
             </div>
             <div class="block">
-                <img src="img/IMG_5696.PNG" alt="" />
+                <img src="img/IMG_5696.PNG" alt="customer" >
                 <p class="desc">"These websites are kinda cool. Not gonna lie. Definitely recommening it."</p>
                 <h5 class="">Felix Akairobara</h5>
                 <p class="">A very nice watchdog</p>
             </div>
         </div>
     </section>
-    <section class="pricing">
+    <section id="projects" class="projects">
+        <div class="title-box">
+            <h1 class="">Projects</h1>
+            <h1 class="">Projects</h1>
+        </div>
+        <p class="sub"><i class="fa-solid fa-circle"></i>See the works I have done</p>
+        <div class="container">
+            <div class="block">
+                <img src="img/projects/pt-converter.png" alt="">
+                <p class="title">PT Converter</p>
+                <p class="sub">Vue.js front-end app to support penetration testing</p>
+                <button onclick='window.open("https://pt-converter.netlify.app/");'>Check me</button>
+            </div>
+            <div class="block">
+                <img src="img/projects/kadernice-alice.png" alt="">
+                <p class="title">Hairstylist site</p>
+                <p class="sub">React app to presentate a very talented hairstylist</p>
+                <button onclick='window.open("https://www.kadernice-alice.cz/");'>Check me</button>
+            </div>
+            <div class="block">
+                <img src="img/projects/nextjs.jpeg" alt="">
+                <p class="title">Personal site</p>
+                <p class="sub">Next.js fullstack web presentation for me </p>
+                <button onclick='window.open("https://radim-pokorny.cz/");'>Check me</button>
+            </div>
+        </div>
+    </section>
+    <section id="pricing" class="pricing">
         <h1 class="">Pricing</h1>
         <p class="sub"><i class="fa-solid fa-circle"></i> Choose the option that suits you the best!</p>
         <div class="container">
@@ -69,7 +104,7 @@
                 <p class=""><i class="fa-solid fa-circle-check"></i> Automated meta tags</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> SEO monitoring</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> Monthly reports</p>
-                <button class="">Try a free trial</button>
+                <button onclick="window.location.href='#contact'">Try a free trial</button>
             </div>
             <div class="block">
                 <p class="">Premium</p>
@@ -80,7 +115,7 @@
                 <p class=""><i class="fa-solid fa-circle-check"></i> Monthly reports</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> Content suggestions</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> Link optimization</p>
-                <button class="">Buy now</button>
+                <button onclick="window.location.href='#contact'">Buy now</button>
             </div>
             <div class="block">
                 <p class="">Enterprise</p>
@@ -93,11 +128,11 @@
                 <p class=""><i class="fa-solid fa-circle-check"></i> Link optimization</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> Multi-user access</p>
                 <p class=""><i class="fa-solid fa-circle-check"></i> API integration</p>
-                <button class="">Get started</button>
+                <button onclick="window.location.href='#contact'">Get started</button>
             </div>
         </div>
     </section>
-    <section class="contact">
+    <section id="contact" class="contact">
         <h1 class="">Contact me</h1>
         <p class="sub"><i class="fa-solid fa-circle"></i> Let's get together. The more details, the better.</p>
         <div class="center">
@@ -105,19 +140,19 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="first-name">First name</label>
-                        <input type="text" id="first-name" name="first-name" />
+                        <input type="text" id="first-name" name="first-name" >
                     </div>
                     <div class="form-group">
                         <label for="last-name">Last name</label>
-                        <input type="text" id="last-name" name="last-name" />
+                        <input type="text" id="last-name" name="last-name" >
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" />
+                        <input type="email" id="email" name="email" >
                     </div>
                     <div class="form-group">
                         <label for="company-name">Company name</label>
-                        <input type="text" id="company-name" name="company-name" />
+                        <input type="text" id="company-name" name="company-name" >
                     </div>
                     <div class="form-group full-width">
                         <label for="message">How can I help?</label>
@@ -153,20 +188,19 @@
                     </div>
                 </div>
             </div>
-        
             <div class="footer-about">
                 <h4>About me</h4>
                 <p>This page was created to fulfill the assignment of the ITW course project at the BUT Information Technology College.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.x.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cp"><p id="copyright"></p></section>
+    <section class="cp"><h1 id="copyright">empty</h1></section>
     </div>
     <script src="frontend/index.js"></script>
 </body>
