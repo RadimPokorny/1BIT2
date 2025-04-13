@@ -15,7 +15,7 @@
     --text-sm: 0.875rem;
     /* 14px */
     --text-base: 1rem;
-    /* 16px - základní velikost */
+    /* 16px - Base */
     --text-lg: 1.125rem;
     /* 18px */
     --text-xl: 1.25rem;
@@ -34,6 +34,7 @@
     /* 72px */
 }
 
+/* Cursor follower style */
 #follower,
 #second-follower {
     position: absolute;
@@ -42,7 +43,7 @@
     pointer-events: none;
     transform: translate(-50%, -50%);
 }
-
+/* The faster and smaller one */
 #follower {
     width: 20px;
     height: 20px;
@@ -50,7 +51,7 @@
     border-radius: 50%;
     z-index: 10000;
 }
-
+/* The slower and bigger one */
 #second-follower {
     width: 40px;
     height: 40px;
@@ -58,14 +59,13 @@
     border-radius: 50%;
     z-index: 9999;
     opacity: 0.5;
-    /* může být trochu průhledné pro efekt */
 }
 
 html {
     font-size: 16px;
+    /*Default font-size*/
     scroll-behavior: smooth;
     overflow-x: hidden;
-    /* Nastavení základní velikosti pro REM jednotky */
 }
 
 /* width */
@@ -88,6 +88,7 @@ html {
     background: var(--secondary);
 }
 
+/* Cursor pointer on hovering */
 button {
     cursor: pointer;
 }
@@ -97,18 +98,20 @@ a{
     text-decoration: none;
 }
 
+/* Setup a font and margins/paddings to all elements */
 * {
     margin: 0;
     padding: 0;
     font-family: var(--font);
 }
 
+/* Transparent body background for gradients and images on all sections*/
 body {
     background-color: transparent;
     font-size: var(--text-base);
     /* Základní velikost textu */
     line-height: 1.5;
-    /* Dobrý standard pro čitelnost */
+    /* Standard */
 }
 
 /*Go up button*/
@@ -161,10 +164,12 @@ body {
     margin-right: 5px;
 }
 
+/* Don't display secondary option to show contact on PC */
 .show-mobile{
     display: none;
 }
 
+/* Global background gradient */
 .bg-page {
     position: absolute;
     z-index: -1;
@@ -174,6 +179,7 @@ body {
     background: linear-gradient(var(--black), var(--line), var(--black), var(--line));
 }
 
+/* Navbar is always available on the screen */
 nav {
     position: sticky;
     z-index: 10;
@@ -188,6 +194,7 @@ nav {
     border-bottom: 1px solid var(--line);
 }
 
+/* Icon to show items of the navbar in the mobile */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -198,6 +205,7 @@ nav {
     margin-right: 20px;
 }
 
+/* Setup the items in navbar */
 nav .profile-group {
     position: relative;
     display: flex;
@@ -251,6 +259,9 @@ nav span a {
     font-size: var(--text-sm);
 }
 
+/* Content section */
+
+/* Center all items */
 .content {
     position: relative;
     width: 100%;
@@ -277,16 +288,17 @@ nav span a {
     color: var(--white);
 }
 
+/* Style to make a fancy text inside of the paragraph */
 .content h1 span {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-        -webkit-text-stroke-width: 3px;
-        -webkit-text-stroke-color: white;
-        text-shadow:
-            6px 6px var(--primary),
-            15px 15px var(--secondary);
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+    text-shadow:
+        6px 6px var(--primary),
+        15px 15px var(--secondary);
 }
 
 .content p {
@@ -310,6 +322,8 @@ nav span a {
     font-size: var(--text-lg);
 }
 
+
+/* Two different designs for two buttons */
 .content .button-group a:first-child {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     color: var(--white)
@@ -345,6 +359,7 @@ nav span a {
         padding-bottom: 50px;
 }
 
+/* Style to make a fancy title */
 .refs h1 {
     margin-top: 100px;
     font-size: var(--text-6xl);
@@ -363,6 +378,7 @@ nav span a {
     color: transparent;
 }
 
+/* Description of the references page */
 .refs .sub {
     color: var(--white);
     background-color: rgb(0, 0, 0, 0.2);
@@ -380,6 +396,7 @@ nav span a {
     align-items: center;
 }
 
+/* Style to every item in the container */
 .refs .container .block {
     width: 300px;
         max-width: 100%;
@@ -389,14 +406,16 @@ nav span a {
     padding: 20px;
     margin: 20px;
     box-shadow:
-            10px 15px var(--black),
-            15px 30px rgb(0,0,0,0.2);
+        10px 15px var(--black),
+        15px 30px rgb(0,0,0,0.2);
 }
 
+/* Make all sizes of the font the same */
 .refs .container .block * {
     font-size: var(--text-base) !important;
 }
 
+/* Image will be adjusted to be smaller and not stretched */
 .block img {
     width: 100px;
     height: 100px;
@@ -413,7 +432,6 @@ nav span a {
 .block h5 {
     color: var(--white);
     font-size: var(--text-2xl);
-    /* 24px */
     text-align: center;
     margin-top: 20px;
 }
@@ -425,6 +443,7 @@ nav span a {
 }
 
 /* Pricing section */
+
 .pricing {
     height: auto !important;
     min-height: 100vh;
@@ -465,6 +484,7 @@ nav span a {
     gap: 20px;
 }
 
+/* Justified items so the items are in the whole block*/
 .pricing .container .block {
     width: 300px;
     max-width: 100%;
@@ -491,6 +511,7 @@ nav span a {
     margin-right: 10px;
 }
 
+/* Different text sizes to promote the price better */
 .pricing .container .block p:first-child {
     color: var(--white);
     font-weight: bold;
@@ -582,6 +603,7 @@ nav span a {
     margin-top: 100px;
 }
 
+/* Absolute position to make the two text be in the same position in all resolutions*/
 .projects h1{
     position: absolute;
 }
@@ -598,6 +620,7 @@ nav span a {
     font-size: var(--text-6xl);
 }
 
+/* Advance animation for fancy text */
 @keyframes animate {
 
     0%,
@@ -640,6 +663,7 @@ nav span a {
     margin-right: 10px;
 }
 
+/* A block with nice shadow effect*/
 .projects .block{
     display: flex;
     justify-content: center;
@@ -650,9 +674,9 @@ nav span a {
     padding: 30px;
     border-radius: 10px;
     height: auto !important;
-        box-shadow:
-                10px 15px var(--black),
-                15px 30px rgb(0, 0, 0, 0.2);
+    box-shadow:
+        10px 15px var(--black),
+        15px 30px rgb(0, 0, 0, 0.2);
 }
 
 .projects .block .title{
@@ -689,6 +713,7 @@ nav span a {
 }
 
 /* Contact section */
+
 .contact {
     position: relative;
     display: flex;
@@ -707,7 +732,6 @@ nav span a {
 .contact h1 {
     color: transparent;
     font-size: var(--text-6xl);
-    /* 60px (původně 64px) */
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: var(--white);
 }
@@ -718,7 +742,6 @@ nav span a {
     padding: 10px;
     border-radius: 10px;
     font-size: var(--text-xl);
-    /* 20px */
     margin-top: 10px;
 }
 
@@ -738,6 +761,7 @@ form {
     border-radius: 20px;
 }
 
+/* Grid contact form so the layout is more stretched */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -754,7 +778,6 @@ form {
     margin-left: 5px;
     margin-bottom: 10px;
     font-size: var(--text-base);
-    /* 16px */
 }
 
 .full-width {
@@ -762,12 +785,12 @@ form {
     margin-top: 5px;
 }
 
+/* Inputs have a few same styles */
 input,
 textarea,
 .form-group button {
     padding: 0.5rem;
     font-size: var(--text-base);
-    /* 16px */
     border-radius: 10px;
     outline: 1px solid var(--line);
     outline-offset: -1px;
@@ -789,7 +812,6 @@ textarea {
     background-color: var(--white);
     color: var(--black);
     font-size: var(--text-lg);
-    /* 18px */
 }
 
 .form-group button:hover {
@@ -798,6 +820,7 @@ textarea {
 }
 
 /* Footer section */
+
 .footer {
     width: 100%;
     background-color: var(--black);
@@ -850,7 +873,6 @@ textarea {
 
 .footer-contact a {
     color: #4f83f1;
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -865,6 +887,7 @@ textarea {
     max-width: 400px;
 }
 
+/* Social media icons style*/
 .social-links a {
     display: inline-flex;
     background-color: var(--line);
@@ -887,7 +910,7 @@ textarea {
     font-size: var(--text-base);
 }
 
-/*Copyright small black*/
+/*Copyright small block*/
 
 .cp{
     position: relative;
@@ -904,6 +927,7 @@ textarea {
     font-size: var(--text-normal);
 }
 
+/* Items now will be in one column so there is no overflow*/
 @media only screen and (max-width: 1220px) {
     .block{
         margin-top: 50px !important;
@@ -921,12 +945,13 @@ textarea {
 
 }
 
+/* Items now will be in one column so there is no overflow but in smaller screen size*/
 @media only screen and (max-width: 1150px) {
     .refs .container {
         flex-direction: column !important;
     }
 }
-
+/* form now will be in one column and text sizes are reduced*/
 @media (max-width: 569px) {
     /*One column*/
     .form-grid {
@@ -966,7 +991,7 @@ textarea {
     }
 }
 
-/*Responsivity logic for navbar*/
+/* Responsivity logic for navbar */
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -1013,14 +1038,19 @@ textarea {
     }
 }
 
-/*Disable background color pricing (better design)*/
+/* Disable background color pricing */
 @media (max-width: 424px) {
+    .pricing .container{
+        width: 100% !important;
+    }
+    
     .pricing .container .block{
         padding: 0 !important;
-        background-color: rgb(0,0,0,0) !important;
+        width: 100% !important;
     }
 
-    .projects h1{
+    .pricing .container .block p{
+        text-align: center;
     }
 
     .content .button-group{
