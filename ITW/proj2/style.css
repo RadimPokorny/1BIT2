@@ -38,9 +38,11 @@
 #follower,
 #second-follower {
     position: absolute;
+    /* Follower will be independent */
     top: 0;
     left: 0;
     pointer-events: none;
+    /* Follower will be seen no matter what even (interaction) is*/
     transform: translate(-50%, -50%);
 }
 /* The faster and smaller one */
@@ -50,6 +52,7 @@
     background: var(--black);
     border-radius: 50%;
     z-index: 10000;
+    /* Follower will be seen no matter what*/
 }
 /* The slower and bigger one */
 #second-follower {
@@ -58,13 +61,15 @@
     background: var(--white);
     border-radius: 50%;
     z-index: 9999;
+    /* The second follower will be seen same as the first one but one layer behind it*/
     opacity: 0.5;
 }
 
 html {
     font-size: 16px;
-    /*Default font-size*/
+    /* Default font-size */
     scroll-behavior: smooth;
+    /* Scroll button and menu interaction will look better */
     overflow-x: hidden;
 }
 
@@ -128,10 +133,13 @@ body {
     /* Make sure it does not overlap */
     border: none;
     /* Remove borders */
-    outline: none;
-    /* Remove outline */
-    background-color: var(--primary);
+    background: linear-gradient(var(--primary), var(--secondary));
     /* Set a background color */
+    box-shadow: 3.5px 3.5px 0 var(--black);
+    /* Box 3D shadow effect */
+    outline: 2px solid var(--white);
+    outline-offset: -2px;
+    /* Outline for a better recognition*/
     color: var(--white);
     /* Text color */
     cursor: pointer;
@@ -144,8 +152,10 @@ body {
     /* Increase font size */
     width: 60px;
     height: 60px;
+    /* Ideal dimensions of pointer */
     justify-content: center;
     align-items: center;
+    /* Center the pointer inside of the box*/
 }
 
 #up-btn i{
@@ -162,6 +172,7 @@ body {
 .contact p i {
     color: var(--primary);
     margin-right: 5px;
+    /* List items will not be totally on the left*/
 }
 
 /* Don't display secondary option to show contact on PC */
@@ -186,6 +197,7 @@ nav {
     top: 0;
     display: flex;
     justify-content: space-between;
+    /* Items will be justified on the whole navbar*/
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -250,6 +262,7 @@ nav span {
     margin-right: 20px;
 }
 
+/* Contact button which is only seen on PC version (Contact item is the most important item on the navbar)*/
 nav span a {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     border-radius: 5px;
@@ -347,6 +360,7 @@ nav span a {
     position: relative;
     width: 100%;
     height: auto !important;
+    /* Height auto is set for the mobile version so the content can expand and not overflow the page*/
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -396,10 +410,25 @@ nav span a {
     align-items: center;
 }
 
+/* Infinite animation floating */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 /* Style to every item in the container */
 .refs .container .block {
     width: 300px;
-        max-width: 100%;
+    max-width: 100%;
     height: auto !important;
     background-color: var(--line);
     border-radius: 10px;
@@ -408,6 +437,20 @@ nav span a {
     box-shadow:
         10px 15px var(--black),
         15px 30px rgb(0,0,0,0.2);
+    animation: float 3s ease-in-out infinite;
+} 
+
+/* Each block will float with a small delay*/
+.refs .container .block:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.refs .container .block:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.refs .container .block:nth-child(3) {
+    animation-delay: 0.4s;
 }
 
 /* Make all sizes of the font the same */
@@ -452,8 +495,8 @@ nav span a {
     align-items: center;
     flex-direction: column;
     background:
-            linear-gradient(rgba(0, 0, 0, 0.5), var(--secondary)),
-            url('img/bg/vut-fit3.jpg');
+        linear-gradient(rgba(0, 0, 0, 0.5), var(--secondary)),
+        url('img/bg/vut-fit3.jpg');
     background-size: cover;
     padding-bottom: 50px;
     padding-top: 50px;
@@ -480,11 +523,12 @@ nav span a {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    /* Items in this container will start on the specifing line and in the bottom their length can be expanded*/
     margin-top: 30px;
     gap: 20px;
 }
 
-/* Justified items so the items are in the whole block*/
+/* Justified items so the items are in the whole block */
 .pricing .container .block {
     width: 300px;
     max-width: 100%;
@@ -497,6 +541,7 @@ nav span a {
     flex-direction: column;
     text-align: center;
     justify-content: space-between !important;
+    /*Justified space between so there is no extra space on the bottom and on the top*/
 }
 
 .pricing .container .block p {
@@ -533,6 +578,7 @@ nav span a {
     text-align: center !important;
 }
 
+/*Using button instead of "a" because button is more easy to extend to the 100% width of parent*/
 .pricing .container .block button {
     color: var(--line);
     font-size: var(--text-xl);
@@ -579,8 +625,8 @@ nav span a {
     height: auto !important;
     background-color: transparent;
     background:
-            linear-gradient(var(--secondary), rgba(0, 0, 0, 0.5)),
-            url('img/bg/vut-fit4.jpg');
+        linear-gradient(var(--secondary), rgba(0, 0, 0, 0.5)),
+        url('img/bg/vut-fit4.jpg');
     background-size: cover;
     padding-bottom: 100px;
     border-bottom: 2px solid var(--primary);
@@ -677,6 +723,15 @@ nav span a {
     box-shadow:
         10px 15px var(--black),
         15px 30px rgb(0, 0, 0, 0.2);
+    transition: 0.5 ease;
+}
+
+/* Hiding the second shadow and adding an outline */
+.projects .container .block:hover{
+    box-shadow:
+        10px 15px var(--black);
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
 }
 
 .projects .block .title{
@@ -1040,6 +1095,10 @@ textarea {
 
 /* Disable background color pricing */
 @media (max-width: 424px) {
+    .pricing .container .block{
+        border-radius: 0 0 10px 10px;
+    }
+
     .pricing .container{
         width: 100% !important;
     }

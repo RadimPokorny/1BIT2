@@ -1,13 +1,13 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Načtení dat
+    // Get and sanitize the data from the form
     $firstName = htmlspecialchars($_POST['first-name']);
     $lastName = htmlspecialchars($_POST['last-name']);
     $email = htmlspecialchars($_POST['email']);
     $companyName = htmlspecialchars($_POST['company-name']);
     $message = htmlspecialchars($_POST['message']);
 
-    $to = "xpokorr00@fit.vutbr.cz"; // Muj mail
+    $to = "xpokorr00@fit.vutbr.cz"; // My mail
     $subject = "Nová zpráva z formuláře";
     $body = "Jméno: $firstName $lastName\n";
     $body .= "Email: $email\n";
@@ -18,11 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                "Reply-To: $email" . "\r\n" .
                "X-Mailer: PHP/" . phpversion();
 
-    // Odeslání emailu
+    // Send a mail
     mail($to, $subject, $body, $headers);
 }
 
-// Přesměrování zpátky na index.php
+// Go back to the index (relative path)
 header("Location: ../index.html");
 exit;
 ?>

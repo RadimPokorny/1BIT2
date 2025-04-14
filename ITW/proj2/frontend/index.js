@@ -22,10 +22,10 @@ function scrollFunction() {
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, ...
 }
 
-//Navbar responsivity behavior logic
+// Navbar responsivity behavior logic
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger');
   const linkGroup = document.getElementById('link-group');
@@ -58,8 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-//jQuery code for cursor animation
-
+// jQuery code for cursor animation
 $(document).ready(function(){
   let mouseX = 0, mouseY = 0;
   let posX = 0, posY = 0;
@@ -71,18 +70,18 @@ $(document).ready(function(){
   });
 
   function animateFollower() {
-    // malé kolečko
-    posX += (mouseX - posX) / 8;
-    posY += (mouseY - posY) / 8;
+    //Smaller follower (the first one)
+    posX += (mouseX - posX) / 8; // Faster on X
+    posY += (mouseY - posY) / 8; // Faster on Y
 
     $("#follower").css({
       left: posX + "px",
       top: posY + "px"
     });
 
-    // větší kolečko
-    bgPosX += (mouseX - bgPosX) / 30; // pomalejší
-    bgPosY += (mouseY - bgPosY) / 30;
+    // Bigger follower (the second one)
+    bgPosX += (mouseX - bgPosX) / 30; // Slower on X
+    bgPosY += (mouseY - bgPosY) / 30; // Slower on Y
 
     $("#second-follower").css({
       left: bgPosX + "px",
