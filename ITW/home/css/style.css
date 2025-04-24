@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 body{
     display: flex;
     justify-content: center;
@@ -5,14 +7,28 @@ body{
     flex-direction: column;
 }
 
+html{
+    overflow-x: hidden;
+}
+
 *{
-    font-family: Arial, Helvetica;
+    font-family: "Ubuntu", sans-serif;
     margin: 0;
     padding: 0;
 }
 
+table{
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+p{
+    font-size: 1rem;
+}
+
 .header-bg{
-    background-color: #3c1f0a;
+    background: url('../img/footer_bg.gif');
     position: relative;
     width: 100%;
     height: auto !important;
@@ -23,37 +39,49 @@ body{
 
 header{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    width: 960px;
+    width: 100%;
 }
 
 header ul{
+    display: flex;
+        flex-wrap: wrap;
     list-style: none;
+    background-color: #b15e23;
+    width: 960px;
 }
 
 header ul li {
     position: relative;
     display: flex;
     align-items: center;
+    padding: 15px;
+    width: auto;
 }
 
-header ul li:hover::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    width: 20px;
-    height: 20px;
-    background-image: url('../img/menu_bullet.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    transform: translateY(90%);
-    z-index: 10;
+.nav-container li {
+    list-style: none;
+}
+
+.ul-bg{
+    position: relative;
+    width: 100%;
+    background-color: #b15e23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+header ul li:hover {
+    background-color: #3c1f0a;
 }
 
 .header-text{
-    margin-top: 20px;;
+    margin-top: 20px;
+    width: 960px;
 }
 
 header h1{
@@ -75,17 +103,13 @@ header a{
 .itw{
     font-style: italic;
     font-weight: bold;
-        font-size: 36px;
+    font-size: 4rem;
 }
 
 header ul{
     display: flex;
-    margin-top: 50px;
 }
 
-header ul *{
-    margin: 5px;
-}
 
 .right-left{
     display: flex;
@@ -103,8 +127,6 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 47%, rgba(226,226,226,1) 
     justify-content: center;
     align-items: center;
     width: 960px;
-    
-    
 }
 
 .o-predmetu{
@@ -176,8 +198,6 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 47%, rgba(226,226,226,1) 
     color:#b15e23
 }
 
-#vysledky{
-}
 
 .theader{
     background-color: #d5a17c;
@@ -208,7 +228,7 @@ table{
     width: 300px !important;
     position: relative;
 }
-#cviceni div{
+#cviceni .cv{
     margin-top: 40px;
     border-bottom:  2px dotted #3c1f0a;
 }
@@ -301,7 +321,7 @@ footer{
     position: relative;
     width: 100%;
     height: auto !important;
-    background-color: #3c1f0a;
+    background: url('../img/footer_bg.gif');
     display: flex;
     align-items: center;
     justify-content: center;
@@ -313,4 +333,290 @@ footer{
     justify-content: left;
     width: 960px;
     height: auto !important;
+}
+
+@media only screen and (max-width: 575px) {
+    *{
+        max-width:575px !important;
+    }
+    
+    .exercise-item {
+        width: 100%;
+    }
+
+    #ul1 {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .header-bg ul{
+        width: 450px;
+    }
+
+    header{
+        display:block;
+    }
+
+    .header-text {
+        width:450px !important;
+        margin-left: 10px;
+    }
+
+    .o-predmetu *{
+        margin-left: 10px;
+    }
+
+    .o-predmetu span{
+        margin-left: 10px;
+    }
+
+    .rl-content{
+        flex-direction: column !important;
+        width: 450px !important;
+    }
+
+    .col{
+        min-width: 0 !important;
+    }
+
+    #prednasky h1{
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .prednasky-content {
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    .prednasky-content *{
+        margin-left: 10px;
+    }
+
+
+    #vysledky h1 {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    #cviceni{
+        width: 450px !important;
+    }
+
+        #cviceni *{
+           margin-left: 10px !important;
+        }
+
+    .footer-content{
+        flex-direction: column;
+    }
+
+    #souvisejici{
+        padding-left: 0 !important;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    * {
+        max-width: 768px !important;
+    }
+
+    .exercise-item {
+        width: 100%;
+    }
+
+    #ul1 {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .header-bg ul {
+        max-width: 575px;
+        width: auto !important;
+    }
+
+    header {
+        display: block;
+    }
+
+    .header-text {
+        max-width: 575px !important;
+        margin-left: 10px;
+        width: auto !important;
+    }
+
+    .o-predmetu * {
+        margin-left: 10px;
+    }
+
+    .o-predmetu span {
+        margin-left: 10px;
+    }
+
+    .rl-content {
+        flex-direction: column !important;
+        max-width: 575px !important;
+        width: auto !important;
+    }
+
+    .col {
+        min-width: 0 !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #prednasky{
+        width: 575px !important;
+    }
+
+    #prednaska1, #prednaska2, #prednaska3, #prednaska4 {
+        width: 100% !important;
+    }
+
+    #prednasky h1 {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .prednasky-content {
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    .prednasky-content * {
+        margin-left: 10px;
+    }
+
+    #vysledky{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #vysledky h1 {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    #cviceni {
+        width: 575px !important;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    #kontakt{
+        padding-left: 0 !important;
+    }
+
+    #souvisejici {
+        padding-left: 0 !important;
+    }
+
+}
+
+@media only screen and (max-width: 992px) {
+    * {
+        max-width: 992px !important;
+    }
+
+    .exercise-item {
+        width: 100%;
+    }
+
+    #ul1 {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .header-bg ul {
+        max-width: 768px;
+        width: auto !important;
+    }
+
+    header {
+        display: block;
+    }
+
+    .header-text {
+        max-width:768px !important;
+        margin-left: 10px;
+        width: auto !important;
+    }
+
+    .o-predmetu * {
+        margin-left: 10px;
+    }
+
+    .o-predmetu span {
+        margin-left: 10px;
+    }
+
+    .rl-content {
+        max-width: 768px !important;
+        width: 768px !important;
+    }
+
+    .col {
+        min-width: 0 !important;
+        width: 100%;
+    }
+
+    #prednasky h1 {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .prednasky-content * {
+        margin-left: 10px;
+    }
+
+    #prednaska1, #prednaska2, #prednaska3, #prednaska4{
+        margin-right: 0 !important;
+        width: 200px;
+    }
+
+    #vysledky h1 {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    #vysledky {
+        display: flex;
+        justify-content:left;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    table {
+        width: 80%;
+        height: 80%;
+        margin-left: 10px;
+    }
+
+    #cviceni {
+        max-width: 768px !important;
+    }
+
+    #cviceni{
+        padding: 20px !important;
+        min-height: 800px !important;
+    }
+
+    #cviceni h1{
+        margin-left: 20px !important;
+    }
+
+    .cv{
+        margin-left: 20px !important;
+    }
+
+    #kontakt{
+        padding-left: 40px;
+    }
+
 }

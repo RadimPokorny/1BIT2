@@ -1,5 +1,5 @@
 -- uart_rx_fsm.vhd: UART controller - finite state machine controlling RX side
--- Author(s): Radim Pokorný (xpokorr00)
+-- Author(s):Radim Pokorný (xpokorr00)
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -7,63 +7,51 @@ use ieee.std_logic_unsigned.all;
 
 entity UART_RX_FSM is
     port(
-       CLK                   : in std_logic;                     -- signal clock
-       RST                   : in std_logic;                     -- reset clock
-       DIN                   : in std_logic;                     -- input bit
-       CLK_CYCLE_CNT         : in std_logic_vector(4 downto 0);  -- clock cycle counter (0 - 24)
-       CLK_CYCLE_ACTIVE      : out std_logic;                    -- check if 'clock cycle counter' is active (if we are at WAIT_FOR_RIST_BIT or READ_DATA state)
-       BIT_CNT               : in std_logic_vector(3 downto 0);  -- bit counter (reading 8 bits in total)
-       DATA_RECIEVE_ACTIVE   : out std_logic;                    -- check if 'reading data' is active (if we are at READ_DATA state)  
-       DATA_VALIDATE_ACTIVE  : out std_logic                     -- check if 'validating data' is active (if we are at VALIDATE_DATA state)
+        CLK   : in std_logic;                     
+        RST   : in std_logic;                    
+        DIN   : in std_logic;                    
+        CEN   : out std_logic;                   
+        CNT   : in std_logic_vector(4 downto 0);  
+        CNT2  : in std_logic_vector(3 downto 0); 
+        DEN   : out std_logic;   
+        DVAL  : out std_logic                                  
     );
 end entity;
 
 architecture behavioral of UART_RX_FSM is
-    type fsm_states is (NOT_ACTIVE, WAIT_FOR_FIRST_BIT, READ_DATA, WAIT_FOR_STOP_BIT, VALIDATE_DATA);  -- define all the FSM states
-    signal current_state : fsm_states := NOT_ACTIVE;  -- set current_state to NOT_ACTIVE ('default' state)
-
+    type fsm_states is (NEN, FIRST_W8, RCV, STOP_W8, DVLD);  
+    signal crstate : fsm_states := NEN;  
 begin
-
-    -- ACTIVATING PORTS
-    CLK_CYCLE_ACTIVE <= '0' when current_state = NOT_ACTIVE or current_state = VALIDATE_DATA else '1'; -- counting clock cycles only in WAIT_FOR_FIRST_BIT, READ_DATA and WAIT_FOR_STOP_BIT states
-    DATA_VALIDATE_ACTIVE <= '1' when current_state = VALIDATE_DATA else '0'; -- becomes 1 when we start validating data (after we recieve 'stop-bit')
-    DATA_RECIEVE_ACTIVE <= '1' when current_state = READ_DATA else '0'; -- becomes 1 when we start reading bits (after we recieve 'first-bit')
-
-    -- PROCESS
+    CEN <= '0' when crstate = NEN or crstate = DVLD else '1'; 
+    DVAL <= '1' when crstate = DVLD else '0'; 
+    DEN <= '1' when crstate = RCV else '0'; 
     process(CLK) begin
-
-        -- RESET
         if RST = '1' then
-            current_state <= NOT_ACTIVE; -- reset to 'default' state
-            
-        -- RISING EDGE
+            crstate <= NEN; 
         elsif rising_edge(CLK) then
-
-            -- HANDLE STATES
-            case current_state is
-                when NOT_ACTIVE => 
-                    if DIN = '0' then -- 0 is a start bit
-                        current_state <= WAIT_FOR_FIRST_BIT; -- change to next state
+            case crstate is
+                when NEN => 
+                    if DIN = '0' then 
+                        crstate <= FIRST_W8; 
                     end if;
-                when WAIT_FOR_FIRST_BIT =>
-                    if CLK_CYCLE_CNT = "10111" then -- wait 23 clock cycles (to sample mid-bit)
-                        current_state <= READ_DATA; -- change to next state
+                when FIRST_W8 =>
+                    if CNT= "10111" then 
+                        crstate <= RCV; 
                     end if;
-                when READ_DATA =>
-                    if BIT_CNT = "1000" then -- read 8 bits of data
-                        current_state <= WAIT_FOR_STOP_BIT; -- change to next state 
+                when RCV =>
+                    if CNT2 = "1000" then
+                        crstate <= STOP_W8; 
                     end if;
-                when WAIT_FOR_STOP_BIT =>
-                    if DIN = '1' then -- 1 is a stop bit
-                        if CLK_CYCLE_CNT = "01111" then -- validate data mid-stopbit
-                            current_state <= VALIDATE_DATA; -- change to next state
+                when STOP_W8 =>
+                    if DIN = '1' then 
+                        if CNT= "01111" then 
+                            crstate <= DVLD;
                         end if;
                     end if;
-                when VALIDATE_DATA =>
-                    current_state <= NOT_ACTIVE; -- go back to 'default' state
-                when others => null; -- invalid option (should not happen)
+                when DVLD =>
+                    crstate <= NEN; 
+                when others => null; 
             end case;
-
         end if;
     end process;
 end architecture;

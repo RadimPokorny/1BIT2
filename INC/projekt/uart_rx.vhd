@@ -18,87 +18,73 @@ end entity;
 
 -- Architecture implementation (INSERT YOUR IMPLEMENTATION HERE)
 architecture behavioral of UART_RX is
-    signal clk_cycle_cnt        : std_logic_vector(4 downto 0) := "00001";   -- clock cycle counter (0 - 24)
-    signal clk_cycle_active     : std_logic := '0';                          -- check if 'clock cycle counter' is active
-    signal bit_cnt              : std_logic_vector(3 downto 0) := "0000";    -- loaded bits counter (0 - 8) 
-    signal data_recieve_active  : std_logic := '0';                          -- check if 'reading data' is active
-    signal data_validate_active : std_logic := '0';                          -- check if 'validating data' is active
+    signal cnt   : std_logic_vector(4 downto 0) := "00001";   
+    signal cen  : std_logic := '0';                          
+    signal cnt2  : std_logic_vector(3 downto 0) := "0000";   
+    signal den  : std_logic := '0';                          
+    signal dval : std_logic := '0';                         
 
 begin
-    -- Instance of RX FSM
     fsm: entity work.UART_RX_FSM
     port map (
         CLK => CLK,
         RST => RST,
         DIN => DIN,
-        CLK_CYCLE_CNT => clk_cycle_cnt,
-        CLK_CYCLE_ACTIVE => clk_cycle_active,
-        BIT_CNT => bit_cnt,
-        DATA_RECIEVE_ACTIVE => data_recieve_active,
-        DATA_VALIDATE_ACTIVE => data_validate_active
+        CNT => cnt,
+        CEN => cen,
+        CNT2 => cnt2,
+        DEN => den,
+        DVAL => dval
     );
-
-    -- PROCESS
     process (CLK) begin
-        
-        -- RESET
         if RST = '1' then
-            DOUT_VLD <= '0';          -- set DOUT_VLD to '0' (so it's not undefined in the beginning)
-            DOUT <= (others => '0');  -- reset DOUT to zero
-            clk_cycle_cnt <= "00001"; -- reset clock cycle counter to one (reseting to zero wasn't reading from midbit ---> it was delayed) 
-            bit_cnt <= "0000";        -- reset bit counter to zero
-
-        -- RISING EDGE
+            DOUT_VLD <= '0';          
+            DOUT <= (others => '0');  
+            cnt <= "00001"; 
+            cnt2 <= "0000";        
         elsif rising_edge(CLK) then
-
-            if clk_cycle_active = '0' then -- clock cycle counter not active (we are not counting clock cycles)
-                clk_cycle_cnt <= "00001"; -- reset clock cycle counter to one (reseting to zero wasn't reading from midbit ---> it was delayed) 
-            else  -- clock cycle counter active (we are counting clock cycles)
-                clk_cycle_cnt <= clk_cycle_cnt + 1; -- clk_cycle_cnt++
+            if cen = '0' then 
+                cnt <= "00001";
+            else 
+                cnt <= cnt + 1;
             end if;
-
-            DOUT_VLD <= '0'; -- set DOUT_VLD to '0'
-
-            if bit_cnt = "1000" then -- we have read all the bits 
-                if data_validate_active = '1' then -- we have recieved a stop bit (data validating is active)
-                    bit_cnt <= "0000"; -- reset bit counter to zero
-                    DOUT_VLD <= '1'; -- data validated correctly
+            DOUT_VLD <= '0';
+            if cnt2 = "1000" then
+                if dval = '1' then
+                    cnt2 <= "0000";
+                    DOUT_VLD <= '1'; 
                 end if;
             end if;
-
-            if data_recieve_active = '1' then -- we are recieving data (data recieving is active)
-                if clk_cycle_cnt >= "10000" then -- clock cycle counter is >= 16
-                    clk_cycle_cnt <= "00001"; -- reset clock cycle counter back to one (reseting to zero wasn't reading from midbit ---> it was delayed) 
-
-                    -- LOAD BITS
-                    case bit_cnt is
+            if den = '1' then 
+                if cnt >= "10000" then 
+                    cnt <= "00001"; 
+                    case cnt2 is
                         when "0000" => 
-                            DOUT(0) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0001"; -- bit_cnt++
+                            DOUT(0) <= DIN;
+                            cnt2 <= "0001";
                         when "0001" => 
-                            DOUT(1) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0010"; -- bit_cnt++
+                            DOUT(1) <= DIN; 
+                            cnt2 <= "0010"; 
                         when "0010" => 
-                            DOUT(2) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0011"; -- bit_cnt++
+                            DOUT(2) <= DIN; 
+                            cnt2 <= "0011";
                         when "0011" => 
-                            DOUT(3) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0100"; -- bit_cnt++
+                            DOUT(3) <= DIN;
+                            cnt2 <= "0100";
                         when "0100" => 
-                            DOUT(4) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0101"; -- bit_cnt++
+                            DOUT(4) <= DIN;  
+                            cnt2 <= "0101";
                         when "0101" => 
-                            DOUT(5) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0110"; -- bit_cnt++
+                            DOUT(5) <= DIN; 
+                            cnt2 <= "0110"; 
                         when "0110" => 
-                            DOUT(6) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "0111"; -- bit_cnt++
+                            DOUT(6) <= DIN;  
+                            cnt2 <= "0111"; 
                         when "0111" => 
-                            DOUT(7) <= DIN;    -- load input bit (DIN)
-                            bit_cnt <= "1000"; -- bit_cnt++
-                        when others => null;   -- invalid input (should not happen)
+                            DOUT(7) <= DIN;   
+                            cnt2 <= "1000"; 
+                        when others => null;   
                     end case;
-
                 end if;
             end if;
         end if;
