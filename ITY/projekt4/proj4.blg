@@ -1,14 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'proj4.blg'
-[110] biber-MSWIN64:340> INFO - === 
-[157] Biber.pm:419> INFO - Reading 'proj4.bcf'
-[262] Biber.pm:979> INFO - Found 10 citekeys in bib section 0
-[275] Biber.pm:4419> INFO - Processing section 0
-[288] Biber.pm:4610> INFO - Looking for bibtex file 'literatura.bib' for section 0
-[356] bibtex.pm:1713> INFO - LaTeX decoding ...
-[375] bibtex.pm:1519> INFO - Found BibTeX data source 'literatura.bib'
-[463] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[463] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
-[463] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'cs-CZ'
-[476] bbl.pm:660> INFO - Writing 'proj4.bbl' with encoding 'UTF-8'
-[480] bbl.pm:763> INFO - Output to proj4.bbl
+[83] biber-MSWIN64:340> INFO - === 
+[117] Biber.pm:419> INFO - Reading 'proj4.bcf'
+[201] Biber.pm:979> INFO - Found 10 citekeys in bib section 0
+[211] Biber.pm:4419> INFO - Processing section 0
+[221] Biber.pm:4610> INFO - Looking for bibtex file 'literatura.bib' for section 0
+[269] bibtex.pm:1713> INFO - LaTeX decoding ...
+[279] bibtex.pm:1519> INFO - Found BibTeX data source 'literatura.bib'
+[345] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[345] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[345] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'cs-CZ'
+[352] bbl.pm:660> INFO - Writing 'proj4.bbl' with encoding 'UTF-8'
+[355] bbl.pm:763> INFO - Output to proj4.bbl

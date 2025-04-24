@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.17)  19 APR 2025 12:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.17)  24 APR 2025 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -416,6 +416,8 @@ File: puenc.def 2023-11-26 v7.01g Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
+Package hyperref Info: Option `unicode' set `true' on input line 4064.
+Package hyperref Info: Option `colorlinks' set `false' on input line 4064.
 Package hyperref Info: Hyper figures OFF on input line 4181.
 Package hyperref Info: Link nesting OFF on input line 4186.
 Package hyperref Info: Hyper index ON on input line 4189.
@@ -504,24 +506,24 @@ Package csquotes Info: ... found 'babel' package.
 (proj4.aux)
 \openout1 = `proj4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 Package biblatex Info: Trying to load language 'czech'...
 Package biblatex Info: ... file 'czech.lbx' found.
 
@@ -536,9 +538,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'proj4.bbl' found.
 (proj4.bbl)
-Package biblatex Info: Reference section=0 on input line 17.
-Package biblatex Info: Reference segment=0 on input line 17.
-Package hyperref Info: Link coloring OFF on input line 17.
+Package biblatex Info: Reference section=0 on input line 20.
+Package biblatex Info: Reference segment=0 on input line 20.
+Package hyperref Info: Link coloring OFF on input line 20.
  (proj4.out) (proj4.out)
 \@outlinefile=\write4
 \openout4 = `proj4.out'.
@@ -585,70 +587,33 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.82 
+l.86 
       [1]
-Overfull \hbox (7.06648pt too wide) in paragraph at lines 85--88
+Overfull \hbox (7.06648pt too wide) in paragraph at lines 89--92
 \T1/cmr/m/n/12 Knuth's me-thod em-phasi-zes ex-pla-na-tory wri-ting wo-ven di-r
 ectly into code structure, challen-
  []
 
 
-Overfull \hbox (102.23871pt too wide) in paragraph at lines 102--102
-[]\T1/cmr/m/n/12 Ústav pro ja-zyk £eský AV ƒR. \T1/cmr/m/it/12 Pra-vi-dla £eské
- ty-po-gra-fie\T1/cmr/m/n/12 . Do-stupné z: https://prirucka.ujc.cas.cz/?id=780
-
- []
+Package biblatex Warning: No driver for 'bachelorsthesis'.
+(biblatex)                Using fallback driver on input line 105.
 
 
-Overfull \hbox (15.71277pt too wide) in paragraph at lines 102--102
+Package biblatex Warning: No driver for 'bachelorsthesis'.
+(biblatex)                Using fallback driver on input line 105.
+
+[2]
+Overfull \hbox (15.71277pt too wide) in paragraph at lines 106--106
 []\T1/cmr/m/n/12 Petra Sý-ko-rová. \T1/cmr/m/it/12 10 zá-klad-ních pra-vi-del t
 y-po-gra-fie\T1/cmr/m/n/12 . Do-stupné z: https://zijuspesne.cz/10-
  []
 
 
-Overfull \hbox (21.76215pt too wide) in paragraph at lines 102--102
-\T1/cmr/m/n/12 Petr Broºka^^P. In: \T1/cmr/m/it/12 Kon-fe-ren£ní sbor-ník\T1/cm
-r/m/n/12 . Do-stupné z: https://www.uhk.cz/cs/pedagogicka-
+Overfull \hbox (102.23871pt too wide) in paragraph at lines 106--106
+[]\T1/cmr/m/n/12 Ústav pro ja-zyk £eský AV ƒR. \T1/cmr/m/it/12 Pra-vi-dla £eské
+ ty-po-gra-fie\T1/cmr/m/n/12 . Do-stupné z: https://prirucka.ujc.cas.cz/?id=780
+
  []
-
-
-Overfull \hbox (76.38127pt too wide) in paragraph at lines 102--102
-\T1/cmr/m/n/12 fakulta/pdf/pracoviste-fakulty/katedra-vytvarne-kultury-a-textil
-ni-tvorby/konference/konference-
- []
-
-
-Overfull \hbox (1.6578pt too wide) in paragraph at lines 102--102
-\T1/cmr/m/n/12 univerzitni-galerie/sbornik [cit. 2025-04-19]. Hra-dec Krá-lové:
- Uni-ver-zita Hra-dec Krá-
- []
-
-
-Overfull \hbox (13.70174pt too wide) in paragraph at lines 102--102
-\T1/cmr/m/n/12 Do-stupné z: https://typographica.org/typeface-reviews/lava-deva
-nagari-kannada-and-
- []
-
-[2]
-
-Package biblatex Warning: No driver for 'bachelorsthesis'.
-(biblatex)                Using fallback driver on input line 101.
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-01.
-(C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 101.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 101.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 101.
-
-
-Package biblatex Warning: No driver for 'bachelorsthesis'.
-(biblatex)                Using fallback driver on input line 101.
 
 [3] (proj4.aux)
  ***********
@@ -662,26 +627,25 @@ Package logreq Info: Writing requests to 'proj4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17165 strings out of 474486
- 306227 string characters out of 5743754
+ 17127 strings out of 474486
+ 305414 string characters out of 5743754
  1935542 words of memory out of 5000000
- 39280 multiletter control sequences out of 15000+600000
- 567007 words of font info for 54 fonts, out of 8000000 for 9000
+ 39253 multiletter control sequences out of 15000+600000
+ 564256 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,5n,81p,680b,1641s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
+ <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc
 1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\eccc1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecti1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecrm1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\radim\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\radim\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk> <C:\Users\radim\AppData\Loca
-l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488.pk>
-Output written on proj4.pdf (4 pages, 134272 bytes).
+0\ecti1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecrm1200.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecbx1728.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\radim\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\radim\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk> <C:\Users\radim\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488.pk>
+Output written on proj4.pdf (4 pages, 119873 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
+ 354 PDF objects out of 1000 (max. 8388607)
  26 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
