@@ -1,0 +1,312 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{typografie_odborny_text_2020}{book}{}
+      \name{author}{1}{}{%
+        {{hash=6c458b9c1b59e7cf20de1c1a39b26c45}{%
+           family={Knytl},
+           familyi={K\bibinitperiod},
+           given={Martin\bibnamedelimb a\bibnamedelimb Lucie\bibnamedelima ŠPRÁCHALOVÁ},
+           giveni={M\bibinitperiod\bibinitdelim a\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim Š\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hradec Králové}%
+      }
+      \list{publisher}{1}{%
+        {Gaudeamus}%
+      }
+      \strng{namehash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \strng{fullhash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \strng{bibnamehash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \strng{authorbibnamehash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \strng{authornamehash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \strng{authorfullhash}{6c458b9c1b59e7cf20de1c1a39b26c45}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Typografie \& odborný text}
+      \field{year}{2020}
+    \endentry
+    \entry{stop_sheep_find_type2014}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b26c61a49c6a85a475b96971a04309d9}{%
+           family={Spiekermann},
+           familyi={S\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {United States of America}%
+      }
+      \list{publisher}{1}{%
+        {Peachpit}%
+      }
+      \strng{namehash}{b26c61a49c6a85a475b96971a04309d9}
+      \strng{fullhash}{b26c61a49c6a85a475b96971a04309d9}
+      \strng{bibnamehash}{b26c61a49c6a85a475b96971a04309d9}
+      \strng{authorbibnamehash}{b26c61a49c6a85a475b96971a04309d9}
+      \strng{authornamehash}{b26c61a49c6a85a475b96971a04309d9}
+      \strng{authorfullhash}{b26c61a49c6a85a475b96971a04309d9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Stop Stealing Sheep \& find out how type works}
+      \field{year}{2014}
+    \endentry
+    \entry{pravidla_typografie2004}{online}{}
+      \name{author}{1}{}{%
+        {{hash=0ca1f34aa3d38e8fe67c3df2dd701642}{%
+           family={{Ústav pro jazyk český AV ČR}},
+           familyi={Ú\bibinitperiod}}}%
+      }
+      \strng{namehash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \strng{fullhash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \strng{bibnamehash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \strng{authorbibnamehash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \strng{authornamehash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \strng{authorfullhash}{0ca1f34aa3d38e8fe67c3df2dd701642}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dostupné z: https://prirucka.ujc.cas.cz/?id=780 [cit. 2025-04-18]}
+      \field{title}{Pravidla české typografie}
+      \field{year}{2004}
+    \endentry
+    \entry{10_pravidel2024}{online}{}
+      \name{author}{1}{}{%
+        {{hash=aae08f5179db9a8e7114d70858f978c7}{%
+           family={Sýkorová},
+           familyi={S\bibinitperiod},
+           given={Petra},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{aae08f5179db9a8e7114d70858f978c7}
+      \strng{fullhash}{aae08f5179db9a8e7114d70858f978c7}
+      \strng{bibnamehash}{aae08f5179db9a8e7114d70858f978c7}
+      \strng{authorbibnamehash}{aae08f5179db9a8e7114d70858f978c7}
+      \strng{authornamehash}{aae08f5179db9a8e7114d70858f978c7}
+      \strng{authorfullhash}{aae08f5179db9a8e7114d70858f978c7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dostupné z: https://zijuspesne.cz/10-zakladnich-pravidel-typografie/ [cit. 2025-04-19]}
+      \field{title}{10 základních pravidel typografie}
+      \field{year}{2024}
+    \endentry
+    \entry{zasady_2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2f89fb59e8df232eb9c5e42bdc979253}{%
+           family={Kokešová},
+           familyi={K\bibinitperiod},
+           given={Gabriela},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \strng{fullhash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \strng{bibnamehash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \strng{authorbibnamehash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \strng{authornamehash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \strng{authorfullhash}{2f89fb59e8df232eb9c5e42bdc979253}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dostupné z: https://skvt.cz/blog/81-zasady-typografie [cit. 2025-04-19]}
+      \field{title}{Zásady typografie}
+      \field{year}{2022}
+    \endentry
+    \entry{uhk2022}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=53be45bc729088cbcd9baf4ca245ba2e}{%
+           family={Zářecká},
+           familyi={Z\bibinitperiod},
+           given={Klára},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b865732559d247096ccfa7e487495dbc}{%
+           family={Tikalová},
+           familyi={T\bibinitperiod},
+           given={Lucie},
+           giveni={L\bibinitperiod}}}%
+        {{hash=37a2f06477f8d0999f14161488706a5d}{%
+           family={Filipová},
+           familyi={F\bibinitperiod},
+           given={Petra},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hradec Králové}%
+      }
+      \list{publisher}{1}{%
+        {Univerzita Hradec Králové}%
+      }
+      \strng{namehash}{b7ef193a76e3c527815924fc87b98d27}
+      \strng{fullhash}{b7ef193a76e3c527815924fc87b98d27}
+      \strng{bibnamehash}{b7ef193a76e3c527815924fc87b98d27}
+      \strng{authorbibnamehash}{b7ef193a76e3c527815924fc87b98d27}
+      \strng{authornamehash}{b7ef193a76e3c527815924fc87b98d27}
+      \strng{authorfullhash}{b7ef193a76e3c527815924fc87b98d27}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Konferenční sborník}
+      \field{note}{Dostupné z: https://www.uhk.cz/cs/pedagogicka-fakulta/pdf/pracoviste-fakulty/katedra-vytvarne-kultury-a-textilni-tvorby/konference/konference-univerzitni-galerie/sbornik [cit. 2025-04-19]}
+      \field{title}{Tlumočník obrazového jazyka / Petr Brožka}
+      \field{year}{2020}
+      \field{pages}{314\bibrangedash 315}
+      \range{pages}{2}
+    \endentry
+    \entry{typographica_lava}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9ed2bece0fb1eb315b85d6b27fc26956}{%
+           family={Goyal},
+           familyi={G\bibinitperiod},
+           given={Namrata},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \strng{fullhash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \strng{bibnamehash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \strng{authorbibnamehash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \strng{authornamehash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \strng{authorfullhash}{9ed2bece0fb1eb315b85d6b27fc26956}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Typographica}
+      \field{note}{Dostupné z: https://typographica.org/typeface-reviews/lava-devanagari-kannada-and-telugu/ [cit. 2025-04-19]}
+      \field{title}{Lava Devanagari, Kannada, and Telugu}
+      \field{year}{2021}
+    \endentry
+    \entry{knuth1984}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ec08e6f01da5f3814f28a70c89c64656}{%
+           family={Knuth},
+           familyi={K\bibinitperiod},
+           given={Donald\bibnamedelima E.},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{fullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{bibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorbibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authornamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorfullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0896-3207}
+      \field{journaltitle}{TUGboat}
+      \field{note}{Dostupné z: https://tug.org/TUGboat/tb05-2/tb11knut.pdf [cit. 2025-04-19]}
+      \field{number}{2}
+      \field{title}{Literate Programming}
+      \field{volume}{5}
+      \field{year}{1984}
+      \field{pages}{17\bibrangedash 29}
+      \range{pages}{13}
+    \endentry
+    \entry{bromnik2024}{bachelorsthesis}{}
+      \name{author}{1}{}{%
+        {{hash=c36ba0861fb4804aba725b5a25ffea1e}{%
+           family={Bromnik},
+           familyi={B\bibinitperiod},
+           given={Petr},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Vysoké učení technické v Brně}%
+      }
+      \list{language}{1}{%
+        {czech}%
+      }
+      \list{location}{1}{%
+        {Brno}%
+      }
+      \strng{namehash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \strng{fullhash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \strng{bibnamehash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \strng{authorbibnamehash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \strng{authornamehash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \strng{authorfullhash}{c36ba0861fb4804aba725b5a25ffea1e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Vedoucí práce: Ing. Petr Svoboda, Ph.D.}
+      \field{title}{Využití operátoru křížení v kartézském genetickém programování}
+      \field{type}{Bakalářská práce}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.vut.cz/www_base/zav_prace_soubor_verejne.php?file_id=265743
+      \endverb
+      \verb{url}
+      \verb https://www.vut.cz/www_base/zav_prace_soubor_verejne.php?file_id=265743
+      \endverb
+    \endentry
+    \entry{jirmusova2024}{bachelorsthesis}{}
+      \name{author}{1}{}{%
+        {{hash=1519580e10d06cbba3fe562b5acdd384}{%
+           family={Jirmusová},
+           familyi={J\bibinitperiod},
+           given={Veronika},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Vysoké učení technické v Brně}%
+      }
+      \list{language}{1}{%
+        {czech}%
+      }
+      \list{location}{1}{%
+        {Brno}%
+      }
+      \strng{namehash}{1519580e10d06cbba3fe562b5acdd384}
+      \strng{fullhash}{1519580e10d06cbba3fe562b5acdd384}
+      \strng{bibnamehash}{1519580e10d06cbba3fe562b5acdd384}
+      \strng{authorbibnamehash}{1519580e10d06cbba3fe562b5acdd384}
+      \strng{authornamehash}{1519580e10d06cbba3fe562b5acdd384}
+      \strng{authorfullhash}{1519580e10d06cbba3fe562b5acdd384}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Vedoucí práce: Hliněná Dana, doc. RNDr., Ph.D.}
+      \field{title}{Fuzzy implikace}
+      \field{type}{Bakalářská práce}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.vut.cz/www_base/zav_prace_soubor_verejne.php?file_id=265678
+      \endverb
+      \verb{url}
+      \verb https://www.vut.cz/www_base/zav_prace_soubor_verejne.php?file_id=265678
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

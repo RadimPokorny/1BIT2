@@ -9,12 +9,12 @@ use ieee.std_logic_textio.all;
 
 
 
-entity testbench is
-end testbench;
+entity testbench1 is
+end entity;
 
 
 
-architecture TB of testbench is
+architecture TB of testbench1 is
 
     constant baudrate : natural := 9600;
     constant clkrate : natural := baudrate*16;
@@ -26,6 +26,8 @@ architecture TB of testbench is
     signal din : std_logic := '1';
     signal dout : std_logic_vector(7 downto 0);
     signal dout_vld : std_logic;
+    signal dout_exp : std_logic_vector(7 downto 0);
+    signal dout_error : std_logic;
     signal running : boolean := true;
     type generator_state is (IDLE, START, D0, D1, D2, D3, D4, D5, D6, D7, STOP);
     signal din_state : generator_state := IDLE;
@@ -41,7 +43,7 @@ begin
         DOUT => dout,
         DOUT_VLD => dout_vld
     );
-
+    
     -- Clock generator
     clk_process: process
     begin
@@ -51,34 +53,32 @@ begin
         end loop;
         wait;
     end process;
-
+    
     -- Output monitoring and reporting
     dout_process: process(clk)
-        constant msg : string := "Output data from DOUT with value: 0x";
+        file output : text open write_mode is "work/sim/test1_output.txt";
         variable row : line;
     begin
         if rising_edge(clk) then
-            if dout_vld = '1' then
-                write(row, msg);
-                hwrite(row, dout);
-                writeline(OUTPUT, row);
+            if dout_vld = '1' and rst = '0' then
+                write(row, dout, right, 8);
+                writeline(output, row);
             end if;
         end if;
     end process;
-
+    
     -- Main testbench process
     test: process
+        file input : text open read_mode is "test1/input.txt";
+        variable row : line;
+        variable val : std_logic_vector(7 downto 0);
         -- Auxilary procedure for byte sending and DIN generation
         procedure send_byte(constant byte_in : in std_logic_vector(7 downto 0)) is
-            constant msg : string := "Sending data onto DIN with value: 0x";
-            variable row : line;
         begin
-            write(row, msg);
-            hwrite(row, byte_in);
-            writeline(OUTPUT, row);
             din <= '0'; -- START bit
             din_state <= START;
             wait for baud_period;
+            dout_exp <= byte_in;
             din_state <= D0;
             for i in 0 to 7 loop  -- 8x DATA bit
                 din <= byte_in(i);
@@ -94,17 +94,16 @@ begin
         wait for clk_period*5;
         rst <= '0';
         wait for clk_period*5;
-        send_byte("01000111");
-        wait for clk_period*50;
-        send_byte("01010101");
-        wait for clk_period*40;
-        send_byte("10101010");
-        wait for clk_period*30;
-        send_byte("11001010");
-        wait for clk_period*20;
-                                 -- <<< TODO: Insert additional test words here.
+        while not endfile(input) loop
+            readline(input, row);
+            read(row, val);
+            send_byte(val);
+            wait for clk_period*25;
+        end loop;
         running <= false;
         wait;
     end process;
-
+    
+    dout_error <= '0' when dout = dout_exp else dout_vld;
+    
 end architecture;

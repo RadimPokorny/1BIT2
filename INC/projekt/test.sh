@@ -1,6 +1,6 @@
 # test.sh: Main project testing script
 # Author(s): Lukas Kekely (ikekely@fit.vutbr.cz)
-#!/bin/bash
+
 LOGIN=xpokorr00
 
 WORK_DIR=work
@@ -10,7 +10,7 @@ TEST1_DIR=test1
 TEST2_DIR=test2
 
 rm -rf $WORK_DIR
-if [ "$1" = 'clean' ] ; then
+if [ "$1" == 'clean' ] ; then
     exit 0
 fi
 

@@ -1,0 +1,65 @@
+\documentclass[a4paper,11pt,twocolumn]{article}
+% Font
+\usepackage{lmodern}
+% 186 mm × 260 mm, center
+\usepackage[width=186mm, height=260mm, centering]{geometry}
+% Kódování fontu T1
+\usepackage[T1]{fontenc}
+% UTF8
+\usepackage[utf8]{inputenc}
+\usepackage[czech,shorthands=off]{babel}
+\usepackage{csquotes} 
+\usepackage{microtype}
+\usepackage{booktabs, graphicx, setspace}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\begin{document}
+
+    \section{IMA1 - Domácí úkol 3}
+
+    \subsection*{1. úkol}
+    $\sqrt{1-x^3} = (1-x^3)^{\frac{1}{2}} = \left((1-x^3)^{\frac{1}{2}}\right)^\prime = \frac{1}{2} \cdot (1 - x^3)^{-\frac{1}{2}} \ (-3x^2) = -\frac{3}{2}\cdot\frac{x^2}{\sqrt{1-x^3}}$
+
+
+    \subsection*{2. úkol}
+    $\left(\frac{2}{\sqrt{1 - x^3}}\right)^\prime = 2 \cdot \left((1 - x^3)^{-\frac{1}{2}}\right)^\prime = 2 \cdot \left(-\frac{1}{2} \cdot (1 - x^3)^{-\frac{3}{2}} \cdot (-3x^2)\right) = \frac{3x^2}{(1 - x^3)^{\frac{3}{2}}}$
+
+    \subsection*{3. úkol}
+    \begin{align*}
+    \left( \sqrt[3]{(4 - x)(2 - x^3)} \right)^\prime &= \left( (4 - x)(2 - x^3) \right)^{\frac{1}{3}}{}^\prime \\
+    &= \frac{1}{3} \cdot \left((4 - x)(2 - x^3)\right)^{-\frac{2}{3}} \cdot \left((4 - x)(-3x^2) + (2 - x^3)(-1)\right) \\
+    &= \frac{1}{3} \cdot \frac{-3x^2(4 - x) - (2 - x^3)}{\left((4 - x)(2 - x^3)\right)^{\frac{2}{3}}} \\
+    &= \frac{1}{3} \cdot \frac{-3x^2(4 - x) - (2 - x^3)}{\left((4 - x)(2 - x^3)\right)^{\frac{2}{3}}}
+    \end{align*}
+
+    \subsection*{4. úkol}
+\begin{align*}
+\left( \sqrt[3]{(1 - x)\cdot(2 - x)^2} \right)' &= \left( (1 - x)(2 - x)^2 \right)^{\frac{1}{3}}{}' \\
+&= \frac{1}{3} \cdot \left((1 - x)(2 - x)^2\right)^{-\frac{2}{3}} \cdot \left( (1 - x)' \cdot (2 - x)^2 + (1 - x) \cdot \left( (2 - x)^2 \right)' \right) \\
+&= \frac{1}{3} \cdot \frac{-1 \cdot (2 - x)^2 + (1 - x) \cdot 2 \cdot (2 - x) \cdot (-1)}{((1 - x)(2 - x)^2)^{\frac{2}{3}}}
+\end{align*}
+
+\subsection*{5. úkol}
+\[
+\ln\left(\frac{x}{x^2-1}\right) =  \ln x - \ln(x^2 - 1)
+\quad \Rightarrow \quad
+\frac{1}{x} + \frac{1}{x + 1} = \frac{x + 1 + x}{x(x + 1)} = \frac{2x + 1}{x(x + 1)}
+\]
+
+\subsection*{6. úkol}
+\begin{align*}
+\left( \ln\left( \sqrt{1 - x^2} \right) \right)' &= \left( \frac{1}{2} \ln(1 - x^2) \right)' = \frac{1}{2} \cdot \frac{(1 - x^2)'}{1 - x^2} = \frac{1}{2} \cdot \frac{-2x}{1 - x^2} = \frac{-x}{1 - x^2}
+\end{align*}
+
+\subsection*{7. úkol}
+\begin{align*}
+\left( \frac{\sqrt{1 - x - x^2}}{\sqrt{2x - x^2}} \right)' 
+&= \frac{1}{2} \cdot \left( \frac{(1 - x - x^2)' \cdot \sqrt{2x - x^2} - (2x - x^2)' \cdot \sqrt{1 - x - x^2}}{(2x - x^2) \cdot \sqrt{1 - x - x^2} \cdot \sqrt{2x - x^2}} \right) \\
+&= \frac{1}{2} \cdot \frac{(-1 - 2x) \cdot \sqrt{2x - x^2} - (2 - 2x) \cdot \sqrt{1 - x - x^2}}{(2x - x^2) \cdot \sqrt{1 - x - x^2} \cdot \sqrt{2x - x^2}}
+\end{align*}
+
+
+\end{document}

@@ -19,7 +19,11 @@ fi
 echo "Missing files:" >>$LOG_DIR/unpack.log
 EOK=1
 for f in uart_rx_fsm.vhd uart_rx.vhd zprava.pdf; do
-    if [ ! -f "$WORK_DIR/$f" ]; then
+    if [ -f "$WORK_DIR/$f" ]; then
+        continue
+    elif [ -f "$WORK_DIR/$LOGIN/$f" ]; then
+        continue
+    else
         echo $f >>$LOG_DIR/unpack.log
         EOK=0
     fi

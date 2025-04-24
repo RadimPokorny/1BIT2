@@ -20,7 +20,7 @@ else
     echo "Error: Simulation failed, see work/log/sim.log file."
     exit 1
 fi
-diff $TEST1_DIR/input.txt $SIM_DIR/test1_output.txt >>$LOG_DIR/eval.log 2>&1
+diff $TEST1_DIR/input.txt $WORK_DIR/sim/test1_output.txt >>$LOG_DIR/eval.log 2>&1
 if [ "$?" -ne 0 ]; then
     echo "[Failed]"
     echo "Error: Simulation result miscompare, see work/log/eval.log file and check work/sim/test1_sim.ghw."
@@ -37,7 +37,7 @@ if [ -d $TEST2_DIR ]; then
         echo "Error: Simulation failed, see work/log/sim.log file."
         exit 1
     fi
-    cat $SIM_DIR/test2_output.txt >>$LOG_DIR/eval.log 2>&1
+    cat $WORK_DIR/sim/test2_output.txt >>$LOG_DIR/eval.log 2>&1
 else
     echo "Simulation test2 skipped." >>$LOG_DIR/eval.log
 fi

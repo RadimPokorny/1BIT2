@@ -12,7 +12,7 @@ mkdir $SIM_DIR
 
 echo -n "--> synthesis                           "
 echo "########## ANALYSIS ##########" >$LOG_DIR/sim.log
-for src in $WORK_DIR/uart_rx_fsm.vhd $WORK_DIR/uart_rx.vhd; do
+for src in $WORK_DIR/$LOGIN/uart_rx_fsm.vhd $WORK_DIR/$LOGIN/uart_rx.vhd; do
     $GHDL -a $GHDLFLAGS $src >>$LOG_DIR/sim.log 2>&1
     if [ $? -ne 0 ]; then
         echo "Analysis of $src ended with error!" >>$LOG_DIR/sim.log
