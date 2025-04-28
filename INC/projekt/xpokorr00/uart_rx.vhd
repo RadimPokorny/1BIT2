@@ -8,21 +8,21 @@ use ieee.std_logic_unsigned.all;
 -- Entity declaration (DO NOT ALTER THIS PART!)
 entity UART_RX is
     port(
-        CLK      : in std_logic;                        -- signal clock
-        RST      : in std_logic;                        -- reset clock
-        DIN      : in std_logic;                        -- input bit
-        DOUT     : out std_logic_vector(7 downto 0);    -- output (8 bits)
-        DOUT_VLD : out std_logic                        -- data validation
+        CLK      : in std_logic;                        
+        RST      : in std_logic;                        
+        DIN      : in std_logic;                        
+        DOUT     : out std_logic_vector(7 downto 0);    
+        DOUT_VLD : out std_logic                        
     );
 end entity;
 
 -- Architecture implementation (INSERT YOUR IMPLEMENTATION HERE)
 architecture behavioral of UART_RX is
     signal cnt   : std_logic_vector(4 downto 0) := "00001";   
-    signal cen  : std_logic := '0';                          
+    signal COUNT_EN  : std_logic := '0';                          
     signal cnt2  : std_logic_vector(3 downto 0) := "0000";   
-    signal den  : std_logic := '0';                          
-    signal dval : std_logic := '0';                         
+    signal data_en  : std_logic := '0';                          
+    signal data_valid : std_logic := '0';                         
 
 begin
     fsm: entity work.UART_RX_FSM
@@ -31,40 +31,31 @@ begin
         RST => RST,
         DIN => DIN,
         CNT => cnt,
-        CEN => cen,
+        COUNT_EN => COUNT_EN,
         CNT2 => cnt2,
-        DEN => den,
-        DVAL => dval
+        DATA_EN => data_en,
+        DATA_VALID => data_valid
     );
-
     process (CLK) begin
         if RST = '1' then
             DOUT_VLD <= '0';          
-            DOUT <= (others => '0');  
             cnt <= "00001"; 
-            cnt2 <= "0000";        
+            cnt2 <= "0000";      
+            DOUT <= (others => '0');    
         elsif rising_edge(CLK) then
-
-            if cen = '0' then 
+            if COUNT_EN = '0' then 
                 cnt <= "00001";
             else 
                 cnt <= cnt + 1;
             end if;
-
             DOUT_VLD <= '0';
-
-            if cnt2 = "1000" then
-                if dval = '1' then
-                    cnt2 <= "0000";
-                    DOUT_VLD <= '1'; 
-                end if;
+            if cnt2 = "1000" and data_valid = '1' then
+                DOUT_VLD <= '1'; 
+                cnt2 <= "0000";
             end if;
-
-            if den = '1' then 
-                if cnt >= "10000" then 
+            if data_en = '1' then 
+                if  cnt >= "10000" then 
                     cnt <= "00001"; 
-
-                    -- LOAD BITS
                     case cnt2 is
                         when "0000" => 
                             DOUT(0) <= DIN;
@@ -92,7 +83,6 @@ begin
                             cnt2 <= "1000"; 
                         when others => null;   
                     end case;
-
                 end if;
             end if;
         end if;

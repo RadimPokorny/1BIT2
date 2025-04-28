@@ -1,307 +1,345 @@
 <!DOCTYPE html>
 <html lang="cs">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>xpokorr00 stránka</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style class="">
-      th,
-      td {
-        padding: 10px;
-        text-align: center;
-        border-bottom: 2px solid black;
-        border-right: 2px dotted black;
-        border-left: 2px dotted black;
-        border-top: 2px dotted black;
-        border-collapse: collapse;
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>xpokorr00 stránka</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 2px solid black;
+      border-right: 2px dotted black;
+      border-left: 2px dotted black;
+      border-top: 2px dotted black;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Menu configuration
+      const menuItems = [
+        { icon: 'home', text: 'Index', href: '#' },
+        { icon: 'info-circle', text: 'O předmětu', href: '#opredmetu' },
+        { icon: 'tv', text: 'Přednášky', href: '#prednasky' },
+        { icon: 'grin-beam-sweat', text: 'Výsledky', href: '#vysledky' },
+        { icon: 'hammer', text: 'Cvičení', href: '#cviceni' },
+        { icon: 'envelope', text: 'Kontakt', href: '#kontakt' },
+        { icon: 'code-branch', text: 'Související', href: '#souvisejici' }
+      ];
+
+      function createMenu() {
+        const $ul = $('.ul-bg ul');
+        $ul.empty();
+
+        // Add menu items
+        menuItems.forEach(item => {
+          if (item.icon != 'home') {
+            $ul.append(`
+                   <li class="menu-item">
+                       <a href="${item.href}" title="${item.text}">
+                           <i class="fas fa-${item.icon}"></i>
+                           <span id="${item.icon}" class="menu-text">${item.text}</span>
+                       </a>
+                   </li>
+               `);
+          }
+          else {
+            $ul.append(`
+                 <li class="not-menu-item">
+                     <a href="${item.href}" title="${item.text}">
+                         <i class="fas fa-${item.icon}"></i>
+                         <span id="${item.icon}" class="menu-text">${item.text}</span>
+                     </a>
+                 </li>
+               `);
+          }
+        });
+
+        // Add hamburger button for xs screens
+        // Create the toggle element
+        const $toggle = $('<li class="menu-toggle"><a href="#"><i class="fas fa-bars"></i></a></li>');
+
+        // Insert the toggle as the second item (after Index)
+        $ul.children().eq(1).before($toggle);
       }
-    </style>
-  </head>
 
-  <body>
-    <div class="header-bg">
-      <header>
-        <div class="header-text">
-          <a href="https://www.fit.vut.cz/study/course/ITW/.cs" class="itw"
-            >ITW</a
-          >
-          <h1 class="">tvorba webových stránek</h1>
-        </div>
-        <div class="ul-bg">
-          <ul class="">
-            <li class=""><a href="#" class="">Index</a></li>
-            <li class=""><a href="#opredmetu">O předmětu</a></li>
-            <li class=""><a href="#prednasky">Přednášky</a></li>
-            <li class=""><a href="#vysledky">Výsledky</a></li>
-            <li class=""><a href="#cviceni">Cvičení</a></li>
-            <li class=""><a href="#kontakt">Kontakt</a></li>
-            <li class=""><a href="#souvisejici">Související</a></li>
-          </ul>
-        </div>
-      </header>
-    </div>
-    <div class="predmet-bg">
-      <div class="o-predmetu">
-        <h1 id="opredmetu" class="">
-          O předmětu ITW &mdash; tvorba webových stránek
-        </h1>
-        <p class="">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Nulla quis diam. Curabitur sagittis hendrerit ante. Fusce nibh. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Fusce tellus. Nulla non lectus sed nisl molestie malesuada. Integer tempor. Nam sed tellus id magna elementum tincidunt. Praesent dapibus.
+      // Initialize menu
+      createMenu();
 
-          Phasellus eget ante tortor. Ante ipsum primis in faucibus
-        </p>
+      // Handle responsive menu behavior
+      // Handle responsive menu behavior
+      function updateMenu() {
+        const width = $(window).width();
+        const $menuItems = $('.menu-item');
+        const $menuToggle = $('.menu-toggle');
+
+        // Extra small devices - show hamburger menu
+        if (width < 550) {
+          $menuItems.show();
+          $menuToggle.show();
+          $('.ul-bg ul').addClass('mobile-menu');
+          $('.menu-text').show();
+        }
+        // Medium devices (768px - 992px) - show only "Index" text and icons for others
+        else if (width < 992) {
+          $menuItems.show();
+          $menuToggle.hide();
+          $('.ul-bg ul').removeClass('mobile-menu');
+          $('.menu-item i').show();
+
+          // Hide all texts except for the first item (Index)
+          $('.menu-text').hide();
+          $('.menu-item:first-child .menu-text').show();
+
+          // Show text on hover for other items
+        }
+        // Large devices - show both icons and text
+        else {
+          $menuItems.show();
+          $menuToggle.hide();
+          $('.menu-text').show();
+          $('.ul-bg ul').removeClass('mobile-menu');
+          $('.menu-item i').show();
+          // Remove hover behavior for large screens
+          $menuItems.off('mouseenter mouseleave');
+        }
+      }
+
+      // Toggle mobile menu
+      $('body').on('click', '.menu-toggle a', function (e) {
+        e.preventDefault();
+        $('.menu-item').toggle();
+      });
+
+      // Close mobile menu when clicking a link
+      $('body').on('click', '.mobile-menu .menu-item a', function () {
+        if ($(window).width() < 576) {
+          $('.menu-item').show();
+        }
+      });
+      // Initialize and update on resize
+      updateMenu();
+      $(window).resize(function () {
+        updateMenu();
+      });
+    });
+  </script>
+  <div class="header-bg">
+    <header>
+      <div class="header-text">
+        <a href="https://www.fit.vut.cz/study/course/ITW/.cs" class="itw">ITW</a>
+        <h1>tvorba webových stránek</h1>
       </div>
+    </header>
+  </div>
+  <div class="ul-bg">
+    <ul>
+    </ul>
+  </div>
+  <div class="predmet-bg">
+    <div class="o-predmetu">
+      <h1 id="opredmetu">
+        O předmětu ITW &mdash; tvorba webových stránek
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam lectus justo, vulputate eget mollis sed,
+        tempor sed magna. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Nulla quis diam.
+        Curabitur sagittis hendrerit ante. Fusce nibh. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus.
+        Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Fusce tellus. Nulla non lectus sed nisl
+        molestie malesuada.
+        Integer tempor. Nam sed tellus id magna elementum tincidunt. Praesent dapibus.
+        Phasellus eget ante tortor. Ante ipsum primis in faucibus
+      </p>
     </div>
-    <div class="right-left">
-      <div class="rl-content">
-        <div class="col">
-          <div id="prednasky" class="">
-            <h1 class="">Přednášky</h1>
-            <div class="prednasky-content">
-              <div id="prednaska1" class="">
-                <img src="img/icon1.gif" alt="" class="" >
-                <h2>
-                  <a
-                    href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p01/index.html"
-                    class=""
-                    >HTML a HTML5</a
-                  >
-                </h2>
-                <div class="content">
-                  <span> Tato přednáška je o HTML </span>
-                </div>
-              </div>
-
-              <div id="prednaska2" class="">
-                <img src="img/icon2.gif" alt="" class="" >
-                <h2>
-                  <a
-                    href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p02/index.html"
-                    class=""
-                    >CSS a CSS3</a
-                  >
-                </h2>
-                <div class="content">
-                  <span> Tato přednáška je o CSS </span>
-                </div>
-              </div>
-
-              <div id="prednaska3" class="">
-                <img src="img/icon3.gif" alt="" class="" >
-                <h2>
-                  <a
-                    href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html"
-                    class=""
-                    >Tvorba Layoutů</a
-                  >
-                </h2>
-                <div class="content">
-                  <span> Tato přednáška je o JS </span>
-                </div>
-              </div>
-
-              <div id="prednaska4" class="">
-                <img src="img/icon4.gif" alt="" class="" >
-                <h2>
-                  <a
-                    href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html"
-                    class=""
-                    >Optimalizace</a
-                  >
-                </h2>
-                <div class="content">
-                  <span> Tato přednáška je o JQuery </span>
-                </div>
+  </div>
+  <div class="right-left">
+    <div class="rl-content">
+      <div class="col">
+        <div id="prednasky">
+          <h1>Přednášky</h1>
+          <div class="prednasky-content">
+            <div id="prednaska1">
+              <img src="img/icon1.gif" alt="">
+              <h2>
+                <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p01/index.html">HTML a HTML5</a>
+              </h2>
+              <div class="content">
+                <span> Tato přednáška je o HTML </span>
               </div>
             </div>
-          </div>
-
-          <div id="vysledky" class="">
-            <h1 class="">Přehled výsledků</h1>
-            <table class="">
-              <tbody>
-                <tr class="theader">
-                  <td class="" rowspan="3">Jméno</td>
-                  <td class="" colspan="6">Body</td>
-                </tr>
-                <tr class="theader">
-                  <td class="" colspan="2">2010</td>
-                  <td class="" colspan="2">2011</td>
-                  <td class="" colspan="2">2012</td>
-                </tr>
-                <tr class="theader">
-                  <td class="">Půlsem.</td>
-                  <td class="">Zk.</td>
-                  <td class="">Půlsem.</td>
-                  <td class="">Půlsem.</td>
-                  <td class="">Zk.</td>
-                  <td class="">Půlsem.</td>
-                </tr>
-                <tr class="trow">
-                  <td class="">Jan Novák</td>
-                  <td class="">18</td>
-                  <td class="">72</td>
-                  <td class="">20</td>
-                  <td class="">80</td>
-                  <td class="">10</td>
-                  <td class="">&mdash;</td>
-                </tr>
-                <tr class="trow">
-                  <td class="">Zuzana Černá</td>
-                  <td class="">10</td>
-                  <td class="">50</td>
-                  <td class="">20</td>
-                  <td class="">75</td>
-                  <td class="">25</td>
-                  <td class="">99</td>
-                </tr>
-              </tbody>
-            </table>
+            <div id="prednaska2">
+              <img src="img/icon2.gif" alt="">
+              <h2>
+                <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p02/index.html">CSS a CSS3</a>
+              </h2>
+              <div class="content">
+                <span> Tato přednáška je o CSS </span>
+              </div>
+            </div>
+            <div id="prednaska3">
+              <img src="img/icon3.gif" alt="">
+              <h2>
+                <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html">Tvorba Layoutů</a>
+              </h2>
+              <div class="content">
+                <span> Tato přednáška je o JS </span>
+              </div>
+            </div>
+            <div id="prednaska4">
+              <img src="img/icon4.gif" alt="">
+              <h2>
+                <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/p03/index.html">Optimalizace</a>
+              </h2>
+              <div class="content">
+                <span> Tato přednáška je o JQuery </span>
+              </div>
+            </div>
           </div>
         </div>
-        <div id="cviceni" class="">
-          <h1 class="">Cvičení</h1>
-
-          <div class="cv">
-            <h2>
-              <a
-                href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c1"
-                class=""
-                >DNS a HTTP</a
-              >
-            </h2>
-            <div class="content-bottom">
-              <span>
-                <img src="img/news_icon.gif" alt="" class="" >
-
-                Cvičení ohledně adresace
-              </span>
-            </div>
-          </div>
-
-          <div class="cv">
-            <h2>
-              <a
-                href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c2"
-                class=""
-                >Jazyk HTML</a
-              >
-            </h2>
-            <div class="content-bottom">
-              <span>
-                <img src="img/news_icon.gif" alt="" class="" >
-
-                Cvičení ohledně html
-              </span>
-            </div>
-          </div>
-
-          <div class="cv">
-            <h2>
-              <a
-                href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c3"
-                class=""
-                >Základy CSS</a
-              >
-            </h2>
-            <div class="content-bottom">
-              <span>
-                <img src="img/news_icon.gif" alt="" class="" >
-
-                Cvičení o CSS
-              </span>
-            </div>
-          </div>
-
-          <div class="cv">
-            <h2>
-              <a
-                href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c4"
-                class=""
-                >CSS3 a JavaScript</a
-              >
-            </h2>
-            <div class="content-bottom">
-              <span>
-                <img src="img/news_icon.gif" alt="" class="" >
-
-                Cvičení o JS
-              </span>
-            </div>
-          </div>
+        <div id="vysledky">
+          <h1>Přehled výsledků</h1>
+          <table>
+            <tbody>
+              <tr class="theader">
+                <td rowspan="3">Jméno</td>
+                <td colspan="6">Body</td>
+              </tr>
+              <tr class="theader">
+                <td colspan="2">2010</td>
+                <td colspan="2">2011</td>
+                <td colspan="2">2012</td>
+              </tr>
+              <tr class="theader">
+                <td>Půlsem.</td>
+                <td>Zk.</td>
+                <td>Půlsem.</td>
+                <td>Půlsem.</td>
+                <td>Zk.</td>
+                <td>Půlsem.</td>
+              </tr>
+              <tr class="trow">
+                <td>Jan Novák</td>
+                <td>18</td>
+                <td>72</td>
+                <td>20</td>
+                <td>80</td>
+                <td>10</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr class="trow">
+                <td>Zuzana Černá</td>
+                <td>10</td>
+                <td>50</td>
+                <td>20</td>
+                <td>75</td>
+                <td>25</td>
+                <td>99</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
-
-    <footer class="">
-      <div class="footer-content">
-        <div id="kontakt">
-          <h1>Kontaktujte nás</h1>
-          <ul>
-            <li>
-              <span>Garant:</span>
-              <a href="mailto:itw&mdash;garant@fit.vutbr.cz"
-                >itw-garant@fit.vutbr.cz</a
-              >
-            </li>
-            <li>
-              <span>Přednášející:</span>
-              <a href="mailto:itw&mdash;prednasejici@fit.vutbr.cz"
-                >itw-prednasejici@fit.vutbr.cz</a
-              >
-            </li>
-            <li>
-              <span>Cvičící:</span>
-              <a href="mailto:itw&mdash;cvicici@fit.vutbr.cz"
-                >itw-cvicici@fit.vutbr.cz</a
-              >
-            </li>
-          </ul>
+      <div id="cviceni">
+        <h1>Cvičení</h1>
+        <div class="cv">
+          <h2>
+            <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c1">DNS a HTTP
+            </a>
+          </h2>
+          <div class="content-bottom">
+            <span>
+              <img src="img/news_icon.gif" alt="">
+              Cvičení ohledně adresace
+            </span>
+          </div>
         </div>
-
-        <div id="souvisejici" class="">
-          <h1 class="">Související předměty</h1>
-          <ul
-            class="
-                    "
-          >
-            <li class="">
-              <img src="img/footer_list_bullet.gif" alt="" class="" ><a
-                href="https://www.fit.vut.cz/study/course/IIS/.cs"
-                class=""
-                >Informační systémy</a
-              >
-            </li>
-            <li class="">
-              <img src="img/footer_list_bullet.gif" alt="" class="" ><a
-                href="https://www.fit.vut.cz/study/course/IIS/.cs"
-                class=""
-              ></a
-              ><a href="https://www.fit.vut.cz/study/course/PIS/.cs" class=""
-                >Pokročilé informační systémy</a
-              >
-            </li>
-            <li class="">
-              <img src="img/footer_list_bullet.gif" alt="" class="" ><a
-                href="https://www.fit.vut.cz/study/course/IIS/.cs"
-                class=""
-              ></a
-              ><a href="https://www.fit.vut.cz/study/course/AIS/.cs" class=""
-                >Analýza informačních systémů</a
-              >
-            </li>
-            <li class="">
-              <img src="img/footer_list_bullet.gif" alt="" class="" ><a
-                href="https://www.fit.vut.cz/study/course/IIS/.cs"
-                class=""
-              ></a
-              ><a href="https://www.fit.vut.cz/study/course/ISJ/.cs" class=""
-                >Skriptovací jazyky</a
-              >
-            </li>
-          </ul>
+        <div class="cv">
+          <h2>
+            <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c2">Jazyk HTML</a>
+          </h2>
+          <div class="content-bottom">
+            <span>
+              <img src="img/news_icon.gif" alt="">
+              Cvičení ohledně html
+            </span>
+          </div>
+        </div>
+        <div class="cv">
+          <h2>
+            <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c3">Základy CSS</a>
+          </h2>
+          <div class="content-bottom">
+            <span>
+              <img src="img/news_icon.gif" alt="">
+              Cvičení o CSS
+            </span>
+          </div>
+        </div>
+        <div class="cv">
+          <h2>
+            <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c4">CSS3 a JavaScript</a>
+          </h2>
+          <div class="content-bottom">
+            <span>
+              <img src="img/news_icon.gif" alt="">
+              Cvičení o JS
+            </span>
+          </div>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <div id="kontakt">
+        <h1>Kontaktujte nás</h1>
+        <ul>
+          <li>
+            <span>Garant:</span>
+            <a href="mailto:itw&mdash;garant@fit.vutbr.cz">itw-garant@fit.vutbr.cz</a>
+          </li>
+          <li>
+            <span>Přednášející:</span>
+            <a href="mailto:itw&mdash;prednasejici@fit.vutbr.cz">itw-prednasejici@fit.vutbr.cz</a>
+          </li>
+          <li>
+            <span>Cvičící:</span>
+            <a href="mailto:itw&mdash;cvicici@fit.vutbr.cz">itw-cvicici@fit.vutbr.cz</a>
+          </li>
+        </ul>
+      </div>
+      <div id="souvisejici">
+        <h1>Související předměty</h1>
+        <ul>
+          <li>
+            <img src="img/footer_list_bullet.gif" alt=""><a
+              href="https://www.fit.vut.cz/study/course/IIS/.cs">Informační systémy</a>
+          </li>
+          <li>
+            <img src="img/footer_list_bullet.gif" alt=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs"></a><a
+              href="https://www.fit.vut.cz/study/course/PIS/.cs">Pokročilé informační systémy</a>
+          </li>
+          <li>
+            <img src="img/footer_list_bullet.gif" alt=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs"></a><a
+              href="https://www.fit.vut.cz/study/course/AIS/.cs">Analýza informačních systémů</a>
+          </li>
+          <li>
+            <img src="img/footer_list_bullet.gif" alt=""><a href="https://www.fit.vut.cz/study/course/IIS/.cs"></a><a
+              href="https://www.fit.vut.cz/study/course/ISJ/.cs">Skriptovací jazyky</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

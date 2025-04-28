@@ -1,622 +1,765 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-html{
-    overflow-x: hidden;
-}
-
-*{
-    font-family: "Ubuntu", sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-table{
-    table-layout: auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-p{
-    font-size: 1rem;
-}
-
-.header-bg{
-    background: url('../img/footer_bg.gif');
-    position: relative;
-    width: 100%;
-    height: auto !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-}
-
-header ul{
-    display: flex;
-        flex-wrap: wrap;
-    list-style: none;
-    background-color: #b15e23;
-    width: 960px;
-}
-
-header ul li {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    width: auto;
-}
-
-.nav-container li {
-    list-style: none;
-}
-
-.ul-bg{
-    position: relative;
-    width: 100%;
-    background-color: #b15e23;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
-
-header ul li:hover {
-    background-color: #3c1f0a;
-}
-
-.header-text{
-    margin-top: 20px;
-    width: 960px;
-}
-
-header h1{
-    color: #d5a17c;
-    font-style: italic;
-}
-
-header a{
-    color: white;
-    text-decoration: none;
-    font-family: Arial,Helvetica;
-}
-
-.content{
-    border-top: 2px dotted #3c1f0a;
-    padding-top: 20px;
-}
-
-.itw{
-    font-style: italic;
-    font-weight: bold;
-    font-size: 4rem;
-}
-
-header ul{
-    display: flex;
-}
-
-
-.right-left{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    height: auto;
-    background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,1) 47%, rgba(226,226,226,1) 66%, rgb(226, 226, 226) 100%);
-}
-
-.rl-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 960px;
-}
-
-.o-predmetu{
-    width: 960px;
-    height: 200px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.content-bottom{
-    margin-top: 20px !important;
-}
-
-.content-bottom img{
-    margin: 10px;
-    margin-left: 0px !important;
-}
-
-.predmet-bg{
-    background-image: linear-gradient(white, rgb(207, 207, 207));
-    position: relative;
-    width: 100%;
-    height: auto !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#opredmetu{
-    color:#b15e23;
-}
-
-.col{
-    background-color: white;
-    position: relative;
-    width: auto;
-    min-height: 800px !important;
-    display: flex;
-    justify-content: center;
-        flex-direction: column;
-}
-
-#prednasky h1{
-    color:#b15e23; 
-}
-
-.prednasky-content{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.prednasky-content #prednaska1, #prednaska2, #prednaska3, #prednaska4{
-    width: 300px;
-    margin: 20px;
-    margin-left: 0 !important;
-}
-
-#prednasky a{
-    color:#3c1f0a;
-    text-decoration: none;
-}
-
-
-#prednasky h2{
-    margin-bottom: 5px;
-}
-
-#vysledky h1{
-    color:#b15e23
-}
-
-
-.theader{
-    background-color: #d5a17c;
-    color: gray;
-    font-weight: bold;
-    text-align: center;
-}
-.trow td{
-    text-align: left !important;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 2px double black !important;
-}
-
-
-table{
-    border: 3px solid black;
-    
-}
-
-#vysledky h1{
-    margin-bottom: 10px;
-}
-#cviceni{
-    padding: 20px;
-    padding-left: 30px !important;
-    width: 300px !important;
-    position: relative;
-}
-#cviceni .cv{
-    margin-top: 40px;
-    border-bottom:  2px dotted #3c1f0a;
-}
-#cviceni h1{
-    color:#b15e23;
-    margin-bottom: 20px;
-}
-
-#cviceni a, h2{
-    text-decoration: none;
-    color:#3c1f0a;
-    margin-bottom: 20px;
-}
-
-#cviceni div span{
-    display: flex;
-    justify-content:left;
-    align-items: center;
-}
-
-#kontakt{
-    padding: 40px 50px 40px 0;
-    text-align: left;
-}
-
-#kontakt h1{
-    color: white;
-    margin-bottom: 10px;
-}
-
-#kontakt span{
-    color: white;
-    
-}
-
-#kontakt a{
-
-    color:#d5a17c;
-    text-decoration: none;
-}
-
-#kontakt ul {
-    list-style: none;
-    padding: 0;
-    max-width: 400px; /* Přizpůsob délce obsahu */
-}
-
-#kontakt li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
-#kontakt span {
-    color: white;
-    font-weight: bold;
-    text-align: left;
-}
-
-#kontakt a {
-    color: #d5a17c;
-    text-decoration: none;
-    text-align: right;
-}
-
-
-#souvisejici{
-    padding: 40px 50px 40px 50px
-}
-
-#souvisejici h1{
-    color: white;
-    margin-bottom: 10px;
-}
-
-#souvisejici li{
-    list-style: none;
-}
-
-#souvisejici li a{
-    color:#d5a17c;
-    text-decoration: none;
-}
-
-#souvisejici img{
-    margin-right: 10px;
-}
-
-footer{
-    position: relative;
-    width: 100%;
-    height: auto !important;
-    background: url('../img/footer_bg.gif');
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-content{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    width: 960px;
-    height: auto !important;
-}
-
-@media only screen and (max-width: 575px) {
-    *{
-        max-width:575px !important;
-    }
-    
-    .exercise-item {
-        width: 100%;
-    }
-
-    #ul1 {
-        margin-top: 0;
-        padding-top: 0;
-    }
-
-    .header-bg ul{
-        width: 450px;
-    }
-
-    header{
-        display:block;
-    }
-
-    .header-text {
-        width:450px !important;
-        margin-left: 10px;
-    }
-
-    .o-predmetu *{
-        margin-left: 10px;
-    }
-
-    .o-predmetu span{
-        margin-left: 10px;
-    }
-
-    .rl-content{
-        flex-direction: column !important;
-        width: 450px !important;
-    }
-
-    .col{
-        min-width: 0 !important;
-    }
-
-    #prednasky h1{
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-
-    .prednasky-content {
-        grid-template-columns: repeat(1, 1fr);
-
-    }
-
-    .prednasky-content *{
-        margin-left: 10px;
-    }
-
-
-    #vysledky h1 {
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-
-    #cviceni{
-        width: 450px !important;
-    }
-
-        #cviceni *{
-           margin-left: 10px !important;
-        }
-
-    .footer-content{
-        flex-direction: column;
-    }
-
-    #souvisejici{
-        padding-left: 0 !important;
-    }
-
-}
-
-@media only screen and (max-width: 768px) {
-    * {
-        max-width: 768px !important;
-    }
-
-    .exercise-item {
-        width: 100%;
-    }
-
-    #ul1 {
-        margin-top: 0;
-        padding-top: 0;
-    }
-
-    .header-bg ul {
-        max-width: 575px;
-        width: auto !important;
-    }
-
-    header {
-        display: block;
-    }
-
-    .header-text {
-        max-width: 575px !important;
-        margin-left: 10px;
-        width: auto !important;
-    }
-
-    .o-predmetu * {
-        margin-left: 10px;
-    }
-
-    .o-predmetu span {
-        margin-left: 10px;
-    }
-
-    .rl-content {
-        flex-direction: column !important;
-        max-width: 575px !important;
-        width: auto !important;
-    }
-
-    .col {
-        min-width: 0 !important;
-        width: 100%;
+    body{
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
+    }
+
+    html{
+        overflow-x: hidden;
+    }
+
+    *{
+        font-family: "Ubuntu", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    table{
+        table-layout: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    p{
+        font-size: 1rem;
+    }
+
+    /*extra large (xl) - desktop: ≥1200px*/
+
+    .header-bg{
+        background: url('../img/footer_bg.gif');
+        position: relative;
+        width: 100%;
+        height: auto !important;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    #prednasky{
-        width: 575px !important;
-    }
-
-    #prednaska1, #prednaska2, #prednaska3, #prednaska4 {
-        width: 100% !important;
-    }
-
-    #prednasky h1 {
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-
-    .prednasky-content {
-        grid-template-columns: repeat(1, 1fr);
-
-    }
-
-    .prednasky-content * {
-        margin-left: 10px;
-    }
-
-    #vysledky{
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    #vysledky h1 {
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-
-    #cviceni {
-        width: 575px !important;
-    }
-
-    .footer-content {
+    header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
-    }
-
-    #kontakt{
-        padding-left: 0 !important;
-    }
-
-    #souvisejici {
-        padding-left: 0 !important;
-    }
-
-}
-
-@media only screen and (max-width: 992px) {
-    * {
-        max-width: 992px !important;
-    }
-
-    .exercise-item {
         width: 100%;
     }
 
-    #ul1 {
-        margin-top: 0;
-        padding-top: 0;
+    .ul-bg ul li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        width: auto;
     }
 
-    .header-bg ul {
-        max-width: 768px;
-        width: auto !important;
+    .nav-container li {
+        list-style: none;
     }
 
-    header {
-        display: block;
-    }
-
-    .header-text {
-        max-width:768px !important;
-        margin-left: 10px;
-        width: auto !important;
-    }
-
-    .o-predmetu * {
-        margin-left: 10px;
-    }
-
-    .o-predmetu span {
-        margin-left: 10px;
-    }
-
-    .rl-content {
-        max-width: 768px !important;
-        width: 768px !important;
-    }
-
-    .col {
-        min-width: 0 !important;
+    .ul-bg{
+        position: relative;
         width: 100%;
+        background-color: #b15e23;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    #prednasky h1 {
-        margin-left: 10px;
-        margin-top: 10px;
+    
+
+    ul li:hover {
+        background-color: #3c1f0a;
     }
 
-    .prednasky-content * {
-        margin-left: 10px;
+    .header-text{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 1190px;
+    }
+
+    header h1{
+        color: #d5a17c;
+        font-style: italic;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+        font-family: Arial,Helvetica;
+        display: flex;
+        align-items: center;
+    }
+
+    .ul-bg ul li i {
+        margin-right: 8px;
+    }
+
+    .ul-bg ul li.menu-toggle {
+        display: none;
+    }
+
+    .ul-bg ul li.menu-toggle i{
+        margin-right: 0px !important;
+    }
+
+    .content{
+        border-top: 2px dotted #3c1f0a;
+        padding-top: 20px;
+    }
+
+    .itw{
+        font-style: italic;
+        font-weight: bold;
+        font-size: 4rem;
+    }
+
+    .ul-bg ul{
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        background-color: #b15e23;
+        width: 1190px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mobile-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items:normal;
+        flex-direction: row;
+        width: auto;
+    }
+
+
+    .right-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        height: auto;
+        background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 47%, rgba(226,226,226,1) 66%, rgb(226, 226, 226) 100%);
+    }
+
+    .rl-content{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 1190px;
+    }
+
+    .o-predmetu{
+        width: 1190px;
+        height: auto !important;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .content-bottom{
+        margin-top: 20px !important;
+    }
+
+    .content-bottom img{
+        margin: 10px;
+        margin-left: 0px !important;
+    }
+
+    .predmet-bg{
+        background-image: linear-gradient(white, rgb(207, 207, 207));
+        position: relative;
+        width: 100%;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #opredmetu{
+        color:#b15e23;
+    }
+
+    .col{
+        background-color: white;
+        position: relative;
+        width: auto;
+        min-height: 800px !important;
+        display: flex;
+        justify-content: center;
+            flex-direction: column;
+    }
+
+    #prednasky h1{
+        color:#b15e23; 
+    }
+
+    .prednasky-content{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     #prednaska1, #prednaska2, #prednaska3, #prednaska4{
-        margin-right: 0 !important;
-        width: 200px;
+        width: 300px;
+        margin: 20px;
+        margin-left: 0 !important;
     }
 
-    #vysledky h1 {
-        margin-left: 10px;
-        margin-top: 10px;
+    #prednasky a{
+        color:#3c1f0a;
+        text-decoration: none;
     }
 
-    #vysledky {
+
+    #prednasky h2{
+        margin-bottom: 5px;
+    }
+
+    #vysledky h1{
+        color:#b15e23
+    }
+
+
+    .theader{
+        background-color: #d5a17c;
+        color: gray;
+        font-weight: bold;
+        text-align: center;
+    }
+    .trow td{
+        text-align: left !important;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px double black !important;
+    }
+
+
+    table{
+        border: 3px solid black;
+        
+    }
+
+    #vysledky h1{
+        margin-bottom: 10px;
+    }
+    #cviceni{
+        padding: 20px;
+        padding-left: 30px !important;
+        width: 300px;
+        position: relative;
+    }
+    #cviceni .cv{
+        margin-top: 40px;
+        border-bottom:  2px dotted #3c1f0a;
+    }
+    #cviceni h1{
+        color:#b15e23;
+        margin-bottom: 20px;
+    }
+
+    #cviceni a, h2{
+        text-decoration: none;
+        color:#3c1f0a;
+        margin-bottom: 20px;
+    }
+
+    #cviceni div span{
         display: flex;
         justify-content:left;
-        flex-direction: column;
-        align-items: start;
-    }
-
-    table {
-        width: 80%;
-        height: 80%;
-        margin-left: 10px;
-    }
-
-    #cviceni {
-        max-width: 768px !important;
-    }
-
-    #cviceni{
-        padding: 20px !important;
-        min-height: 800px !important;
-    }
-
-    #cviceni h1{
-        margin-left: 20px !important;
-    }
-
-    .cv{
-        margin-left: 20px !important;
+        align-items: center;
     }
 
     #kontakt{
-        padding-left: 40px;
+        padding: 40px 50px 40px 0;
+        text-align: left;
     }
 
-}
+    #kontakt h1{
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    #kontakt span{
+        color: white;
+        
+    }
+
+    #kontakt a{
+
+        color:#d5a17c;
+        text-decoration: none;
+    }
+
+    #kontakt ul {
+        list-style: none;
+        padding: 0;
+        max-width: 400px; /* Přizpůsob délce obsahu */
+    }
+
+    #kontakt li {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+    }
+
+    #kontakt span {
+        color: white;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    #kontakt a {
+        color: #d5a17c;
+        text-decoration: none;
+        text-align: right;
+    }
+
+
+    #souvisejici{
+        padding: 40px 50px 40px 50px
+    }
+
+    #souvisejici h1{
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    #souvisejici li{
+        list-style: none;
+    }
+
+    #souvisejici li a{
+        color:#d5a17c;
+        text-decoration: none;
+    }
+
+    #souvisejici img{
+        margin-right: 10px;
+    }
+
+    footer{
+        position: relative;
+        width: 100%;
+        height: auto !important;
+        background: url('../img/footer_bg.gif');
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-content{
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        width: 1190px;
+        height: auto !important;
+    }
+    /*large (lg) - notebook: ≥992px*/
+    @media only screen and (max-width: 1200px) {
+
+        .header-text {
+            max-width: 950px;
+        }
+        
+        .o-predmetu {
+            max-width: 950px;
+        }
+
+        .rl-content{
+            max-width: 950px !important;
+        }
+
+        #cviceni {
+            max-width: 950px;
+        }
+
+        .footer-content{
+            width: 950px;
+        }
+
+    }
+    /*medium (md) - tablet: ≥768px*/
+    @media only screen and (max-width: 992px) {
+
+        .exercise-item {
+            width: 100%;
+        }
+
+        #ul1 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .header-bg ul {
+            max-width: 758px;
+            width: auto !important;
+        }
+
+        header {
+            display: flex;
+        }
+
+        #home{
+            display: flex !important;
+        }
+        .header-text {
+            max-width: 758px;
+            margin-left: 10px;
+        }
+
+        .o-predmetu {
+            max-width: 758px;
+        }
+
+        .o-predmetu * {
+            margin-left: 10px;
+        }
+
+        .o-predmetu span {
+            margin-left: 10px;
+        }
+
+        .rl-content {
+            max-width: 758px !important;
+            width: 758px !important;
+            align-items: flex-start !important;
+            justify-content: flex-start;
+        }
+
+        .col {
+            min-width: 0 !important;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        #prednasky h1 {
+            margin-left: 10px;
+            margin-top: 20px;
+        }
+
+        .prednasky-content * {
+            margin-left: 0px;
+        }
+
+        .prednasky-content{
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        #prednaska1,
+        #prednaska2,
+        #prednaska3,
+        #prednaska4 {
+            margin-right: 0 !important;
+            width: calc(100% - 20px);
+        }
+
+        #vysledky h1 {
+            margin-left: 0px;
+            margin-top: 10px;
+        }
+
+        #vysledky {
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            align-items: start;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 80%;
+            height: 80%;
+            margin-left: 0px;
+        }
+
+        #cviceni {
+            max-width: 758px;
+        }
+
+        #cviceni {
+            padding: 20px;
+        }
+
+        #cviceni h1 {
+            margin-left: 20px;
+        }
+
+        .cv {
+            margin-left: 20px;
+        }
+
+        #kontakt {
+            padding-left: 0px;
+        }
+
+        .footer-content{
+            width: 758px;
+        }
+
+    }
+
+    /*small (sm) - mobilní telefon: ≥576px*/
+    @media only screen and (max-width: 768px) {
+
+        .exercise-item {
+            width: 100%;
+        }
+
+        #ul1 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .header-bg ul {
+            max-width: 565px;
+            width: auto !important;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .header-text {
+            width: 565px;
+            margin-left: 10px;
+        }
+
+        .o-predmetu {
+            max-width: 565px;
+        }
+
+        .o-predmetu * {
+            margin-left: 0px !important;
+        }
+
+        .o-predmetu span {
+            margin-left: 10px;
+        }
+
+        .rl-content {
+            flex-direction: column !important;
+            max-width: 565px;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .col {
+            min-width: 0 !important;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #prednasky {
+            width: 565px;
+        }
+
+        #prednaska1,
+        #prednaska2,
+        #prednaska3,
+        #prednaska4 {
+            width: 565px;
+        }
+
+        #prednaska1 *,
+        #prednaska2 *,
+        #prednaska3 *,
+        #prednaska4 * {
+            margin-left: 0 !important;
+        }
+
+        #prednasky h1 {
+            margin-top: 10px;
+            margin-left: 0px !important;
+        }
+
+        .prednasky-content {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+
+        .prednasky-content * {
+            margin-left: 10px;
+        }
+
+        #vysledky {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 565px;
+        }
+
+        #vysledky h1 {
+            margin-top: 10px;
+            margin-left: 0 !important;
+        }
+
+        #vysledky table {
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+
+        #cviceni {
+            width: 565px;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #cviceni h1 {
+            margin-left: 0 !important;
+        }
+
+        .cv {
+            margin-left: 0 !important;
+        }
+
+        .footer-content {
+            flex-direction: column;
+        }
+
+        #kontakt {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+            width: 565px;
+        }
+
+        #souvisejici {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+            width: 565px;
+        }
+
+    }
+
+    /*extra small (xs): <576 px*/
+    @media only screen and (max-width: 575px) {
+        
+        .ul-bg{
+            position: sticky !important;
+            top: 0px !important;
+            z-index: 1000 !important;
+            overflow: hidden;
+            justify-content: space-between;
+        }
+
+        .mobile-menu li:last-child{
+            order: 2 !important;
+        }
+
+        .exercise-item {
+            width: 100%;
+        }
+
+        #ul1 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .ul-bg ul {
+            width: 100%;
+        }
+
+        .ul-bg ul li.menu-toggle {
+            display: block;
+        }
+
+        .ul-bg ul.mobile-menu li.menu-toggle {
+            display: block;
+        }
+
+        .ul-bg ul.mobile-menu li.menu-item {
+            width: 100%;
+        }
+
+        .header-bg ul{
+            width: 450px;
+        }
+
+        .header-text {
+            width:450px !important;
+            margin-left: 10px;
+        }
+
+        .o-predmetu {
+            max-width: 450px !important;
+        }
+
+        .o-predmetu span{
+            margin-left: 10px;
+        }
+
+        .rl-content{
+            flex-direction: column !important;
+            width: 100% !important;
+        }
+
+        .col{
+            min-width: 0 !important;
+        }
+
+        #prednasky h1{
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .prednasky-content {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+
+        #prednasky{
+        width: 450px !important;
+        }
+
+        #prednaska1, #prednaska2, #prednaska3, #prednaska4{
+            width: 450px !important;
+        }
+
+        .prednasky-content *{
+            margin-left: 10px;
+        }
+
+        #vysledky{
+            width: 450px !important; 
+        }
+
+        #vysledky table{
+            width: 100% !important;
+        }
+
+        td{
+            padding: 5px !important;
+        }
+
+        #vysledky h1 {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        #cviceni{
+            width: 450px !important;
+        }
+
+        .footer-content{
+            flex-direction: column;
+        }
+
+        #souvisejici{
+            padding-left: 0 !important;
+            width: 450px !important;
+        }
+
+        #kontakt {
+            padding-left: 0 !important;
+            width: 450px !important;
+        }
+
+    }
