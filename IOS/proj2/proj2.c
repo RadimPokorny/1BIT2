@@ -5,6 +5,7 @@
 #include <sys/shm.h>
 #include <sys/wait.h>
 #include <sys/mman.h>
+#include <sys/types.h>
 #include <time.h>
 #include <fcntl.h>
 #include <string.h>
@@ -127,6 +128,7 @@ void ferry_process(int TP)
     while (1)
     {
         // Travel to port
+        srand(time(NULL) ^ getpid());
         random_delay(TP);
         synchronized_print("P: arrived to %d\n", shared->ferry_port);
 
@@ -203,6 +205,7 @@ void car_process(int id, int port, int TA)
     synchronized_print("O %d: started\n", id);
 
     // Travel to port
+    srand(time(NULL) ^ getpid());
     random_delay(TA);
     synchronized_print("O %d: arrived to %d\n", id, port);
 
@@ -241,6 +244,7 @@ void truck_process(int id, int port, int TA)
     synchronized_print("N %d: started\n", id);
 
     // Travel to port
+    srand(time(NULL) ^ getpid());
     random_delay(TA);
     synchronized_print("N %d: arrived to %d\n", id, port);
 
@@ -348,7 +352,7 @@ int main(int argc, char *argv[])
         pid_t pid = fork();
         if (pid == 0)
         {
-            int port = rand() % 2;
+            int port = i % 2;
             car_process(i, port, TA);
             exit(0);
         }
