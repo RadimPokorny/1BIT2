@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=gnu99 -Wall -Wextra -Werror -pedantic -pthread -lrt
+CFLAGS = -std=gnu99 -Wall -Wextra -Werror -pedantic
 TARGET = proj2
 SOURCES = proj2.c
 OBJS = $(SOURCES:.c=.o)
