@@ -361,6 +361,10 @@
     /*large (lg) - notebook: ≥992px*/
     @media only screen and (max-width: 1200px) {
 
+        .ul-bg ul {
+            width: 950px;
+        }
+
         .header-text {
             max-width: 950px;
         }
@@ -384,6 +388,10 @@
     }
     /*medium (md) - tablet: ≥768px*/
     @media only screen and (max-width: 992px) {
+
+        .ul-bg ul {
+            width: 758px;
+        }
 
         .exercise-item {
             width: 100%;
@@ -504,6 +512,10 @@
 
     /*small (sm) - mobilní telefon: ≥576px*/
     @media only screen and (max-width: 768px) {
+
+        .ul-bg ul {
+            width: 565px;
+        }
 
         .exercise-item {
             width: 100%;
@@ -647,7 +659,14 @@
             top: 0px !important;
             z-index: 1000 !important;
             overflow: hidden;
-            justify-content: space-between;
+            justify-content: center !important;
+        }
+
+        .ul-bg ul {     
+            display: flex !important;
+            justify-content: center-between !important;
+            align-items: center !important;
+            width: 450px;
         }
 
         .mobile-menu li:last-child{
@@ -661,10 +680,6 @@
         #ul1 {
             margin-top: 0;
             padding-top: 0;
-        }
-
-        .ul-bg ul {
-            width: 100%;
         }
 
         .ul-bg ul li.menu-toggle {

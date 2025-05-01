@@ -24,7 +24,7 @@
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function () {
+   $(document).ready(function () {
       // Menu configuration
       const menuItems = [
         { icon: 'home', text: 'Index', href: '#' },
@@ -36,58 +36,62 @@
         { icon: 'code-branch', text: 'Související', href: '#souvisejici' }
       ];
 
+      let menuManuallyToggled = false;
+
       function createMenu() {
         const $ul = $('.ul-bg ul');
         $ul.empty();
 
-        // Add menu items
         menuItems.forEach(item => {
           if (item.icon != 'home') {
             $ul.append(`
-                   <li class="menu-item">
-                       <a href="${item.href}" title="${item.text}">
-                           <i class="fas fa-${item.icon}"></i>
-                           <span id="${item.icon}" class="menu-text">${item.text}</span>
-                       </a>
-                   </li>
-               `);
+          <li class="menu-item">
+            <a href="${item.href}" title="${item.text}">
+              <i class="fas fa-${item.icon}"></i>
+              <span id="${item.icon}" class="menu-text">${item.text}</span>
+            </a>
+          </li>
+        `);
           }
           else {
             $ul.append(`
-                 <li class="not-menu-item">
-                     <a href="${item.href}" title="${item.text}">
-                         <i class="fas fa-${item.icon}"></i>
-                         <span id="${item.icon}" class="menu-text">${item.text}</span>
-                     </a>
-                 </li>
-               `);
+          <li class="not-menu-item">
+            <a href="${item.href}" title="${item.text}">
+              <i class="fas fa-${item.icon}"></i>
+              <span id="${item.icon}" class="menu-text">${item.text}</span>
+            </a>
+          </li>
+        `);
           }
         });
 
-        // Add hamburger button for xs screens
-        // Create the toggle element
         const $toggle = $('<li class="menu-toggle"><a href="#"><i class="fas fa-bars"></i></a></li>');
-
-        // Insert the toggle as the second item (after Index)
         $ul.children().eq(1).before($toggle);
       }
 
-      // Initialize menu
       createMenu();
 
-      // Handle responsive menu behavior
-      // Handle responsive menu behavior
       function updateMenu() {
         const width = $(window).width();
         const $menuItems = $('.menu-item');
         const $menuToggle = $('.menu-toggle');
+        const $menuLinks = $('.menu-item a, .not-menu-item a');
+
+        if (menuManuallyToggled && width < 550) {
+          return;
+        }
 
         // Extra small devices - show hamburger menu
         if (width < 550) {
-          $menuItems.show();
+          $menuItems.hide();
           $menuToggle.show();
           $('.ul-bg ul').addClass('mobile-menu');
           $('.menu-text').show();
+
+          // Pro mobilní zobrazení necháme title
+          $menuLinks.each(function () {
+            $(this).attr('title', $(this).find('.menu-text').text());
+          });
         }
         // Medium devices (768px - 992px) - show only "Index" text and icons for others
         else if (width < 992) {
@@ -95,12 +99,13 @@
           $menuToggle.hide();
           $('.ul-bg ul').removeClass('mobile-menu');
           $('.menu-item i').show();
-
-          // Hide all texts except for the first item (Index)
           $('.menu-text').hide();
           $('.menu-item:first-child .menu-text').show();
 
-          // Show text on hover for other items
+          // Pro střední rozlišení přidáme title k ikonám
+          $menuLinks.each(function () {
+            $(this).attr('title', $(this).find('.menu-text').text());
+          });
         }
         // Large devices - show both icons and text
         else {
@@ -109,28 +114,56 @@
           $('.menu-text').show();
           $('.ul-bg ul').removeClass('mobile-menu');
           $('.menu-item i').show();
-          // Remove hover behavior for large screens
           $menuItems.off('mouseenter mouseleave');
+
+          // Pro velké rozlišení odebereme title (text je viditelný)
+          $menuLinks.each(function () {
+            $(this).removeAttr('title');
+          });
         }
       }
 
-      // Toggle mobile menu
+      // Ostatní funkce zůstávají stejné
       $('body').on('click', '.menu-toggle a', function (e) {
         e.preventDefault();
         $('.menu-item').toggle();
+        menuManuallyToggled = true;
       });
 
-      // Close mobile menu when clicking a link
       $('body').on('click', '.mobile-menu .menu-item a', function () {
         if ($(window).width() < 576) {
           $('.menu-item').show();
+          menuManuallyToggled = false;
         }
       });
-      // Initialize and update on resize
-      updateMenu();
+
       $(window).resize(function () {
+        if ($(window).width() >= 550) {
+          menuManuallyToggled = false;
+        }
         updateMenu();
       });
+
+      $('body').on('click', 'a[href^="#"]', function (e) {
+        const menuHeight = $('.ul-bg').outerHeight();
+        const target = $(this.getAttribute('href'));
+
+        if (target.length) {
+          e.preventDefault();
+          const targetPosition = target.offset().top - menuHeight;
+
+          $('html, body').animate({
+            scrollTop: targetPosition
+          }, 1000);
+
+          if ($(window).width() < 576) {
+            $('.menu-item').hide();
+            menuManuallyToggled = true;
+          }
+        }
+      });
+
+      updateMenu();
     });
   </script>
   <div class="header-bg">
