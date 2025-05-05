@@ -1,17 +1,173 @@
 \documentclass{beamer}
-%Information to be included in the title page:
-\title{Sample title}
-\author{Anonymous}
-\institute{Overleaf}
-\date{2021}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{listings}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{xcolor}
+\usepackage{graphicx} % Přidáno pro podporu obrázků
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Nastavení barev pro algoritmus
+\SetKwComment{Comment}{/* }{ */}
+\SetAlFnt{\small}
+\SetAlCapFnt{\color{blue}}
+\SetAlCapNameFnt{\color{blue}}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\renewcommand{\algorithmcfname}{Algoritmus}
+% Informace o titulní stránce
+\title{TNINE - Telefonní seznam}
+\author{Radim Pokorný \\ \small{xpokorr00@vutbr.cz}}
+\institute{Vysoké učení technické v Brně \\ Fakulta informačních technologií}
+\date{\today}
 
 \begin{document}
 
 \frame{\titlepage}
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is some text in the first frame. This is some text in the first frame. This is some text in the first frame.
+\frametitle{Motivace}
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{itemize}
+\item<1-> Inspirace klasickým T9 vyhledáváním na mobilních telefonech
+\item<2-> Rychlé vyhledávání kontaktů bez nutnosti psát celé jméno
+\item<3-> Užitečné pro velké telefonní seznamy
+\item<4-> Praktická aplikace základních algoritmů pro práci s řetězci
+\end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Schéma převodu písmen na čísla}
+    \centering
+    \includegraphics[height=0.2\textheight]{tnine.png} % Alternativní umístění obrázku
+    \begin{itemize}
+    \item a,b,c → 2
+    \item d,e,f → 3
+    \item g,h,i → 4
+    \item j,k,l → 5
+    \item m,n,o → 6
+    \item p,q,r,s → 7
+    \item t,u,v → 8
+    \item w,x,y,z → 9
+    \end{itemize}
+    \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Klíčové funkce}
+\begin{itemize}
+\item Převod jmen na číselné ekvivalenty
+\item Podpora mezinárodních čísel (+ → 0)
+\item Case-insensitive vyhledávání
+\end{itemize}
+\begin{algorithm}[H]
+\caption{Algoritmus pro hledání podřetězce}\label{alg:one}
+\For{char in \texttt{str}}{
+    \If{\texttt{str[i]} je '+'}{
+        \texttt{str[i]} $\gets$ '0'\Comment*[r]{Nahrazení '+' za '0'}
+    }
+    $j \gets 0$\;
+    \While{\texttt{substr[j]} $\neq$ '\textbackslash 0' \textbf{a} \texttt{str[i+j]} $\neq$ '\textbackslash 0'}{
+        \If{\texttt{str[i+j]} $\neq$ \texttt{substr[j]}}{
+            \textbf{break}\Comment*[r]{Znaky se neshodují}
+        }
+        $j \gets j + 1$\;
+    }
+    \If{\texttt{substr[j]} == '\textbackslash 0'}{
+        \Return{1}\Comment*[r]{Podřetězec nalezen}
+    }
+}
+\Return{0}\Comment*[r]{Podřetězec nenalezen}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Příklad použití}
+\begin{exampleblock}{Vstup}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+Jan
++420123456789
+Petr
+555-987654
+Anna
+123456
+\end{lstlisting}
+\end{exampleblock}
+
+\begin{block}{Výstup pro hledání "56"}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+jan, +420123456789
+anna, 123456
+\end{lstlisting}
+\end{block}
+
+\begin{alertblock}{Poznámka}
+Program podporuje jak vyhledávání v číslech, tak převod jmen na T9 číselnou reprezentaci
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ošetření chyb}
+\begin{itemize}
+\item Kontrola platnosti vstupního argumentu (pouze čísla)
+\item Omezení délky vstupu (max 100 znaků)
+\item Omezení počtu kontaktů (max 100)
+\item Zacházení se speciálními znaky (+, -)
+\item Vypsání "Not found" při nenalezení shody
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Závěr}
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\begin{itemize}
+\item Jednoduchý, ale praktický nástroj
+\item Demonstrace práce s řetězci v C
+\item Možnosti rozšíření:
+\begin{itemize}
+\item Grafické rozhraní
+\item Podpora více znakových sad
+\item Optimalizace pro velké databáze
+\end{itemize}
+\end{itemize}
+\end{column}
+\begin{column}{0.3\textwidth}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\centering
+\Large{Děkuji za pozornost!}
 \end{frame}
 
 \end{document}

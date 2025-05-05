@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{picture} % některé distribuce potřebují; často však není nutný
+
+\begin{document}
+
+\setlength{\unitlength}{1mm} % Nastavení jednotky – tady 1 mm
+
+\begin{picture}(40,40)
+    % Svislá čára
+    \put(20,10){\line(0,1){20}}
+
+    % Kvadratická Bézierova křivka
+    \qbezier(10,20)(20,10)(30,20)
+
+    % Vyplněný kruh (hlava)
+    \put(20,30){\circle*{4}}
+\end{picture}
+
+\end{document}

@@ -1,3 +1,7 @@
+// IOS 2. Project - Semaphores
+// Author: Radim Pokorny (xpokorr00)
+// Date: 2025-03-05
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -15,8 +19,9 @@
 #define MAX_TRUCKS 10000
 #define FERRY_CAP_MIN 3
 #define FERRY_CAP_MAX 100
-#define MAX_WORKERS 100 // Maximální počet worker procesů
+#define MAX_WORKERS 100 // Max workers (cars and trucks combined) for better process optimalization
 
+// Shared memory data set
 typedef struct
 {
     int action_counter;
@@ -34,6 +39,7 @@ typedef struct
     int trucks_transported;
 } SharedData;
 
+// Semaphores to use
 sem_t *mutex;
 sem_t *ferry_sem;
 sem_t *loading_sem;
@@ -44,6 +50,7 @@ sem_t *truck_queue[2];
 FILE *output_file;
 SharedData *shared;
 
+// Return a random delay with a parameter of the max value
 void random_delay(int max_microseconds)
 {
     if (max_microseconds <= 0)
@@ -51,6 +58,7 @@ void random_delay(int max_microseconds)
     usleep(rand() % (max_microseconds + 1));
 }
 
+// Print the current action and clean up for yourself
 void synchronized_print(const char *format, ...)
 {
     sem_wait(mutex);
@@ -63,6 +71,7 @@ void synchronized_print(const char *format, ...)
     sem_post(mutex);
 }
 
+// Shared memory, semaphores optimalization
 void initialize_resources()
 {
     shared = mmap(NULL, sizeof(SharedData), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
@@ -84,6 +93,7 @@ void initialize_resources()
     }
 }
 
+// Kill everything
 void cleanup()
 {
     sem_close(mutex);
@@ -110,6 +120,7 @@ void cleanup()
     fclose(output_file);
 }
 
+// Ferry operation logic
 void ferry_process(int TP)
 {
     synchronized_print("P: started\n");
@@ -128,6 +139,7 @@ void ferry_process(int TP)
         int remaining_capacity = shared->ferry_capacity;
         int try_truck = 1;
 
+        // Execute while there is a certain amount of space (any)
         while (remaining_capacity > 0)
         {
             sem_wait(mutex);
@@ -135,11 +147,11 @@ void ferry_process(int TP)
             int cars_available = shared->cars_waiting[current_port] > 0;
             sem_post(mutex);
 
-            if (try_truck && trucks_available && remaining_capacity >= 3)
+            if (try_truck && trucks_available && remaining_capacity >= 4)
             {
                 sem_post(truck_queue[current_port]);
                 sem_wait(loading_sem);
-                remaining_capacity -= 3;
+                remaining_capacity -= 4;
                 try_truck = 0;
             }
             else if (cars_available && remaining_capacity >= 1)
@@ -149,11 +161,11 @@ void ferry_process(int TP)
                 remaining_capacity -= 1;
                 try_truck = 1;
             }
-            else if (trucks_available && remaining_capacity >= 3)
+            else if (trucks_available && remaining_capacity >= 4)
             {
                 sem_post(truck_queue[current_port]);
                 sem_wait(loading_sem);
-                remaining_capacity -= 3;
+                remaining_capacity -= 4;
                 try_truck = 0;
             }
             else
@@ -179,7 +191,7 @@ void ferry_process(int TP)
     synchronized_print("P: finish\n");
 }
 
-// Worker proces pro auta (každý worker zpracuje několik aut)
+// worker has more cars for the program swiftness
 void car_worker(int start_id, int end_id, int port, int TA)
 {
     for (int id = start_id; id <= end_id; id++)
@@ -215,7 +227,7 @@ void car_worker(int start_id, int end_id, int port, int TA)
     }
 }
 
-// Worker proces pro nákladní auta (každý worker zpracuje několik nákladních aut)
+// Trucks has the same logic as cars, but they are larger
 void truck_worker(int start_id, int end_id, int port, int TA)
 {
     for (int id = start_id; id <= end_id; id++)
@@ -259,12 +271,13 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int N = atoi(argv[1]);  // Počet nákladních aut
-    int O = atoi(argv[2]);  // Počet aut
-    int K = atoi(argv[3]);  // Kapacita trajektu
-    int TA = atoi(argv[4]); // Čekací doba vozidel
-    int TP = atoi(argv[5]); // Čekací doba trajektu
+    int N = atoi(argv[1]);  // Trucks count
+    int O = atoi(argv[2]);  // Cars count
+    int K = atoi(argv[3]);  // Ferry capacity
+    int TA = atoi(argv[4]); // Vehicle max delay
+    int TP = atoi(argv[5]); // Ferry max delay
 
+    // End if anything exceed the limit
     if (N < 0 || N >= MAX_TRUCKS || O < 0 || O >= MAX_CARS ||
         K < FERRY_CAP_MIN || K > FERRY_CAP_MAX ||
         TA < 0 || TA > 10000 || TP < 0 || TP > 1000)
@@ -273,7 +286,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // Initialize the global time
     srand(time(NULL));
+
+    // Open the file to write the output
     output_file = fopen("proj2.out", "w");
     if (output_file == NULL)
     {
@@ -281,12 +297,13 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // Give the values to the shared memory
     initialize_resources();
     shared->ferry_capacity = K;
     shared->total_cars = O;
     shared->total_trucks = N;
 
-    // Vytvoření trajektu
+    // Create the ferry
     pid_t ferry_pid = fork();
     if (ferry_pid == 0)
     {
@@ -295,13 +312,14 @@ int main(int argc, char *argv[])
     }
     else if (ferry_pid < 0)
     {
+        // End the program if there is an error
         perror("fork");
         cleanup();
         return 1;
     }
 
-    // Vytvoření worker procesů pro auta
-    int cars_per_worker = (O + MAX_WORKERS - 1) / MAX_WORKERS; // Rozdělení aut mezi workery
+    // Making worker processes for the cars
+    int cars_per_worker = (O + MAX_WORKERS - 1) / MAX_WORKERS; // Split the cars for the workers
     for (int i = 0; i < MAX_WORKERS; i++)
     {
         int start_id = i * cars_per_worker + 1;
@@ -326,8 +344,8 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Vytvoření worker procesů pro nákladní auta
-    int trucks_per_worker = (N + MAX_WORKERS - 1) / MAX_WORKERS; // Rozdělení nákladních aut mezi workery
+    // Making worker processes for the trucks
+    int trucks_per_worker = (N + MAX_WORKERS - 1) / MAX_WORKERS; // Split the trucks for the workers
     for (int i = 0; i < MAX_WORKERS; i++)
     {
         int start_id = i * trucks_per_worker + 1;
@@ -346,18 +364,20 @@ int main(int argc, char *argv[])
         }
         else if (pid < 0)
         {
+            // If there is an error end the program
             perror("fork");
             cleanup();
             return 1;
         }
     }
 
-    // Čekání na dokončení všech workerů a trajektu
+    // Wait for all the processes to end
     for (int i = 0; i < 1 + 2 * MAX_WORKERS; i++)
     {
         wait(NULL);
     }
 
+    // Program successfully ended without any issues
     cleanup();
     return 0;
 }

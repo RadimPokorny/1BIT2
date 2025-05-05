@@ -1,3 +1,7 @@
+# IOS 2. Project - Semaphores
+# Author: Radim Pokorny (xpokorr00)
+# Date: 2025-03-05
+
 CC = gcc
 CFLAGS = -std=gnu99 -Wall -Wextra -Werror -pedantic
 TARGET = proj2

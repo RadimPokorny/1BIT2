@@ -46,7 +46,7 @@
           if (item.icon != 'home') {
             $ul.append(`
           <li class="menu-item">
-            <a href="${item.href}" title="${item.text}">
+            <a href="${item.href}">
               <i class="fas fa-${item.icon}"></i>
               <span id="${item.icon}" class="menu-text">${item.text}</span>
             </a>
@@ -56,7 +56,7 @@
           else {
             $ul.append(`
           <li class="not-menu-item">
-            <a href="${item.href}" title="${item.text}">
+            <a href="${item.href}">
               <i class="fas fa-${item.icon}"></i>
               <span id="${item.icon}" class="menu-text">${item.text}</span>
             </a>
@@ -87,14 +87,11 @@
           $menuToggle.show();
           $('.ul-bg ul').addClass('mobile-menu');
           $('.menu-text').show();
-
-          // Pro mobilní zobrazení necháme title
-          $menuLinks.each(function () {
-            $(this).attr('title', $(this).find('.menu-text').text());
-          });
+          // Remove all titles
+          $menuItems.removeAttr('title');
         }
-        // Medium devices (768px - 992px) - show only "Index" text and icons for others
-        else if (width < 992) {
+        // Medium devices (550px - 992px) - show only "Index" text and icons for others
+        else if (width >= 550 && width < 992) {
           $menuItems.show();
           $menuToggle.hide();
           $('.ul-bg ul').removeClass('mobile-menu');
@@ -102,28 +99,26 @@
           $('.menu-text').hide();
           $('.menu-item:first-child .menu-text').show();
 
-          // Pro střední rozlišení přidáme title k ikonám
-          $menuLinks.each(function () {
-            $(this).attr('title', $(this).find('.menu-text').text());
+          // Add titles only in this range
+          $menuItems.each(function () {
+            const text = $(this).find('.menu-text').text();
+            $(this).attr('title', text);
           });
         }
-        // Large devices - show both icons and text
+        // Large devices (992px and up) - show both icons and text
         else {
           $menuItems.show();
           $menuToggle.hide();
           $('.menu-text').show();
           $('.ul-bg ul').removeClass('mobile-menu');
           $('.menu-item i').show();
-          $menuItems.off('mouseenter mouseleave');
 
-          // Pro velké rozlišení odebereme title (text je viditelný)
-          $menuLinks.each(function () {
-            $(this).removeAttr('title');
-          });
+          // Remove all titles
+          $menuItems.removeAttr('title');
         }
       }
 
-      // Ostatní funkce zůstávají stejné
+      // Rest of the code remains the same
       $('body').on('click', '.menu-toggle a', function (e) {
         e.preventDefault();
         $('.menu-item').toggle();

@@ -1,0 +1,22 @@
+\frametitle{Příklad použití}
+\begin{exampleblock}{Vstup}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+Jan
++420123456789
+Petr
+555-987654
+Anna
+123456
+\end{lstlisting}
+\end{exampleblock}
+
+\begin{block}{Výstup pro hledání "56"}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+jan, +420123456789
+anna, 123456
+\end{lstlisting}
+\end{block}
+
+\begin{alertblock}{Poznámka}
+Program podporuje jak vyhledávání v číslech, tak převod jmen na T9 číselnou reprezentaci
+\end{alertblock}
