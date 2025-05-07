@@ -1,5 +1,5 @@
-# K suboru: proj4.tex
-# Datum:    25.4. 2025
+# K suboru: proj5.tex
+# Datum:    6.5. 2025
 # Autor:    Radim Pokorny (xpokorr00@fit.vutbr.cz)
 # Projekt:  ITY proj 5
 

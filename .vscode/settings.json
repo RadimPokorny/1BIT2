@@ -3,5 +3,6 @@
         "stdio.h": "c",
         "stdlib.h": "c",
         "types.h": "c"
-    }
+    },
+    "editor.fontFamily": "Cascadia Mono, 'Courier New', monospace",
 }

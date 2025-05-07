@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=latex 2025.2.28)  17 APR 2025 16:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=latex 2025.2.28)  6 MAY 2025 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,24 +475,24 @@ File: l3backend-dvips.def 2024-01-04 L3 backend support: dvips
 ) (ima_du3.aux)
 \openout1 = `ima_du3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -530,13 +530,13 @@ LaTeX Font Info:    ... okay on input line 19.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 19.
-Package microtype Info: Applying patch `item' on input line 19.
-Package microtype Info: Applying patch `toc' on input line 19.
-Package microtype Info: Applying patch `eqnum' on input line 19.
-Package microtype Info: Applying patch `footnote' on input line 19.
-Package microtype Info: Applying patch `verbatim' on input line 19.
-LaTeX Info: Redefining \microtypesetup on input line 19.
+LaTeX Info: Redefining \microtypecontext on input line 22.
+Package microtype Info: Applying patch `item' on input line 22.
+Package microtype Info: Applying patch `toc' on input line 22.
+Package microtype Info: Applying patch `eqnum' on input line 22.
+Package microtype Info: Applying patch `footnote' on input line 22.
+Package microtype Info: Applying patch `verbatim' on input line 22.
+LaTeX Info: Redefining \microtypesetup on input line 22.
 Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -548,43 +548,43 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 22.
 
 (ima_du3.out) (ima_du3.out)
 \@outlinefile=\write3
 \openout3 = `ima_du3.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-4.
+7.
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-4.
+7.
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-24.
+27.
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-24.
+27.
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 24.
+(Font)              <10.95> on input line 27.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 24.
+(Font)              <8> on input line 27.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 24.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
+(Font)              <6> on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
 
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -593,7 +593,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
 
 
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -602,36 +602,25 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\radim\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-$[][] \OT1/lmr/m/n/10.95 = 2 \OMS/lmsy/m/n/10.95 ^^A [][] \OT1/lmr/m/n/10.95 = 
-2 \OMS/lmsy/m/n/10.95 ^^A
+Overfull \hbox (333.90636pt too wide) detected at line 39
+[][] \OT1/lmr/m/n/10.95 = [][] = 2 \OMS/lmsy/m/n/10.95 ^^A [][] \OT1/lmr/m/n/10
+.95 = 2 \OMS/lmsy/m/n/10.95 ^^A [] ^^A [][] ^^A [] \OT1/lmr/m/n/10.95 == \OMS/l
+msy/m/n/10.95 ^^@ [][] ^^A [] \OT1/lmr/m/n/10.95 = []
  []
 
 
-Overfull \hbox (129.35988pt too wide) detected at line 36
+Overfull \hbox (205.77798pt too wide) detected at line 52
+[][]
+ []
+
+
+Overfull \hbox (261.78625pt too wide) detected at line 63
 []
  []
 
 
-Overfull \hbox (189.40941pt too wide) detected at line 43
-[]
- []
-
-
-Overfull \hbox (83.80725pt too wide) detected at line 50
-[] [] \OT1/lmr/m/n/10.95 = [] \OML/lmm/m/it/10.95 x \OMS/lmsy/m/n/10.95 ^^@ []\
-OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 x[] \OMS/lmsy/m/n/10.95 ^^@ \OT1/lmr/m/n
-/10.95 1)  \OMS/lmsy/m/n/10.95 )  [] \OT1/lmr/m/n/10.95 + [] = [] = []
- []
-
-
-Overfull \hbox (90.88326pt too wide) detected at line 55
-[]
- []
-
-
-Overfull \hbox (110.03812pt too wide) detected at line 62
-[]
+Overfull \hbox (255.77667pt too wide) detected at line 86
+[][]
  []
 
 [1
@@ -647,11 +636,11 @@ Package rerunfilecheck Info: File `ima_du3.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  13781 strings out of 474487
- 221482 string characters out of 5743781
- 1958539 words of memory out of 5000000
+ 221476 string characters out of 5743781
+ 1965539 words of memory out of 5000000
  35881 multiletter control sequences out of 15000+600000
  585609 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,13n,79p,1006b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,1006b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ima_du3.dvi (1 page, 9308 bytes).
+Output written on ima_du3.dvi (1 page, 11552 bytes).

@@ -51,21 +51,29 @@
 \frame{\titlepage}
 
 \begin{frame}
-\frametitle{Motivace}
-\begin{columns}
-\begin{column}{0.6\textwidth}
-\begin{itemize}
-\item<1-> Inspirace klasickým T9 vyhledáváním na mobilních telefonech
-\item<2-> Rychlé vyhledávání kontaktů bez nutnosti psát celé jméno
-\item<3-> Užitečné pro velké telefonní seznamy
-\item<4-> Praktická aplikace základních algoritmů pro práci s řetězci
-\end{itemize}
-\end{column}
-\begin{column}{0.4\textwidth}
-\end{column}
-\end{columns}
+    \frametitle{Motivace}
+    \begin{itemize}
+        \item<1-> Vytvoření jednoduchého programu pro vyhledávání kontaktů
+        \item<2-> Hlubší porozumnění práci s řetězci v jazyce C
+        \item<3-> Zpracování telefonních čísel a jmen pomocí T9 převodu
+        \item<4-> Získání zkušeností s algoritmy pro vyhledávání podřetězců
+        \item<5-> Testování a ladění programu
+        \item<6-> Ošetření chyb a výjimek
+    \end{itemize}
 \end{frame}
-
+\begin{frame}
+    \frametitle{Formulace problému}
+    \begin{itemize}
+        \item Cílem je vytvořit jednoduchý nástroj v jazyce C, který umožní vyhledávání kontaktů na základě uživatelského vstupu.
+        \item Uživatel zadává posloupnost číslic, která se porovnává s:
+        \begin{itemize}
+            \item Telefonními čísly kontaktů
+            \item Převedenými jmény pomocí T9 (např. „Jan“ → „526“)
+        \end{itemize}
+        \item Program musí efektivně zpracovávat textový vstup, vyhledávat podřetězce a vypisovat odpovídající kontakty.
+        \item Důraz je kladen na správnost, robustnost a jednoduchost implementace.
+    \end{itemize}
+\end{frame}
 \begin{frame}
     \frametitle{Schéma převodu písmen na čísla}
     \centering
@@ -80,7 +88,19 @@
     \item t,u,v → 8
     \item w,x,y,z → 9
     \end{itemize}
-    \end{frame}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Popis algoritmu}
+    \begin{itemize}
+    \item Algoritmus prohledává celý vstupní řetězec (telefonní číslo nebo převedené jméno).
+    \item Na každé pozici kontroluje, zda od daného znaku začíná hledaný podřetězec.
+    \item Pokud nalezne znak '+', nahradí ho za '0' (kvůli mezinárodním číslům).
+    \item Pokud znaky odpovídají hledanému výrazu, vrátí 1 (úspěšné nalezení).
+    \item Pokud podřetězec nenalezne na žádné pozici, vrací 0.
+    \item Vyhledávání neodlišuje malá a velká písmena.
+    \end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Klíčové funkce}
@@ -136,7 +156,7 @@ Program podporuje jak vyhledávání v číslech, tak převod jmen na T9 čísel
 \end{frame}
 
 \begin{frame}
-\frametitle{Ošetření chyb}
+\frametitle{Ošetření chyb při testování}
 \begin{itemize}
 \item Kontrola platnosti vstupního argumentu (pouze čísla)
 \item Omezení délky vstupu (max 100 znaků)
@@ -145,14 +165,23 @@ Program podporuje jak vyhledávání v číslech, tak převod jmen na T9 čísel
 \item Vypsání "Not found" při nenalezení shody
 \end{itemize}
 \end{frame}
-
+\begin{frame}
+    \frametitle{Vyhodnocení implementace}
+    \begin{itemize}
+        \item Program byl otestován na různých vstupech – jak validních, tak chybných.
+        \item Funguje jak pro mezinárodní, tak běžná telefonní čísla (včetně znaků jako '+' nebo '-').
+        \item Podporuje vyhledávání v jménech i číslech, bez ohledu na velikost písmen.
+        \item Překlad jmen do T9 je implementován jednoduše, ale efektivně.
+        \item Implementace je vhodná pro menší vstupy (do 100 kontaktů), při větších objemech by bylo vhodné optimalizovat např. použitím tries a ukazatelů.
+    \end{itemize}
+\end{frame}
 \begin{frame}
 \frametitle{Závěr}
 \begin{columns}
 \begin{column}{0.7\textwidth}
 \begin{itemize}
 \item Jednoduchý, ale praktický nástroj
-\item Demonstrace práce s řetězci v C
+\item Demonstrace práce s řetězci v jazyce C
 \item Možnosti rozšíření:
 \begin{itemize}
 \item Grafické rozhraní
