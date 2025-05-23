@@ -17,7 +17,7 @@ Díky, že respektuješ mou práci. 🙏
 
 ## ⚡ Hodnocení jednotlivých projektů:
 
-- **INC projekt:** 15/15 (Implementace) (Návrh TBD)
+- **INC projekt:** 15+2/20 (Implementace + Návrh)
 - **IOS 1. projekt BASH:** 15.5/15 (Implementace)
 - **IOS 2. projekt Semafory:** 16/15 (Implementace + kvalita kódu)
 - **ISJ 8 projektů:** SUM 31/40
@@ -28,7 +28,7 @@ Díky, že respektuješ mou práci. 🙏
 - **ITY 2. projekt:** 11.5/15
 - **ITY 3. projekt:** 11.5/15
 - **ITY 4. projekt:** 11/15
-- **ITY 5. projekt:** TBD
+- **ITY 5. projekt:** 11.5/15
 - **IZLO 1. projekt:** 8/8
 - **IZLO 2. projekt:** 10/10
 - **IMA1 3. ukol v LaTeX:** 4/? 🤩
