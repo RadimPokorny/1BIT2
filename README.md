@@ -17,7 +17,7 @@ Díky, že respektuješ mou práci. 🙏
 
 ## ⚡ Hodnocení jednotlivých projektů:
 
-- **INC projekt:** 15+2/20 (Implementace + Návrh)
+- **INC projekt:** (15+2)/20 (Implementace + Návrh)
 - **IOS 1. projekt BASH:** 15.5/15 (Implementace)
 - **IOS 2. projekt Semafory:** 16/15 (Implementace + kvalita kódu)
 - **ISJ 8 projektů:** SUM 31/40
