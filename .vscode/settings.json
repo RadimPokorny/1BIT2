@@ -2,7 +2,12 @@
     "files.associations": {
         "stdio.h": "c",
         "stdlib.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "stdbool.h": "c",
+        "string.h": "c",
+        "math.h": "c",
+        "semaphore.h": "c",
+        "pthread.h": "c",
     },
     "editor.fontFamily": "Cascadia Mono, 'Courier New', monospace",
 }
