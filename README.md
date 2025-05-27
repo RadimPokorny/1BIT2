@@ -10,6 +10,7 @@ Tento repozitář slouží **pouze jako inspirace**. Všechny zde obsažené sou
 
 - Repozitář byl původně **soukromý** a obsahuje projekty různé kvality a stáří.
 - Žádné z projektů zde nejsou určeny pro produkční použití.
+- Některé soubory jsou převzaté od jiných studentů a jsou pouze užity ke studiu
 
 ---
 
@@ -23,7 +24,7 @@ Díky, že respektuješ mou práci. 🙏
 - **ISJ 8 projektů:** SUM 31/40
 - **ISJ 8 minitasků:** SUM 6.5/8
 - **ITW 1. projekt CSS:** 6/20 (Nedodělaný)
-- **ITW 2. projekt:** TBD
+- **ITW 2. projekt:** 23/30
 - **ITY 1. projekt:** 9.2/10
 - **ITY 2. projekt:** 11.5/15
 - **ITY 3. projekt:** 11.5/15
