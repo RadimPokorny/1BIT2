@@ -166,7 +166,7 @@ def main():
     print(f"#1 Prvni priklad:")
     
     text = '12 -5 345 -18 9 4mm 25' # $12 -5 $345 -18 $9 4mm $25
-    pat = r'(?<![-\w])(?=\d+\b)' 
+    pat = r'(?<![-\w])(?=\d+\b)'  
     print(re.sub(pat, '$', text))
 
     print(f"\n\n#2 Druhy priklad:")
